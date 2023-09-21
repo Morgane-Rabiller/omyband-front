@@ -22,3 +22,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Installation de primevue et sa suite 
+npm i primevue
+
+### Installation de la suite primevue
+npm i primeicons

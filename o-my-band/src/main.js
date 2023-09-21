@@ -4,6 +4,12 @@ import router from './router'
 import PrimeVue from 'primevue/config';
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
-import Button from "primevue/button"
+import Sidebar from 'primevue/sidebar';
+import Button from 'primevue/button';
 
-createApp(App).use(router).use(PrimeVue).component('Button', Button).mount('#app')
+createApp(App)
+.use(router)
+.use(PrimeVue)
+.component('Button', Button)
+.component('Sidebar', Sidebar)
+.mount('#app')
