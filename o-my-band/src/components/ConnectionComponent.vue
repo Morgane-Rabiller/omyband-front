@@ -1,6 +1,6 @@
 <template>
     <div class="container flex flex-column align-items-center">
-        <h1>Je me connecte</h1>
+        <h3>Je me connecte</h3>
         <img
             class="img_login"
             src="../assets/img/chat_login.png"
@@ -9,11 +9,11 @@
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="p-float-label">
             <InputText id="username" v-model="value" />
-            <label for="username">Adresse Mail</label>
+            <label class="username" for="username">Adresse Mail</label>
         </span>
         <span class="p-float-label">
             <Password v-model="value" inputId="password" toggleMask/>
-            <label for="password">Password</label>
+            <label class="password" for="password">Password</label>
         </span>
         <Button class="submit" type="button" label="Connexion" icon="pi pi-sign-in" :loading="loading" @click="load" />
     </div>
@@ -29,7 +29,6 @@ img {
     width: 32%;
     height: 32%;
     border-radius: 5%;
-    margin-bottom: 10%;
     box-shadow: 15%;
 }
 
@@ -38,12 +37,21 @@ img {
 }
 
 .required-fields {
+    font-size: 0.8rem;
     color: rgb(99, 99, 99);
 }
 
 
 .same-width {
     padding-right: 0%;
+}
+
+.username {
+    font-size: 0.7rem;
+}
+
+.password {
+    font-size: 0.7rem;
 }
 
 .p-input-icon-right > .p-inputtext {
