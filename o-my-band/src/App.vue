@@ -17,5 +17,19 @@ hr {
   margin-top: 4%;
   border: 1px solid #0E8388;
 }
+
+@media screen and (min-width: 768px) {
+
+  .full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+  hr {
+  width: 50%;
+  margin-top: 1%;
+  border: 1px solid #0E8388;
+}
+
+}
 @import url('https://fonts.cdnfonts.com/css/montserrat');
 </style>

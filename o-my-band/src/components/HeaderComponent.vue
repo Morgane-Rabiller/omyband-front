@@ -27,9 +27,9 @@ const visible = ref(false);
     background-color: #161616;
     border: none;
     color: #0E8388;
-    height: 10%;
-    width: 13%;
-    margin: 15px 15px 0 0;
+    height: 2.7rem;
+    width: 2.7rem;
+    margin: 25px 15px 0 0;
 }
 .custom-icon {
     font-size: 1.5rem;
@@ -47,4 +47,28 @@ const visible = ref(false);
     margin: 15px 25px 0 15px
 }
 
+@media screen and (min-width: 768px) {
+    
+.custom-burger {
+    background-color: #161616;
+    border: none;
+    color: #0E8388;
+    height: 3.5rem;
+    width: 3.5rem;
+    margin: 30px 30px 0 0;
+}
+
+.custom-logo {
+    width: 6rem;
+    height: 6rem;
+    margin: 15px 40px 0 15px
+}
+.custom-title {
+    font-family: 'Vampiro One', sans-serif;
+    color: #0E8388;
+    margin-top: 8%;
+    font-size: 3rem;
+}
+
+}
 </style>

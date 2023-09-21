@@ -12,10 +12,17 @@
             <label class="username" for="username">Adresse Mail</label>
         </span>
         <span class="p-float-label">
-            <Password v-model="value" inputId="password" toggleMask/>
+            <Password v-model="value" inputId="password" toggleMask />
             <label class="password" for="password">Password</label>
         </span>
-        <Button class="submit" type="button" label="Connexion" icon="pi pi-sign-in" :loading="loading" @click="load" />
+        <Button
+            class="submit"
+            type="button"
+            label="Connexion"
+            icon="pi pi-sign-in"
+            :loading="loading"
+            @click="load"
+        />
     </div>
 </template>
 
@@ -41,7 +48,6 @@ img {
     color: rgb(99, 99, 99);
 }
 
-
 .same-width {
     padding-right: 0%;
 }
@@ -64,7 +70,23 @@ img {
 
 .p-button {
     margin-top: 1.5rem;
-    background-color: #0E8388 !important;
-    border-color: #0E8388 !important;
+    background-color: #0e8388 !important;
+    border-color: #0e8388 !important;
+}
+
+@media screen and (min-width: 768px) {
+    img {
+        width: 10%;
+        height: 10%;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    .username {
+        font-size: 1rem;
+    }
+    .password {
+        font-size: 1rem;
+    }
 }
 </style>
