@@ -24,7 +24,6 @@
 <style>
 .container {
     display: flex;
-    min-height: 100vh;
 }
 img {
     width: 32%;
@@ -45,6 +44,14 @@ img {
 
 .same-width {
     padding-right: 0%;
+}
+
+.p-input-icon-right > .p-inputtext {
+    padding-right: 0 !important;
+}
+
+.p-inputtext {
+    padding-right: 0 !important;
 }
 
 .p-button {

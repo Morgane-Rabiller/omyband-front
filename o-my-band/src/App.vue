@@ -3,6 +3,10 @@
 </template>
 
 <style>
+* {
+  /* margin: 0; */
+  padding: 0;
+}
 html {
   background-color: #161616;
   color: #CBE4DE;
