@@ -5,6 +5,8 @@ import PrimeVue from 'primevue/config';
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
 import Sidebar from 'primevue/sidebar';
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
 import Button from 'primevue/button';
 
 createApp(App)
@@ -12,4 +14,6 @@ createApp(App)
 .use(PrimeVue)
 .component('Button', Button)
 .component('Sidebar', Sidebar)
+.component('InputText', InputText)
+.component('Password', Password)
 .mount('#app')
