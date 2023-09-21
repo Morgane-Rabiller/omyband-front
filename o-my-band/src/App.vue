@@ -10,6 +10,7 @@ html {
 }
 hr {
   width: 70%;
+  margin-top: 4%;
   border: 1px solid #0E8388;
 }
 @import url('https://fonts.cdnfonts.com/css/montserrat');

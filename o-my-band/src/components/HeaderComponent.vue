@@ -1,6 +1,6 @@
 <template>
     <div class="card flex justify-content-between">
-        <div class="flex flex-wrap">
+        <div class="flex flex-initial flex align-items-center justify-content-center">
             <img src="../assets/img/Omy_band-Logo.png"  class="custom-logo" alt="Logo O'my band">
             <h1 class="custom-title">O'MY BAND</h1>
         </div>
@@ -8,7 +8,7 @@
             <h2>Sidebar</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </Sidebar>
-        <Button class="custom-burger" @click="visible = true">
+        <Button class="custom-burger flex justify-content-center" @click="visible = true">
             <i class="pi pi-align-justify custom-icon">
             </i>
         </Button>
@@ -27,7 +27,8 @@ const visible = ref(false);
     background-color: #161616;
     border: none;
     color: #0E8388;
-    height: 60px;
+    height: 10%;
+    width: 13%;
     margin: 15px 15px 0 0;
 }
 .custom-icon {
@@ -37,7 +38,8 @@ const visible = ref(false);
 .custom-title {
     font-family: 'Vampiro One', sans-serif;
     color: #0E8388;
-    margin-top: 30px;
+    margin-top: 10%;
+    font-size: 1.5rem;
 }
 .custom-logo {
     width: 65px;
