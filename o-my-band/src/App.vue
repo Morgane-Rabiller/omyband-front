@@ -14,7 +14,7 @@ html {
 }
 hr {
   width: 70%;
-  margin-top: 4%;
+  margin: 0 auto 0 auto !important;
   border: 1px solid #0E8388;
 }
 

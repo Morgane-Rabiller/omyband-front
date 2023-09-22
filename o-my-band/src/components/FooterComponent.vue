@@ -12,7 +12,7 @@
 
 <style scoped>
 .container {
-    display: flex;
+    display: flex ;
     background-color: #0e8388;
     position: fixed;
     bottom: 0;

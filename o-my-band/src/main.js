@@ -8,6 +8,7 @@ import Sidebar from 'primevue/sidebar';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Button from 'primevue/button';
+// import "tailwind.config";
 
 createApp(App)
 .use(router)
