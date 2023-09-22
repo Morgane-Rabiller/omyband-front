@@ -10,11 +10,15 @@ import Password from 'primevue/password';
 import Button from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
+import { createPinia } from 'pinia'
 // import "tailwind.config";
+
+const pinia = createPinia();
 
 createApp(App)
 .use(router)
 .use(PrimeVue)
+.use(pinia)
 .component('Button', Button)
 .component('Dropdown', Dropdown)
 .component('Checkbox', Checkbox)

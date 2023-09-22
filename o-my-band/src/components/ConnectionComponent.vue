@@ -8,7 +8,7 @@
         />
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="w-min md:w-max p-float-label">
-            <InputText id="username" v-model="value" />
+            <InputText id="username" v-model="user.email" />
             <label class="username" for="username">Adresse Mail*</label>
         </span>
         <span class="w-min md:w-max p-float-label">
@@ -21,15 +21,31 @@
             label="Connexion"
             icon="pi pi-sign-in"
             :loading="loading"
-            @click="load"
+            @click="login"
         />
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 
-const valueP = ref(null);
+import { ref } from 'vue';
+import { authStore } from '@/stores/auth';
+
+const auth = authStore();
+const user = {
+    email: '',
+    password: '',
+};
+const valueP = ref('');
+const login = async () => {
+    try {
+        user.password = valueP.value;
+        await auth.loginUser(user.email, user.password);
+    } catch (error) {
+        console.error('bouhouhou', error);
+    }
+}
+// const valueP = ref(null);
 </script>
 
 <style>
