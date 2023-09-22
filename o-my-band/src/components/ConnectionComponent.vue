@@ -12,7 +12,7 @@
             <label class="username" for="username">Adresse Mail</label>
         </span>
         <span class="w-min md:w-max p-float-label">
-            <Password v-model="value" inputId="password" toggleMask />
+            <Password v-model="valueP" inputId="password" toggleMask />
             <label class="password" for="password">Password</label>
         </span>
         <Button
@@ -26,7 +26,11 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+
+const valueP = ref(null);
+</script>
 
 <style>
 .container {
