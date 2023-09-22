@@ -26,7 +26,6 @@ hr {
 }
   hr {
   width: 50%;
-  margin-top: 1%;
   border: 1px solid #0E8388;
 }
 

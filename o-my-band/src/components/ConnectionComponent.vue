@@ -7,11 +7,11 @@
             alt="chat_login"
         />
         <p class="required-fields">*Champs Obligatoires</p>
-        <span class="p-float-label">
+        <span class="w-min md:w-max p-float-label">
             <InputText id="username" v-model="value" />
             <label class="username" for="username">Adresse Mail</label>
         </span>
-        <span class="p-float-label">
+        <span class="w-min md:w-max p-float-label">
             <Password v-model="value" inputId="password" toggleMask />
             <label class="password" for="password">Password</label>
         </span>

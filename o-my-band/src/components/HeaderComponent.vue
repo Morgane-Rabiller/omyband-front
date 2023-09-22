@@ -1,6 +1,6 @@
 <template>
     <div class="card flex justify-content-between">
-        <div class="flex flex-initial flex align-items-center justify-content-center">
+        <div class="flex flex-initial align-items-center justify-content-center">
             <img
                 src="../assets/img/Omy_band-Logo.png"
                 class="min-w-min md:min-w-max custom-logo"
@@ -8,7 +8,7 @@
             />
             <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
         </div>
-        <div class="right-part hidden md:flex mt-6 mr-5 flex flex-column align-items-end">
+        <div class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end">
             <p class="no-account hidden md:flex">Je n'ai pas encore de compte ?</p> 
             <p class="mt-2 hidden md:flex"><i class="pi pi-sign-in" />&nbsp; S'inscrire</p>
         </div>
@@ -28,7 +28,7 @@
             <i class="pi pi-align-justify custom-icon"> </i>
         </Button>
     </div>
-    <hr />
+    <hr class="mt-3 md:mt-0"/>
 </template>
 
 <script setup>
