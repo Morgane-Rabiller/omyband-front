@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex justify-content-between">
+    <div class="container flex justify-content-between mb-0 mr-0">
         <div class="left-part">
             <p>Mentions légales</p>
         </div>
@@ -12,14 +12,16 @@
 
 <style scoped>
 .container {
-    display: flex ;
+    display: flex !important;
+    align-items: center;
     background-color: #0e8388;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     right: 0;
     left: 0;
     width: 100%;
     font-size: 0.8rem;
+    margin: 3rem 0 0 0 !important;
 }
 .left-part {
     margin-left: 5%;

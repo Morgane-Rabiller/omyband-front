@@ -1,5 +1,5 @@
 <template>
-    <div class="card flex justify-content-between">
+    <div class="container card flex justify-content-between">
         <div class="flex flex-initial align-items-center justify-content-center">
             <img
                 src="../assets/img/Omy_band-Logo.png"
@@ -38,6 +38,7 @@ const visible = ref(false);
 </script>
 
 <style scoped>
+
 .custom-burger {
     background-color: #161616;
     border: none;

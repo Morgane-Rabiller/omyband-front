@@ -9,11 +9,11 @@
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="w-min md:w-max p-float-label">
             <InputText id="username" v-model="value" />
-            <label class="username" for="username">Adresse Mail</label>
+            <label class="username" for="username">Adresse Mail*</label>
         </span>
         <span class="w-min md:w-max p-float-label">
             <Password v-model="valueP" inputId="password" toggleMask />
-            <label class="password" for="password">Password</label>
+            <label class="password" for="password">Mot de passe*</label>
         </span>
         <Button
             class="submit"

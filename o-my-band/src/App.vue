@@ -12,6 +12,9 @@ html {
   color: #CBE4DE;
   font-family: 'Montserrat', sans-serif;
 }
+body {
+  margin: 0;
+}
 hr {
   width: 70%;
   margin: 0 auto 0 auto !important;

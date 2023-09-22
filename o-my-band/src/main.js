@@ -8,12 +8,16 @@ import Sidebar from 'primevue/sidebar';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Button from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
+import Checkbox from 'primevue/checkbox';
 // import "tailwind.config";
 
 createApp(App)
 .use(router)
 .use(PrimeVue)
 .component('Button', Button)
+.component('Dropdown', Dropdown)
+.component('Checkbox', Checkbox)
 .component('Sidebar', Sidebar)
 .component('InputText', InputText)
 .component('Password', Password)
