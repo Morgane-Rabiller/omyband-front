@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex justify-content-between mb-0 mr-0">
+    <div class="container flex justify-content-between w-full flex-col items-center bg-neutral-100 text-center dark:bg-neutral-600 lg:text-left fixed bottom-0 left-0">
         <div class="left-part">
             <p>Mentions légales</p>
         </div>
@@ -11,17 +11,19 @@
 </template>
 
 <style scoped>
-.container {
-    display: flex !important;
-    align-items: center;
+/* .container {
     background-color: #0e8388;
-    position: sticky;
+    /* position: fixed;
     bottom: 0;
     right: 0;
-    left: 0;
+    left: 0; *
     width: 100%;
     font-size: 0.8rem;
-    margin: 3rem 0 0 0 !important;
+    margin: 4rem 0 0 0 !important;
+} */
+
+.container {
+    background-color: #0E8388;
 }
 .left-part {
     margin-left: 5%;

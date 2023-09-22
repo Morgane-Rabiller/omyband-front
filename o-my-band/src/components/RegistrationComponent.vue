@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-column align-items-center overflow-auto">
+    <div class="container flex flex-column align-items-center mb-8">
         <h3>Inscription</h3>
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="p-float-label">
@@ -93,9 +93,10 @@ const valueP = ref(null);
 const valueP2 = ref(null);
 </script>
 
-<style>
+<style scoped>
 .container {
     display: flex;
+    overflow-y: none;
 }
 img {
     width: 32%;

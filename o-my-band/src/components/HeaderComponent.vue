@@ -1,6 +1,8 @@
 <template>
-    <div class="container card flex justify-content-between">
-        <div class="flex flex-initial align-items-center justify-content-center">
+    <div
+        class="container card fixed w-full top-0 left-0 flex justify-content-between"
+    >
+        <div class="flex flex-initial align-items-start justify-content-start">
             <img
                 src="../assets/img/Omy_band-Logo.png"
                 class="min-w-min md:min-w-max custom-logo"
@@ -8,9 +10,15 @@
             />
             <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
         </div>
-        <div class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end">
-            <p class="no-account hidden md:flex">Je n'ai pas encore de compte ?</p> 
-            <p class="mt-2 hidden md:flex"><i class="pi pi-sign-in" />&nbsp; S'inscrire</p>
+        <div
+            class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
+        >
+            <p class="no-account hidden md:flex">
+                Je n'ai pas encore de compte ?
+            </p>
+            <p class="mt-2 hidden md:flex">
+                <i class="pi pi-sign-in" />&nbsp; S'inscrire
+            </p>
         </div>
         <Sidebar v-model:visible="visible">
             <h2>Sidebar</h2>
@@ -28,7 +36,9 @@
             <i class="pi pi-align-justify custom-icon"> </i>
         </Button>
     </div>
-    <hr class="mt-3 md:mt-0"/>
+        <hr
+            class="mt-20"
+        />
 </template>
 
 <script setup>
@@ -38,7 +48,6 @@ const visible = ref(false);
 </script>
 
 <style scoped>
-
 .custom-burger {
     background-color: #161616;
     border: none;
@@ -69,17 +78,23 @@ const visible = ref(false);
 .no-account {
     font-size: 0.7rem;
 }
+.mt-20 {
+    margin-top: 6rem !important;
+}
 
 @media screen and (min-width: 768px) {
+    .mt-20 {
+        margin-top: 8rem !important;
+    }
     .custom-logo {
         width: 6rem;
         height: 6rem;
-        margin: 15px 40px 0 15px;
+        margin: 1.2rem 2rem 0 2rem;
     }
     .custom-title {
         font-family: "Vampiro One", sans-serif;
         color: #0e8388;
-        margin-top: 8%;
+        margin-top: 2rem;
         font-size: 3rem;
     }
 }

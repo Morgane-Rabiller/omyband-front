@@ -4,7 +4,6 @@
 
 <style>
 * {
-  /* margin: 0; */
   padding: 0;
 }
 html {
@@ -16,7 +15,7 @@ body {
   margin: 0;
 }
 hr {
-  width: 70%;
+  width: 50%;
   margin: 0 auto 0 auto !important;
   border: 1px solid #0E8388;
 }
@@ -27,10 +26,10 @@ hr {
   width: 100vw;
   height: 100vh;
 }
-  hr {
+  /* hr {
   width: 50%;
   border: 1px solid #0E8388;
-}
+} */
 
 }
 @import url('https://fonts.cdnfonts.com/css/montserrat');
