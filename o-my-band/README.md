@@ -20,5 +20,12 @@ npm run build
 npm run lint
 ```
 
+### Primevue and Primeflex for the css
+```
+npm install primevue 
+
+npm install primeflex
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
