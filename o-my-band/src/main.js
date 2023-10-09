@@ -11,6 +11,9 @@ import Button from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
+import Message from 'primevue/message';
+import InlineMessage from 'primevue/inlinemessage';
+
 import { createPinia } from 'pinia'
 // import "tailwind.config";
 
@@ -27,4 +30,6 @@ createApp(App)
 .component('InputText', InputText)
 .component('Password', Password)
 .component('Textarea', Textarea)
+.component('Message', Message)
+.component('InlineMessage', InlineMessage)
 .mount('#app')

@@ -8,7 +8,8 @@ export const authStore = defineStore({
             email : "",
             password : "",
         },
-        users: []
+        users: [],
+        departments: []
     }),
     actions: {
         async loginUser(email, password) {
@@ -19,7 +20,7 @@ export const authStore = defineStore({
                 })
                 this.user = user;
             } catch (error) {
-                console.error('Erreur De tes morts')
+                console.error('Erreur De tes morts');
             }
             
         },
@@ -33,6 +34,7 @@ export const authStore = defineStore({
                     location,
                     description
                 })
+                if(response.data)
                 this.users.push({
                     pseudo: response.data.pseudo,
                     password: response.data.password,
@@ -48,6 +50,20 @@ export const authStore = defineStore({
         }
     },
     getters: {
-
+        async getDepartements() {
+            try {
+            const response = await axios.get("https://happyapi.fr/api/getDeps");
+            const datas = response.data.result.result;
+            let newData = datas.map((data) => {
+                return {
+                name: data.dep_name,
+                code: data.num_dep
+            }
+            });
+            return newData;
+            } catch(error) {
+                console.error("Données non récupérées");
+            }
+        }
     }
 })

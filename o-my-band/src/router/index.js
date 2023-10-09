@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ConnectionView from '../views/ConnectionView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
-
+import ValidationPage from '../components/ValidationPage'
 const routes = [
   {
     path: '/',
@@ -13,6 +13,11 @@ const routes = [
     name: 'registration',
     component: RegistrationView
   },
+  {
+    path: '/validation',
+    name: 'validation',
+    component: ValidationPage
+  }
   // {
   //   path: '/about',
   //   name: 'about',
