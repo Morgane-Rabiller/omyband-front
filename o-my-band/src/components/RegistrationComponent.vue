@@ -26,18 +26,6 @@
                 >Confirmation du mot de passe*</label
             >
         </span>
-        <span class="p-float-label">
-            <Password v-model="valueP2" inputId="password" toggleMask />
-            <label class="text-xs md:text-sm w-10rem password" for="password"
-                >Confirmation du mot de passe*</label
-            >
-        </span>
-        <span class="p-float-label">
-            <Password v-model="valueP2" inputId="password" toggleMask />
-            <label class="text-xs md:text-sm w-10rem password" for="password"
-                >Confirmation du mot de passe*</label
-            >
-        </span>
         <Dropdown
             v-model="selectedCity"
             :options="cities"
@@ -48,8 +36,7 @@
 
         <div class="card flex justify-content-center">
             <div class="flex flex-column gap-3">
-                
-            <label for="chbx">Sélectionne ton/tes styles</label>
+                <label for="chbx">Sélectionne ton/tes styles</label>
                 <div
                     v-for="category of categories"
                     :key="category.key"
@@ -64,6 +51,17 @@
                     <label :for="category.key">{{ category.name }}</label>
                 </div>
             </div>
+        </div>
+        <div class="card flex flex-column my-4">
+            <label class="mb-2">Description</label>
+            <Textarea
+                v-model="description"
+                rows="5"
+                autoResize
+                cols="50"
+                placeholder="Description libre pour plus de précisions sur toi, tu peux décrire ton groupe ou tes intentions et préciser ton style."
+                class="resize"
+            />
         </div>
         <Button
             class="submit"
@@ -80,15 +78,15 @@
 import { ref } from "vue";
 // const datas = ["Rock", "Métal", "Patate", "Banana", "Miaou"];
 
-
+const description = ref("");
 const categories = ref([
-    {name: "Rock", key: "A"},
-    {name: "Métal", key: "M"},
-    {name: "Patate", key: "P"},
-    {name: "ReseBananaarch", key: "R"},
-    {name: "Miaou", key: "Mi"}
+    { name: "Rock", key: "A" },
+    { name: "Métal", key: "M" },
+    { name: "Patate", key: "P" },
+    { name: "ReseBananaarch", key: "R" },
+    { name: "Miaou", key: "Mi" },
 ]);
-const selectedCategories = ref(['Marketing']);
+const selectedCategories = ref(["Marketing"]);
 const valueP = ref(null);
 const valueP2 = ref(null);
 </script>
@@ -109,6 +107,9 @@ img {
     margin-top: 1.5rem;
 }
 
+.resize {
+    width: 300px;
+}
 .required-fields {
     font-size: 0.8rem;
     color: rgb(99, 99, 99);
@@ -125,6 +126,9 @@ img {
 }
 
 @media screen and (min-width: 768px) {
+    .resize {
+        width: 500px;
+    }
     .custom-dropdown .p-dropdown-label {
         font-size: 1rem;
     }
