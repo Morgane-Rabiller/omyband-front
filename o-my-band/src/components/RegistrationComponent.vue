@@ -3,13 +3,13 @@
         <h3>Inscription</h3>
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="p-float-label">
-            <InputText id="pseudo" v-model="value" />
+            <InputText id="pseudo" v-model="user.pseudo" />
             <label class="text-xs md:text-sm pseudo" for="pseudo"
                 >Pseudo*</label
             >
         </span>
         <span class="p-float-label">
-            <InputText id="username" v-model="value" />
+            <InputText id="username" v-model="user.email" />
             <label class="text-xs md:text-sm username" for="username"
                 >Adresse Mail*</label
             >
@@ -27,7 +27,7 @@
             >
         </span>
         <Dropdown
-            v-model="selectedCity"
+            v-model="user.location"
             :options="cities"
             optionLabel="name"
             placeholder="Département"
@@ -55,7 +55,7 @@
         <div class="card flex flex-column my-4">
             <label class="mb-2">Description</label>
             <Textarea
-                v-model="description"
+                v-model="user.description"
                 rows="5"
                 autoResize
                 cols="50"
@@ -69,7 +69,7 @@
             label="Inscription"
             icon="pi pi-sign-in"
             :loading="loading"
-            @click="load"
+            @click="register"
         />
     </div>
 </template>
@@ -77,8 +77,28 @@
 <script setup>
 import { ref } from "vue";
 // const datas = ["Rock", "Métal", "Patate", "Banana", "Miaou"];
+import { authStore } from '@/stores/auth';
 
-const description = ref("");
+const auth = authStore();
+const user = {
+    email: '',
+    pseudo: '',
+    password: '',
+    location: '',
+    avatar: '',
+    description: '',
+};
+const register = async () => {
+    try {
+        
+        user.password = valueP.value;
+        user.password = valueP2.value;
+        await auth.registerUser(user.pseudo, user.email, user.password, user.avatar, user.location, user.description);
+    } catch (error) {
+        console.error('bouhouhou', error);
+    }
+}
+// const description = ref("");
 const categories = ref([
     { name: "Rock", key: "A" },
     { name: "Métal", key: "M" },
