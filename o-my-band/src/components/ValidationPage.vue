@@ -1,11 +1,10 @@
 <template>
     <div class="p-d-flex">
-        <div class="p-d-flex loader" v-if="!isValidationComplete">
+        <div class="p-d-flex loader" v-if="isLoading">
             <i class="pi pi-spin pi-spinner"></i>
         </div>
         <div class="sucess-message" v-else>
             <i class="pi pi-check"></i>
-            <router-link to="/login" class="" />
         </div>
     </div>
 
@@ -15,15 +14,17 @@
 export default {
     data() {
         return {
-            isValidationComplete: false,
+            isLoading: true,
         };
 },
-    create() {
+    mounted() {
         setTimeout(() => {
-            this.isValidationComplete = true;
-        }, 10000);
-    },
-};
+            this.isLoading = false;
+            this.$router.push('/');
+        }, 3000)
+    }   
+}
+       
 
 </script>
 

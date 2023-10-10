@@ -46,7 +46,7 @@
             v-model="selectedDepartment"
             :options="department"
             optionLabel="name"
-            placeholder="Département"
+            placeholder="Departement"
             class="custom-dropdown w-12rem md:w-12rem mt-4 mb-4"
         />
 
@@ -150,16 +150,18 @@ const register = async () => {
             Content.value = "T'abuses, tu pourrais faire un effort sur la longueur de ton pseudo !";
             showSnackbar.value = true;
         }
-        user.password = valueP.value.required;
-        user.password = valueP2.value.required;
-        user.location = selectedDepartment;
+        user.password = valueP.value;
+        console.log(user.password);
+        user.location = selectedDepartment.value ? selectedDepartment.value.name : '';
+        console.log(user.location);
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
         if (!emailRegex.test(user.email)) {
             console.error("L'email nest pas au format valide ! Perdu Jeanmi");
             Content.value = "L'email nest pas au format valide ! Perdu Jeanmi";
             showSnackbar.value = true;
         }
-        await auth.registerUser(user.pseudo.required, user.email.required, user.password, user.avatar, user.location.required, user.description);
+        await auth.registerUser(user.pseudo, user.email, user.password, user.avatar, user.location, user.description);
+        console.log(user);
     } catch (error) {
         console.error('bouhouhou', error);
     }
@@ -183,8 +185,6 @@ onMounted(async () => {
     department,
 }
 });
-
-
 
 const valueP = ref(null);
 const valueP2 = ref(null);

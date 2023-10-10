@@ -32,8 +32,10 @@ export const authStore = defineStore({
                     password,
                     avatar,
                     location,
-                    description
-                })
+                    description,
+                }, { headers: {
+                    'Content-Type': 'application/json',
+                }})
                 if(response.data)
                 this.users.push({
                     pseudo: response.data.pseudo,
@@ -45,7 +47,7 @@ export const authStore = defineStore({
                 })
                 console.log(response);
             } catch(error) {
-                console.error('Erreur de tes grands morts')
+                console.error(error);
             }
         }
     },

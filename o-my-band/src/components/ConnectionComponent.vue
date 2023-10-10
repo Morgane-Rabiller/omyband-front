@@ -8,13 +8,19 @@
         />
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="w-min md:w-max p-float-label">
-            <InputText id="username" v-model="user.email" />
+            <InputText id="username" v-model="user.email" @blur="emailValidate" />
             <label class="username" for="username">Adresse Mail*</label>
         </span>
+            <div v-if="emailError" class="mt-2">
+                <InlineMessage> {{ emailError }} </InlineMessage>
+            </div>
         <span class="w-min md:w-max p-float-label">
-            <Password v-model="valueP" inputId="password" toggleMask />
+            <Password v-model="valueP" inputId="password" @blur="passwordValidate" toggleMask />
             <label class="password" for="password">Mot de passe*</label>
         </span>
+            <div v-if="passwordError" class="mt-2">
+                <InlineMessage>{{ passwordError }}</InlineMessage>
+            </div>
         <Button
             class="submit"
             type="button"
@@ -23,11 +29,14 @@
             :loading="loading"
             @click="login"
         />
+        
+        <div v-if="showSnackbar">
+            <Message severity="warn" sticky>Email ou mot de passe incorrect</Message>
+        </div>
     </div>
 </template>
 
 <script setup>
-
 import { ref } from 'vue';
 import { authStore } from '@/stores/auth';
 
@@ -37,12 +46,39 @@ const user = {
     password: '',
 };
 const valueP = ref('');
+const userValide = ref(false);
 const login = async () => {
     try {
+        if(!userValide.value) {
+            showSnackbar.value = true;
+        }
         user.password = valueP.value;
         await auth.loginUser(user.email, user.password);
     } catch (error) {
         console.error('bouhouhou', error);
+    }
+}
+
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+
+const showSnackbar = ref(false);
+const emailError = ref('');
+const passwordError = ref('');
+
+const emailValidate = () =>{
+    if (!emailRegex.test(user.email)) {
+        emailError.value = "Email non valide e.g exemple@exemple.com"
+    } else {
+        emailError.value = '';
+    }
+}
+
+const passwordValidate = () => {
+    if (!passwordRegex.test(valueP.value)) {
+        passwordError.value = "Votre mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre"
+    } else {
+        passwordError.value = '';
     }
 }
 // const valueP = ref(null);
