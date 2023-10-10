@@ -11,6 +11,7 @@ export const authStore = defineStore({
         users: [],
         departments: [],
         announcements: [],
+        jwToken: null,
     }),
     actions: {
         async fetchAnnouncements() {
@@ -29,11 +30,15 @@ export const authStore = defineStore({
                     email,
                     password,
                 })
+                this.jwToken = user.data.token;
                 this.user = user;
             } catch (error) {
-                console.error('Erreur De tes morts');
+                console.error('Erreur De tes morts', error);
             }
             
+        },
+        async setAuthHeaders(token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         },
         async registerUser(pseudo, email, password, avatar, location, description) {
             try {
@@ -78,5 +83,5 @@ export const authStore = defineStore({
                 console.error("Données non récupérées");
             }
         }
-    }
+    },
 })

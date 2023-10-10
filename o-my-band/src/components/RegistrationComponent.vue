@@ -96,6 +96,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { authStore } from '@/stores/auth';
+import router from "@/router";
 
 const auth = authStore();
 const showSnackbar = ref(false);
@@ -161,6 +162,7 @@ const register = async () => {
             showSnackbar.value = true;
         }
         await auth.registerUser(user.pseudo, user.email, user.password, user.avatar, user.location, user.description);
+        router.push('/validation');
         console.log(user);
     } catch (error) {
         console.error('bouhouhou', error);

@@ -54,6 +54,7 @@ const login = async () => {
         }
         user.password = valueP.value;
         await auth.loginUser(user.email, user.password);
+        await auth.setAuthHeaders(auth.jwToken);
     } catch (error) {
         console.error('bouhouhou', error);
     }
