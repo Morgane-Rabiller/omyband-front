@@ -12,6 +12,7 @@ import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
 import Message from 'primevue/message';
+import Carousel from 'primevue/carousel';
 import InlineMessage from 'primevue/inlinemessage';
 
 import { createPinia } from 'pinia'
@@ -24,6 +25,7 @@ createApp(App)
 .use(PrimeVue)
 .use(pinia)
 .component('Button', Button)
+.component('Carousel', Carousel)
 .component('Dropdown', Dropdown)
 .component('Checkbox', Checkbox)
 .component('Sidebar', Sidebar)

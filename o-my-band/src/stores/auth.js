@@ -9,9 +9,20 @@ export const authStore = defineStore({
             password : "",
         },
         users: [],
-        departments: []
+        departments: [],
+        announcements: [],
     }),
     actions: {
+        async fetchAnnouncements() {
+            try {
+                const response = await axios.get('http://robinho54-server.eddi.cloud:8080/announcements');
+                this.announcements = response.data;
+                console.log(this.announcements);
+                return this.announcements;
+            } catch (error) {
+                console.error('Erreur lors de la récupération des annonces', error);
+            }
+        },
         async loginUser(email, password) {
             try {
                 const user = await axios.post('http://robinho54-server.eddi.cloud:8080/login', {

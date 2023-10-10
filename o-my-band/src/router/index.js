@@ -2,10 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ConnectionView from '../views/ConnectionView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ValidationPage from '../components/ValidationPage'
+import HomeView from '../views/HomeView'
+
 const routes = [
   {
     path: '/',
-    name: 'connexion',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/connection',
+    name: 'connection',
     component: ConnectionView
   },
   {

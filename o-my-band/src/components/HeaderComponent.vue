@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container card fixed w-full top-0 left-0 flex border-bottom-1 justify-content-between"
+        class="container card fixed w-full top-0 left-0 flex justify-content-between"
     >
         <div class="flex flex-initial align-items-start justify-content-start">
             <img
@@ -36,9 +36,7 @@
             <i class="pi pi-align-justify custom-icon"> </i>
         </Button>
     </div>
-        <hr
-            class="mt-20"
-        />
+        <hr class="mt-20"/>
 </template>
 
 <script setup>
