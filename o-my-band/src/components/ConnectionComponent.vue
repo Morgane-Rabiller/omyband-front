@@ -31,7 +31,7 @@
         />
         
         <div v-if="showSnackbar">
-            <Message severity="warn" sticky>Email ou mot de passe incorrect</Message>
+            <Message severity="warn" sticky>{{ message }}</Message>
         </div>
     </div>
 </template>
@@ -39,6 +39,7 @@
 <script setup>
 import { ref } from 'vue';
 import { authStore } from '@/stores/auth';
+import router from '@/router';
 
 const auth = authStore();
 const user = {
@@ -46,24 +47,31 @@ const user = {
     password: '',
 };
 const valueP = ref('');
-const userValide = ref(false);
+// const userValide = ref(false);
+const message = ref('Email ou mot de passe incorrect')
 const login = async () => {
     try {
-        if(!userValide.value) {
-            showSnackbar.value = true;
-        }
         user.password = valueP.value;
-        await auth.loginUser(user.email, user.password);
+        const response = await auth.loginUser(user.email, user.password);
+        console.log(response);
         await auth.setAuthHeaders(auth.jwToken);
+        if(typeof response  === "string") {
+            showSnackbar.value = true;
+        } else {
+            showSnackbar.value = false;
+            router.push('/');
+        }
     } catch (error) {
         console.error('bouhouhou', error);
+        showSnackbar = true;
+        console.log("Email ou mot de passe incorrect");
     }
 }
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
 
-const showSnackbar = ref(false);
+let showSnackbar = ref(false);
 const emailError = ref('');
 const passwordError = ref('');
 
@@ -82,7 +90,6 @@ const passwordValidate = () => {
         passwordError.value = '';
     }
 }
-// const valueP = ref(null);
 </script>
 
 <style>

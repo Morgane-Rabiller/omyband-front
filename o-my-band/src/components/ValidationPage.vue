@@ -20,7 +20,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.isLoading = false;
-            this.$router.push('/');
+            this.$router.push('/connection');
         }, 3000)
     }   
 }
