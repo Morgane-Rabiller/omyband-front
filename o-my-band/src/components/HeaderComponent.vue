@@ -73,8 +73,8 @@ export default {
     computed: {
         elementClass() {
             return {
-                "flex profil-links absolute right-0 mr-2 flex-column animation-delay-400 element-transition": !this.open,
-                "hidden": this.open
+                "flex profil-links absolute right-0 mr-2 flex-column animation-delay-400 element-transition": this.open,
+                "hidden": !this.open
             }
         }
     },
@@ -90,7 +90,6 @@ export default {
 .profil-links {
     top: 6rem;
 }
-
 .profil-link {
     text-decoration: none;
     color: #161616;
