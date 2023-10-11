@@ -5,28 +5,30 @@
         </div>
         <hr class="mt-6">
         <div class="card mt-6">
-            <Carousel :value="announcements" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="10000">
+            <Carousel :value="announcements" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="60000">
                 <template #item="announcement"> 
-                    <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-5 px-3">
-                        <div class="mb-3 flex justify-content-between">
+                    <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4">
+                        <div class="flex justify-content-between">
                             <div class="flex flex-wrap align-items-start">
-                                <img src="#" alt="avatar">
-                                <p class="ml-5">{{ announcement.data.user.pseudo }}</p>
-                                <div class="flex flex-column align-items-start ml-5">
-                                    <h1>{{ announcement.data.title }}</h1>
+                                <div class="flex flex-column">
+                                    <h2 class="">{{ announcement.data.title }}</h2>
+                                    <div class="flex flex-wrap align-items-baseline">
+                                        <img class="avatar" src="../assets/img/user-icon.png" alt="avatar">
+                                        <p class="ml-3">{{ announcement.data.user.pseudo }}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex flex-wrap">
-                                <p>{{ announcement.data.styles[0].name }}</p>
-                                <p class="ml-2">{{ announcement.data.type.name}}</p>
+                                <Tag class="tag h-1rem md:h-2rem mt-5">{{ announcement.data.styles[0].name }}</Tag>
+                                <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.type.name }}</Tag>
                             </div>
                         </div>
                         <div>
                             <p>{{ announcement.data.description }}</p>
                         </div>
-                        <div>
-                            <p>Date de publication</p>
-                            <p>{{ announcement.data.user.location }}</p>
+                        <div class="flex justify-content-between">
+                            <p class="opacity-60">Publiée le {{ new Date(announcement.data.created_at).toLocaleDateString('fr-FR') }}</p>
+                            <p class="opacity-60">{{ announcement.data.user.location }}</p>
                         </div>
                     </div>
                 </template>
@@ -41,12 +43,9 @@ import { authStore } from '@/stores/auth';
 
 const store = authStore();
 let announcements = ref([]);
-const Announcement = () => {
+const Announcement = async () => {
    try {
-    announcements.value = store.fetchAnnouncements();
-    // console.log(announcements.value);
-    // console.log(store.fetchAnnouncements());
-    // store.fetchAnnouncements().then((data) => (console.log(data)));
+    announcements.value = await store.fetchAnnouncements();
     store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0, 9)));
    } catch(error) {
     console.error(error)
@@ -56,33 +55,23 @@ onMounted(async () => {
     Announcement();
 })
 
-// const responsiveOptions = ref([
-//     {
-//         breakpoint: '1199px',
-//         numVisible: 1,
-//         numScroll: 1
-//     },
-//     {
-//         breakpoint: '991px',
-//         numVisible: 2,
-//         numScroll: 1
-//     },
-//     {
-//         breakpoint: '767px',
-//         numVisible: 1,
-//         numScroll: 1
-//     }
-// ]);
-
 </script>
 
 <style scoped>
 .headband {
     background-color: #0e8388;
 }
-
+p, h1, .tag {
+    font-family: "Montserrat", sans-serif;
+}
 .card-backgroundColor {
     background-color: #CBE4DE;
     color: #161616;
+}
+.tag {
+    background-color: #161616;
+}
+.avatar {
+    width: 30px;
 }
 </style>

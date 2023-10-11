@@ -14,6 +14,7 @@ import Textarea from 'primevue/textarea';
 import Message from 'primevue/message';
 import Carousel from 'primevue/carousel';
 import InlineMessage from 'primevue/inlinemessage';
+import Tag from 'primevue/tag';
 
 import { createPinia } from 'pinia'
 // import "tailwind.config";
@@ -34,4 +35,5 @@ createApp(App)
 .component('Textarea', Textarea)
 .component('Message', Message)
 .component('InlineMessage', InlineMessage)
+.component('Tag', Tag)
 .mount('#app')
