@@ -11,14 +11,33 @@
             <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
         </div>
         <div
+            v-if="this.$route.path === '/connection'"
             class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
         >
             <p class="no-account hidden md:flex">
                 Je n'ai pas encore de compte ?
             </p>
-            <p class="mt-2 hidden md:flex">
+            <router-link to="/registration" class="mt-2 hidden md:flex">
                 <i class="pi pi-sign-in" />&nbsp; S'inscrire
-            </p>
+            </router-link>
+        </div>
+        <div
+            v-else-if="this.$route.path === '/registration'"
+            class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
+        >
+            <p class="no-account hidden md:flex">J'ai déjà un compte ?</p>
+            <router-link to="/connection" class="mt-2 hidden md:flex">
+                <i class="pi pi-sign-in" />&nbsp; Connection
+            </router-link>
+        </div>
+        <div
+            v-else
+            class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
+        >
+            <p class="mr-5">Publier une annonce</p>
+            <p class="mr-5">Voir les annonces</p>
+            <p class="mr-5">Mes annonces</p>
+            <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
         </div>
         <Sidebar v-model:visible="visible">
             <h2>Sidebar</h2>
@@ -36,16 +55,55 @@
             <i class="pi pi-align-justify custom-icon"> </i>
         </Button>
     </div>
-        <hr class="mt-20"/>
+    <div :class="elementClass" class="element-transition">
+        <router-link to="/" class="profil-link p-3 border-bottom-1 border-round-xl">Mon profil</router-link> 
+        <router-link to="/" class="profil-link p-3 border-round-xl">Déconnexion</router-link> 
+    </div>
+    <hr class="mt-20" />
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const visible = ref(false);
+<script>
+export default {
+    data() {
+        return {
+            visible: false,
+            open: false,
+        };
+    },
+    computed: {
+        elementClass() {
+            return {
+                "flex profil-links absolute right-0 mr-2 flex-column animation-delay-400 element-transition": !this.open,
+                "hidden": this.open
+            }
+        }
+    },
+    methods: {
+        toggleMenu() {
+            this.open = !this.open;
+        },
+    },
+};
 </script>
 
 <style scoped>
+.profil-links {
+    top: 6rem;
+}
+
+.profil-link {
+    text-decoration: none;
+    color: #161616;
+    background-color: #cbe4de;
+}
+.profil-link:hover {
+    background-color: #aad2d3;
+}
+.profil {
+    /* height: 70px;
+    width: 50px; */
+    color: #cbe4de !important;
+}
 .custom-burger {
     background-color: #161616;
     border: none;
