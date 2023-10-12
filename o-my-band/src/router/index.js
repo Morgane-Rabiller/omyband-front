@@ -3,6 +3,7 @@ import ConnectionView from '../views/ConnectionView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ValidationPage from '../components/ValidationPage'
 import HomeView from '../views/HomeView'
+import AnnouncementView from '../views/AnnouncementView'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/validation',
     name: 'validation',
     component: ValidationPage
+  },
+  {
+    path: '/announcement',
+    name: 'announcement',
+    component: AnnouncementView
   }
   // {
   //   path: '/about',

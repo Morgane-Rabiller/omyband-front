@@ -30,7 +30,7 @@ export const authStore = defineStore({
                     email,
                     password,
                 })
-                    this.jwToken = response.data.token;
+                    this.jwToken = response.data.accessToken;
                     this.user = response;
                     return this.user;
             } catch (error) {

@@ -30,6 +30,9 @@
                 <i class="pi pi-sign-in" />&nbsp; Connection
             </router-link>
         </div>
+        <!-- Si l'utilisateur est connecté il aura toutes les options publier, voir et mes annonces sinon il aura les options ci-après en commentaires
+            TODO CONTINUER LES V-ELSE-IF
+         -->
         <div
             v-else
             class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
@@ -39,44 +42,50 @@
             <p class="mr-5">Mes annonces</p>
             <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
         </div>
-        <Sidebar v-model:visible="visible">
-            <h2>Sidebar</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-            </p>
-        </Sidebar>
-        <Button
-            class="custom-burger flex md:hidden justify-content-center"
-            @click="visible = true"
+        <!-- <div v-else class="right-part hidden md:flex mr-5 flex-wrap align-items-center"> 
+            <p class="mr-5">Voir les annonces</p>
+            <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
+        </div> -->
+        <SideBarComponent />
+    </div>
+    <!-- Si l'utilsateur est connecté il y aura profil et déconnexion, sinon ce sera l'autre -->
+    <div :class="elementClass">
+        <router-link
+            to="/"
+            class="profil-link p-3 border-bottom-1 border-round-xl"
+            >Mon profil</router-link
         >
-            <i class="pi pi-align-justify custom-icon"> </i>
-        </Button>
+        <router-link to="/" class="profil-link p-3 border-round-xl"
+            >Déconnexion</router-link
+        >
     </div>
-    <div :class="elementClass" class="element-transition">
-        <router-link to="/" class="profil-link p-3 border-bottom-1 border-round-xl">Mon profil</router-link> 
-        <router-link to="/" class="profil-link p-3 border-round-xl">Déconnexion</router-link> 
-    </div>
+    <!-- <div :class="elementClass">
+        <router-link to="/" class="profil-link p-3 border-bottom-1 border-round-xl">Se connecter</router-link> 
+        <router-link to="/" class="profil-link p-3 border-round-xl">S'inscrire</router-link> 
+    </div> -->
     <hr class="mt-20" />
 </template>
 
 <script>
+import SideBarComponent from "./SideBarComponent.vue";
+
 export default {
     data() {
         return {
-            visible: false,
             open: false,
         };
+    },
+    components: {
+        SideBarComponent,
     },
     computed: {
         elementClass() {
             return {
-                "flex profil-links absolute right-0 mr-2 flex-column animation-delay-400 element-transition": this.open,
-                "hidden": !this.open
-            }
-        }
+                "flex profil-links absolute right-0 mr-2 flex-column animation-delay-400 element-transition":
+                    this.open,
+                hidden: !this.open,
+            };
+        },
     },
     methods: {
         toggleMenu() {
@@ -103,18 +112,6 @@ export default {
     width: 50px; */
     color: #cbe4de !important;
 }
-.custom-burger {
-    background-color: #161616;
-    border: none;
-    color: #0e8388;
-    height: 2.7rem;
-    width: 2.7rem;
-    margin: 25px 15px 0 0;
-}
-.custom-icon {
-    font-size: 1.5rem;
-    color: #cbe4de;
-}
 .custom-title {
     font-family: "Vampiro One", sans-serif;
     color: #0e8388;
@@ -126,7 +123,6 @@ export default {
     height: 65px;
     margin: 15px 25px 0 15px;
 }
-
 .right-part > p {
     margin: 0;
 }
