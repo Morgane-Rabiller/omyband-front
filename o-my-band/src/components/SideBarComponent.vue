@@ -28,7 +28,7 @@
         <div class="mt-5 flex flex-column">
             <router-link to="/add-announcement" class="no-underline text-black-alpha-90 mb-3"><span class="material-symbols-outlined mr-2"> publish </span>
                  Publier une annonce</router-link>
-            <router-link to="/" class="no-underline text-black-alpha-90 mb-3"><span class="material-symbols-outlined mr-2"> quick_reference_all
+            <router-link to="/announcement" class="no-underline text-black-alpha-90 mb-3"><span class="material-symbols-outlined mr-2"> quick_reference_all
                 </span>Voir les annonces</router-link>
             <router-link to="/" class="no-underline text-black-alpha-90 mb-3"><span class="material-symbols-outlined mr-2"> article </span>Mes annonces</router-link>
         </div>

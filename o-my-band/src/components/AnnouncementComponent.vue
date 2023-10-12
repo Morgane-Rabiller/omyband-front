@@ -25,7 +25,8 @@
                 </div>
                 <div class="flex justify-content-between">
                     <p class="opacity-60">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
-                    <p class="opacity-60">{{ announcement.user.location }}</p>
+                    <!-- <p class="opacity-60">{{ announcement.user.location }}</p> -->
+                    <p class="opacity-60">Cat-alogne</p>
                 </div>
             </div>
         </div>

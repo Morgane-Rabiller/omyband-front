@@ -39,9 +39,9 @@
             v-else
             class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
         >
-            <p class="mr-5">Publier une annonce</p>
-            <p class="mr-5">Voir les annonces</p>
-            <p class="mr-5">Mes annonces</p>
+            <router-link to="/add-announcement" class="mr-5 no-underline" style="color: #cbe4de;">Publier une annonce</router-link>
+            <router-link to="/announcement" class="mr-5 no-underline" style="color: #cbe4de;">Voir les annonces</router-link>
+            <router-link to="/" class="mr-5 no-underline" style="color: #cbe4de;">Mes annonces</router-link>
             <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
         </div>
         <!-- <div v-else class="right-part hidden md:flex mr-5 flex-wrap align-items-center"> 
