@@ -7,20 +7,32 @@
             alt="chat_login"
         />
         <p class="required-fields">*Champs Obligatoires</p>
-        <span class="w-min md:w-max p-float-label">
-            <InputText id="username" v-model="user.email" @blur="emailValidate" />
-            <label class="username" for="username">Adresse Mail*</label>
+        <span class="flex flex-column">
+            <label for="email" class="mb-1">Adresse mail*</label>
+            <InputText
+                id="email"
+                v-model="user.email"
+                class="w-20rem md:w-30rem"
+                placeholder="Exemple@gmail.com"
+                @blur="emailValidate"
+            />
         </span>
-            <div v-if="emailError" class="mt-2">
-                <InlineMessage> {{ emailError }} </InlineMessage>
-            </div>
-        <span class="w-min md:w-max p-float-label">
-            <Password v-model="valueP" inputId="password" @blur="passwordValidate" toggleMask />
-            <label class="password" for="password">Mot de passe*</label>
+        <div v-if="emailError" class="mt-2">
+            <InlineMessage> {{ emailError }} </InlineMessage>
+        </div>
+        <span class="flex flex-column mt-4">
+            <label class="mb-1" for="password">Mot de passe*</label>
+            <Password
+                v-model="valueP"
+                inputId="password"
+                placeholder="Exemple2M5d4p7"
+                @blur="passwordValidate"
+                toggleMask
+            />
         </span>
-            <div v-if="passwordError" class="mt-2">
-                <InlineMessage>{{ passwordError }}</InlineMessage>
-            </div>
+        <div v-if="passwordError" class="mt-2">
+            <InlineMessage>{{ passwordError }}</InlineMessage>
+        </div>
         <Button
             class="submit"
             type="button"
@@ -29,7 +41,7 @@
             :loading="loading"
             @click="login"
         />
-        
+
         <div v-if="showSnackbar">
             <Message severity="warn" sticky>{{ message }}</Message>
         </div>
@@ -37,62 +49,66 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { authStore } from '@/stores/auth';
-import router from '@/router';
+import { ref } from "vue";
+import { authStore } from "@/stores/auth";
+import router from "@/router";
 
 const auth = authStore();
 const user = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
 };
-const valueP = ref('');
+const valueP = ref("");
 // const userValide = ref(false);
-const message = ref('Email ou mot de passe incorrect')
+const message = ref("Email ou mot de passe incorrect");
 const login = async () => {
     try {
         user.password = valueP.value;
         const response = await auth.loginUser(user.email, user.password);
         console.log(response);
         await auth.setAuthHeaders(auth.jwToken);
-        if(typeof response  === "string") {
+        if (typeof response === "string") {
             showSnackbar.value = true;
         } else {
             showSnackbar.value = false;
-            router.push('/');
+            router.push("/");
         }
     } catch (error) {
-        console.error('bouhouhou', error);
+        console.error("bouhouhou", error);
         showSnackbar = true;
         console.log("Email ou mot de passe incorrect");
     }
-}
+};
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
 
 let showSnackbar = ref(false);
-const emailError = ref('');
-const passwordError = ref('');
+const emailError = ref("");
+const passwordError = ref("");
 
-const emailValidate = () =>{
+const emailValidate = () => {
     if (!emailRegex.test(user.email)) {
-        emailError.value = "Email non valide e.g exemple@exemple.com"
+        emailError.value = "Email non valide e.g exemple@exemple.com";
     } else {
-        emailError.value = '';
+        emailError.value = "";
     }
-}
+};
 
 const passwordValidate = () => {
     if (!passwordRegex.test(valueP.value)) {
-        passwordError.value = "Votre mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre"
+        passwordError.value =
+            "Votre mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre";
     } else {
-        passwordError.value = '';
+        passwordError.value = "";
     }
-}
+};
 </script>
 
 <style>
+.p-password .p-inputtext {
+    width: 20rem;
+}
 .container {
     display: flex;
 }
@@ -120,10 +136,6 @@ img {
     font-size: 0.7rem;
 }
 
-.password {
-    font-size: 0.7rem;
-}
-
 .p-input-icon-right > .p-inputtext {
     padding-right: 0 !important;
 }
@@ -139,6 +151,9 @@ img {
 }
 
 @media screen and (min-width: 768px) {
+    .p-password .p-inputtext {
+        width: 30rem;
+    }
     img {
         width: 10%;
         height: 10%;

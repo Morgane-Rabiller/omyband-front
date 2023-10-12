@@ -19,7 +19,7 @@
             <p class="no-account hidden md:flex">
                 Je n'ai pas encore de compte ?
             </p>
-            <router-link to="/registration" class="mt-2 hidden md:flex">
+            <router-link to="/registration" class="mt-2 hidden md:flex" style="color: #cbe4de;">
                 <i class="pi pi-sign-in" />&nbsp; S'inscrire
             </router-link>
         </div>
@@ -28,7 +28,7 @@
             class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
         >
             <p class="no-account hidden md:flex">J'ai déjà un compte ?</p>
-            <router-link to="/connection" class="mt-2 hidden md:flex">
+            <router-link to="/connection" class="mt-2 hidden md:flex" style="color: #cbe4de;">
                 <i class="pi pi-sign-in" />&nbsp; Connection
             </router-link>
         </div>
