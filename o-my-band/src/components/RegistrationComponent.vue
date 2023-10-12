@@ -3,9 +3,7 @@
         <h3>Inscription</h3>
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="flex flex-column mt-4">
-            <label class="mb-1" for="pseudo"
-                >Pseudo*</label
-            >
+            <label class="mb-1" for="pseudo">Pseudo*</label>
             <InputText
                 id="pseudo"
                 class="w-20rem md:w-30rem"
@@ -18,9 +16,7 @@
             <InlineMessage>6 caractères minimum requis </InlineMessage>
         </div>
         <span class="flex flex-column mt-4">
-            <label class="mb-1" for="username"
-                >Adresse Mail*</label
-            >
+            <label class="mb-1" for="username">Adresse Mail*</label>
             <InputText
                 id="username"
                 class="w-20rem md:w-30rem"
@@ -33,9 +29,7 @@
             <InlineMessage> {{ emailError }} </InlineMessage>
         </div>
         <span class="flex flex-column mt-4">
-            <label class="mb-1" for="password"
-                >Mot de passe*</label
-            >
+            <label class="mb-1" for="password">Mot de passe*</label>
             <Password
                 v-model="valueP"
                 inputId="password"
@@ -87,7 +81,9 @@
                         name="category"
                         :value="category.name"
                     />
-                    <label :for="category.key">&nbsp;&nbsp;{{ category.name }}</label>
+                    <label :for="category.key"
+                        >&nbsp;&nbsp;{{ category.name }}</label
+                    >
                 </div>
             </div>
         </div>
@@ -98,7 +94,7 @@
                 rows="5"
                 autoResize
                 cols="50"
-                class="w-20rem md:w-30rem" 
+                class="w-20rem md:w-30rem"
                 placeholder="Description libre pour plus de précisions sur toi, tu peux décrire ton groupe ou tes intentions et préciser ton style."
             />
         </div>
@@ -116,9 +112,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { authStore } from "@/stores/auth";
 import router from "@/router";
+import axios from 'axios';
 
 const auth = authStore();
 const showSnackbar = ref(false);
@@ -218,12 +215,15 @@ const selectedCategories = ref(["Marketing"]);
 
 const selectedDepartment = ref();
 const department = ref([]);
-onMounted(async () => {
-    department.value = await auth.getDepartements;
-    return {
-        department,
-    };
-});
+
+axios.get("https://happyapi.fr/api/getDeps").then((response) => {
+    department.value = response.data.result.result.map((data) => {
+        return {
+            name: data.dep_name,
+            code: data.num_dep,
+        };
+    });
+}).catch((err) => { console.error(err); });
 
 const valueP = ref(null);
 const valueP2 = ref(null);

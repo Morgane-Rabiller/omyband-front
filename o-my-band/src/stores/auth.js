@@ -70,22 +70,5 @@ export const authStore = defineStore({
                 console.error(error);
             }
         }
-    },
-    getters: {
-        async getDepartements() {
-            try {
-            const response = await axios.get("https://happyapi.fr/api/getDeps");
-            const datas = response.data.result.result;
-            let newData = datas.map((data) => {
-                return {
-                name: data.dep_name,
-                code: data.num_dep
-            }
-            });
-            return newData;
-            } catch(error) {
-                console.error("Données non récupérées");
-            }
-        }
-    },
+    }
 })
