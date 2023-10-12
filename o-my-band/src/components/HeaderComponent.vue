@@ -2,14 +2,16 @@
     <div
         class="container card fixed w-full top-0 left-0 flex justify-content-between"
     >
+    <router-link to="/" class="no-underline">
         <div class="flex flex-initial align-items-start justify-content-start">
-            <img
-                src="../assets/img/Omy_band-Logo.png"
-                class="min-w-min md:min-w-max custom-logo"
-                alt="Logo O'my band"
-            />
-            <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
-        </div>
+                <img
+                    src="../assets/img/Omy_band-Logo.png"
+                    class="min-w-min md:min-w-max custom-logo"
+                    alt="Logo O'my band"
+                />
+                <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
+            </div>
+        </router-link>
         <div
             v-if="this.$route.path === '/connection'"
             class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"

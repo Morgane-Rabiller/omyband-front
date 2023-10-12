@@ -4,6 +4,7 @@ import RegistrationView from '../views/RegistrationView.vue'
 import ValidationPage from '../components/ValidationPage'
 import HomeView from '../views/HomeView'
 import AnnouncementView from '../views/AnnouncementView'
+import AddAnnouncementView from '../views/AddAnnouncementView'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/announcement',
     name: 'announcement',
     component: AnnouncementView
+  },
+  {
+    path: '/add-announcement',
+    name: 'newAnnouncement',
+    component: AddAnnouncementView
   }
   // {
   //   path: '/about',

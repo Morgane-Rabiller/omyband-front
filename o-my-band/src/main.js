@@ -14,6 +14,8 @@ import Textarea from 'primevue/textarea';
 import Message from 'primevue/message';
 import Carousel from 'primevue/carousel';
 import InlineMessage from 'primevue/inlinemessage';
+import MultiSelect from 'primevue/multiselect';
+
 import Tag from 'primevue/tag';
 
 import { createPinia } from 'pinia'
@@ -36,4 +38,5 @@ createApp(App)
 .component('Message', Message)
 .component('InlineMessage', InlineMessage)
 .component('Tag', Tag)
+.component('MultiSelect', MultiSelect)
 .mount('#app')

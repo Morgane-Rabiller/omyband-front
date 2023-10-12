@@ -3,12 +3,12 @@
         <div class="flex flex-column justify-content-center align-items-center">
             <h2>Ma recherche d'annonces</h2>
         </div>
-        <div class="card mt-6 mx-8" >
+        <div class="card mt-6 mx-8 " v-for="announcement in announcements" :key="announcement.announcement_id">
             <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4" >
                 <div class="flex justify-content-between">
                     <div class="flex flex-wrap align-items-start">
                         <div class="flex flex-column">
-                            <h2 class="">Title</h2>
+                            <h2 class="">{{ announcement.title }}</h2>
                             <div class="flex flex-wrap align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
                                 <p class="ml-3">Jeanmi</p>
@@ -16,16 +16,16 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap">
-                        <Tag class="tag h-1rem md:h-2rem mt-5"> BANANA </Tag>
-                        <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">Type</Tag>
+                        <Tag class="tag h-1rem md:h-2rem mt-5"> {{announcement.styles[0].name }} </Tag>
+                        <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.type.name }}</Tag>
                     </div>
                 </div>
                 <div>
-                    <p>Description</p>
+                    <p>{{ announcement.description }}</p>
                 </div>
                 <div class="flex justify-content-between">
-                    <p class="opacity-60">Publiée le 00/00/0000</p>
-                    <p class="opacity-60">Bananaland next to CatParadise</p>
+                    <p class="opacity-60">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
+                    <p class="opacity-60">{{ announcement.user.location }}</p>
                 </div>
             </div>
         </div>
@@ -36,15 +36,15 @@
 import { ref, onMounted } from "vue";
 import { authStore } from "@/stores/auth";
 
-const store = authStore;
+const store = authStore();
 let announcements = ref([]);
 const Announcement = async () => {
-    try {
-        announcements.value = await store.fetchAnnouncements();
-        store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0,9)));
-    } catch(error) {
-        console.error(error);
-    }
+   try {
+    announcements.value = await store.fetchAnnouncements();
+    store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0, 4)));
+   } catch(error) {
+    console.error(error)
+   }
 }
 onMounted(async () => {
     Announcement();

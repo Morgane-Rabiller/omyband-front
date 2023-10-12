@@ -46,7 +46,7 @@ let announcements = ref([]);
 const Announcement = async () => {
    try {
     announcements.value = await store.fetchAnnouncements();
-    store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0, 9)));
+    store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0, 4)));
    } catch(error) {
     console.error(error)
    }
