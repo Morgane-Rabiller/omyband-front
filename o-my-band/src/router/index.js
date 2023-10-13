@@ -5,6 +5,7 @@ import ValidationPage from '../components/ValidationPage'
 import HomeView from '../views/HomeView'
 import AnnouncementView from '../views/AnnouncementView'
 import AddAnnouncementView from '../views/AddAnnouncementView'
+import ProfilView from '../views/ProfilView'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/add-announcement',
     name: 'newAnnouncement',
     component: AddAnnouncementView
+  },
+  {
+    path:'/profil',
+    name: 'profil',
+    component: ProfilView
   }
   // {
   //   path: '/about',

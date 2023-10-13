@@ -7,16 +7,14 @@
                 <div>
                     <i class="profil pi pi-user text-4xl"></i>
                     <router-link
-                        to="/connection"
+                        to="/profil"
                         class="no-underline text-black-alpha-90 ml-3"
                         >Mon profil</router-link
                     >
                 </div>
-                <router-link
-                    to="/registration"
-                    class="no-underline text-black-alpha-90 mt-2"
-                    >Déconnection</router-link
-                >
+                
+        <p class="m-0 cursor-pointer" @click="logout"
+            >Déconnexion</p>
             </div>
             <hr class="border-gray-600 w-9 mt-5" />
             <div class="mt-5 flex flex-column">
@@ -90,6 +88,12 @@ export default {
             visible: false,
             auth: authStore(),
         };
+    },
+    methods: {
+        logout() {
+            this.auth.logoutUser();
+            this.$router.push('/');
+        }
     },
 };
 </script>

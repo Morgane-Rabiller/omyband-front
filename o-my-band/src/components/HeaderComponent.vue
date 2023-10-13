@@ -91,7 +91,7 @@
     <!-- Si l'utilsateur est connecté il y aura profil et déconnexion, sinon ce sera l'autre -->
     <div v-if="auth.jwToken" :class="elementClass">
         <router-link
-            to="/"
+            to="/profil"
             class="profil-link p-3 border-bottom-1 border-round-xl"
             >Mon profil</router-link
         >

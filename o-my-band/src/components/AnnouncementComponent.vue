@@ -3,6 +3,10 @@
         <div class="flex flex-column justify-content-center align-items-center">
             <h2>Ma recherche d'annonces</h2>
         </div>
+        <div class="filters">
+            <!-- <Dropdown v-model="selectedUserType" :options="userTypes" placeholder="Je suis..."/> -->
+            <Dropdown v-model="selectedGenre" :options="genres" placeholder="Sélectionne un Genre" on />
+        </div>
         <div class="card mt-6 mx-8 " v-for="announcement in announcements" :key="announcement.announcement_id">
             <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4" >
                 <div class="flex justify-content-between">
@@ -34,11 +38,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { authStore } from "@/stores/auth";
 
 const store = authStore();
 let announcements = ref([]);
+let selectedGenre = ref('');
+
 const Announcement = async () => {
    try {
     announcements.value = await store.fetchAnnouncements();
@@ -49,6 +55,23 @@ const Announcement = async () => {
 }
 onMounted(async () => {
     Announcement();
+})
+
+// const filteredAnnouncements = computed(() => {
+//     if (selectedGenre.value) {
+//         return announcements.filter(announcement => announcement.styles[0]?.name === selectedGenre);
+//     } else {
+//         return announcements;
+//     }
+// })
+// const filteredAnnouncements = computed (() => {
+//     if (selectedGenre.value) {
+//         return announcements.value.filter(announcement => announcement.styles[0]?.name === selectedGenre.value);
+//     }
+// })
+const genres = computed(() => {
+    const uniqueGenres = [...new Set(announcements.value.map(announcement => announcement.styles[0]?.name))];
+    return [''].concat(uniqueGenres);
 })
 
 </script>
