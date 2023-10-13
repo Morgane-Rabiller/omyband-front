@@ -103,6 +103,70 @@ export const authStore = defineStore({
         } catch(error) {
             console.error(error, "Le profil n'est pas récupéré");
         }
+        },
+        async createAnnouncement(title, user_type, research_type, description, styles, instruments, token) {
+            try {
+                const response = await axios.post("http://mathgiraud-server.eddi.cloud:8080/announcements", {
+                    title, 
+                    user_type,
+                    research_type,
+                    description,
+                    styles,
+                    instruments,
+                }, {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  })
+                if(response.data)
+                this.annoucements.push({
+                    title: response.data.title,
+                    user_type: response.data.user_type,
+                    research_type: response.data.research_type,
+                    description: response.data.description,
+                    styles: response.data.styles,
+                    instruments: response.data.instruments,
+                })
+                console.log(response);
+            } catch(error) {
+                console.error(error, 'annonce non crée');
+            }
+        },
+        async fetchTypes(token) {
+            try {
+                const response = await axios.get('http://mathgiraud-server.eddi.cloud:8080/types', {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+                return response.data;
+            } catch(error) {
+                console.error(error, 'types non récupérés');
+            }
+        },
+        async fetchInstruments(token) {
+            try {
+                const response = await axios.get('http://mathgiraud-server.eddi.cloud:8080/instruments', {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+                return response.data;
+            } catch(error) {
+                console.error(error, 'instruments non récupérés');
+            }
+        },
+        async fetchStyles(token) {
+            try {
+                const response = await axios.get('http://mathgiraud-server.eddi.cloud:8080/styles', {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+                return response.data;
+            } catch(error) {
+                console.error(error, 'instruments non récupérés');
+            }
         }
     }
 })
