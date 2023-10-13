@@ -95,9 +95,8 @@
             class="profil-link p-3 border-bottom-1 border-round-xl"
             >Mon profil</router-link
         >
-        <router-link to="/" class="profil-link p-3 border-round-xl"
-            >Déconnexion</router-link
-        >
+        <p class="profil-link p-3 border-round-xl m-0" @click="logout"
+            >Déconnexion</p>
     </div>
     <div v-else :class="elementClass">
         <router-link
@@ -139,6 +138,10 @@ export default {
         toggleMenu() {
             this.open = !this.open;
         },
+        logout() {
+            this.auth.logoutUser();
+            this.$router.push('/');
+        }
     },
 };
 </script>

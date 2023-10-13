@@ -23,7 +23,7 @@ export const authStore = defineStore({
         },
         async fetchAnnouncements() {
             try {
-                const response = await axios.get('http://robinho54-server.eddi.cloud:8080/announcements');
+                const response = await axios.get('http://mathgiraud-server.eddi.cloud:8080/announcements');
                 this.announcements = response.data;
                 console.log(this.announcements);
                 return this.announcements;
@@ -33,7 +33,7 @@ export const authStore = defineStore({
         },
         async loginUser(email, password) {
             try {
-                const response = await axios.post('http://robinho54-server.eddi.cloud:8080/login', {
+                const response = await axios.post('http://mathgiraud-server.eddi.cloud:8080/login', {
                     email,
                     password,
                 })
@@ -51,6 +51,18 @@ export const authStore = defineStore({
                 return wrongmail;
             }
             
+        },
+        async logoutUser() {
+            try{
+                this.jwToken = null;
+                cookiesStorage.removeItem('accessToken');
+
+                this.user = {};
+
+                delete axios.defaults.headers.common['Authorization'];
+            } catch(error) {
+                console.error(error, "La déconnexion a échouée");
+            }
         },
         async setAuthHeaders(token) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
