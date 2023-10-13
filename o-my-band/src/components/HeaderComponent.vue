@@ -2,8 +2,10 @@
     <div
         class="container card fixed w-full top-0 left-0 flex justify-content-between"
     >
-    <router-link to="/" class="no-underline">
-        <div class="flex flex-initial align-items-start justify-content-start">
+        <router-link to="/" class="no-underline">
+            <div
+                class="flex flex-initial align-items-start justify-content-start"
+            >
                 <img
                     src="../assets/img/Omy_band-Logo.png"
                     class="min-w-min md:min-w-max custom-logo"
@@ -12,46 +14,82 @@
                 <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
             </div>
         </router-link>
-        <div
-            v-if="this.$route.path === '/connection'"
-            class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
-        >
-            <p class="no-account hidden md:flex">
-                Je n'ai pas encore de compte ?
-            </p>
-            <router-link to="/registration" class="mt-2 hidden md:flex" style="color: #cbe4de;">
-                <i class="pi pi-sign-in" />&nbsp; S'inscrire
-            </router-link>
+        <div v-if="this.$route.path === '/connection'" class="right-part hidden md:flex mr-5 align-items-center">
+            <router-link to="/announcement" class="mr-7 no-underline" style="color: #cbe4de">Voir les annonces</router-link>
+            <div>
+                <p class="no-account hidden md:flex">
+                    Je n'ai pas encore de compte ?
+                </p>
+                <router-link
+                    to="/registration"
+                    class="mt-2 hidden md:flex"
+                    style="color: #cbe4de"
+                >
+                    <i class="pi pi-sign-in" />&nbsp; S'inscrire
+                </router-link>
+            </div>
         </div>
         <div
             v-else-if="this.$route.path === '/registration'"
-            class="right-part hidden md:flex mt-6 mr-5 flex-column align-items-end"
+            class="right-part hidden md:flex mr-5 align-items-center"
         >
+            <router-link
+                to="/announcement"
+                class="mr-7 no-underline"
+                style="color: #cbe4de"
+                >Voir les annonces</router-link
+            >
+            <div>
             <p class="no-account hidden md:flex">J'ai déjà un compte ?</p>
-            <router-link to="/connection" class="mt-2 hidden md:flex" style="color: #cbe4de;">
+            <router-link
+                to="/connection"
+                class="mt-2 hidden md:flex"
+                style="color: #cbe4de"
+            >
                 <i class="pi pi-sign-in" />&nbsp; Connection
             </router-link>
+        </div>
         </div>
         <!-- Si l'utilisateur est connecté il aura toutes les options publier, voir et mes annonces sinon il aura les options ci-après en commentaires
             TODO CONTINUER LES V-ELSE-IF
          -->
         <div
+            v-else-if="auth.jwToken"
+            class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
+        >
+            <router-link
+                to="/add-announcement"
+                class="mr-5 no-underline"
+                style="color: #cbe4de"
+                >Publier une annonce</router-link
+            >
+            <router-link
+                to="/announcement"
+                class="mr-5 no-underline"
+                style="color: #cbe4de"
+                >Voir les annonces</router-link
+            >
+            <router-link to="/" class="mr-5 no-underline" style="color: #cbe4de"
+                >Mes annonces</router-link
+            >
+            <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
+        </div>
+        <div
             v-else
             class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
         >
-            <router-link to="/add-announcement" class="mr-5 no-underline" style="color: #cbe4de;">Publier une annonce</router-link>
-            <router-link to="/announcement" class="mr-5 no-underline" style="color: #cbe4de;">Voir les annonces</router-link>
-            <router-link to="/" class="mr-5 no-underline" style="color: #cbe4de;">Mes annonces</router-link>
+            <router-link
+                to="/announcement"
+                class="mr-5 no-underline"
+                style="color: #cbe4de"
+                >Voir les annonces</router-link
+            >
             <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
         </div>
-        <!-- <div v-else class="right-part hidden md:flex mr-5 flex-wrap align-items-center"> 
-            <p class="mr-5">Voir les annonces</p>
-            <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>
-        </div> -->
         <SideBarComponent />
     </div>
     <!-- Si l'utilsateur est connecté il y aura profil et déconnexion, sinon ce sera l'autre -->
-    <div :class="elementClass">
+    <div v-if="auth.jwToken" :class="elementClass">
         <router-link
             to="/"
             class="profil-link p-3 border-bottom-1 border-round-xl"
@@ -61,20 +99,28 @@
             >Déconnexion</router-link
         >
     </div>
-    <!-- <div :class="elementClass">
-        <router-link to="/" class="profil-link p-3 border-bottom-1 border-round-xl">Se connecter</router-link> 
-        <router-link to="/" class="profil-link p-3 border-round-xl">S'inscrire</router-link> 
-    </div> -->
+    <div v-else :class="elementClass">
+        <router-link
+            to="/connection"
+            class="profil-link p-3 border-bottom-1 border-round-xl"
+            >Se connecter</router-link
+        >
+        <router-link to="/registration" class="profil-link p-3 border-round-xl"
+            >S'inscrire</router-link
+        >
+    </div>
     <hr class="mt-20" />
 </template>
 
 <script>
+import { authStore } from "@/stores/auth";
 import SideBarComponent from "./SideBarComponent.vue";
 
 export default {
     data() {
         return {
             open: false,
+            auth: authStore(),
         };
     },
     components: {
