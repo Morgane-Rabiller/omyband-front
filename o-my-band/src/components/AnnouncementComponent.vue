@@ -11,13 +11,14 @@
                             <h2 class="">{{ announcement.title }}</h2>
                             <div class="flex flex-wrap align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
-                                <p class="ml-3">Jeanmi</p>
+                                <p class="ml-3">{{ announcement.user.pseudo }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-wrap">
-                        <Tag class="tag h-1rem md:h-2rem mt-5"> {{announcement.styles[0].name }} </Tag>
-                        <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.type.name }}</Tag>
+                                <Tag v-if="!announcement.styles[0]" class="tag h-1rem md:h-2rem mt-5"></Tag>
+                                <Tag v-else class="tag h-1rem md:h-2rem mt-5">{{  announcement.styles[0].name }}</Tag>
+                        <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.researchType.name }}</Tag>
                     </div>
                 </div>
                 <div>
@@ -25,8 +26,7 @@
                 </div>
                 <div class="flex justify-content-between">
                     <p class="opacity-60">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
-                    <!-- <p class="opacity-60">{{ announcement.user.location }}</p> -->
-                    <p class="opacity-60">Cat-alogne</p>
+                    <p class="opacity-60">{{ announcement.user.location }}</p>
                 </div>
             </div>
         </div>

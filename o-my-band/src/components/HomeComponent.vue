@@ -19,8 +19,9 @@
                                 </div>
                             </div>
                             <div class="flex flex-wrap">
-                                <Tag class="tag h-1rem md:h-2rem mt-5">{{ announcement.data.styles[0].name }}</Tag>
-                                <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.type.name }}</Tag>
+                                <Tag v-if="!announcement.data.styles[0]" class="tag h-1rem md:h-2rem mt-5"></Tag>
+                                <Tag v-else class="tag h-1rem md:h-2rem mt-5">{{  announcement.data.styles[0].name }}</Tag>
+                                <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.researchType.name }}</Tag>
                             </div>
                         </div>
                         <div>
