@@ -39,7 +39,6 @@ export const authStore = defineStore({
                 })
                     this.jwToken = response.data.accessToken;
                     cookiesStorage.setItem('accessToken', response.data.accessToken);
-                    console.log(this.jwToken);
                     this.user = {
                         email: email
                     };
@@ -69,7 +68,7 @@ export const authStore = defineStore({
         },
         async registerUser(pseudo, email, password, avatar, location, description) {
             try {
-                const response = await axios.post("http://robinho54-server.eddi.cloud:8080/users", {
+                const response = await axios.post("http://mathgiraud-server.eddi.cloud:8080/users", {
                     pseudo, 
                     email,
                     password,
@@ -92,6 +91,18 @@ export const authStore = defineStore({
             } catch(error) {
                 console.error(error);
             }
+        },
+        async fetchProfil(token) {
+            try {
+            const response = await axios.get('http://mathgiraud-server.eddi.cloud:8080/users/profil', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+            return response.data;
+        } catch(error) {
+            console.error(error, "Le profil n'est pas récupéré");
+        }
         }
     }
 })

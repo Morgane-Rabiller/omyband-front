@@ -14,22 +14,14 @@
                             alt="avatar"
                         />
                         <div class="flex flex-column mb-3">
-                            <p class="font-semibold m-0">Pseudo</p>
-                            <p class="font-semibold m-0 text-xs">Adresse mail</p>
+                            <p class="font-semibold m-0">{{ user.pseudo }}</p>
+                            <p class="font-semibold m-0 text-xs">{{ user.email }}</p>
                         </div>
                     </div>
-                    <p>Département</p>
-                    <p>Instrument</p>
-                    <p>Styles musicaux</p>
-                    <p>
-                        Description : Saintes fesses de crucifix de taboire de
-                        calvinouche de bout d'crisse de mautadit de viande à
-                        chien de tabarnak de maudine de géritole de boswell de
-                        christie de mosus d'ostie de Jésus de plâtre de crisse
-                        de cul de baptême d'enfant d'chienne de ciboire de
-                        bâtard de cibolac de verrat de marde de purée de
-                        tabarslaque.
-                    </p>
+                    <p>{{ user.location }}</p>
+                    <p>{{ user.instruments }}</p>
+                    <p>{{ user.styles }}</p>
+                    <p>{{ user.description }}</p>
                 </div>
                 <hr class="my-5 md:hidden" />
                 <div
@@ -46,6 +38,29 @@
         </div>
     </div>
 </template>
+
+<script>
+import { authStore } from '@/stores/auth';
+
+export default {
+    data() {
+        return {
+            auth: authStore(),
+            user: {
+                pseudo: '',
+                email: '',
+                instruments: '',
+                styles: '',
+                description: '',
+                announcement: ''
+            }
+        }
+    },
+    async created() {
+        this.user = await this.auth.fetchProfil(this.auth.jwToken);
+    },
+}
+</script>
 
 <style scoped>
 * {
