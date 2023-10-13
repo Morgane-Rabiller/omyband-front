@@ -1,19 +1,26 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import cookiesStorage from '@/services/cookie';
 
 export const authStore = defineStore({
     id: '',
     state: () => ({
         user: {
             email : "",
-            password : "",
         },
         users: [],
         departments: [],
         announcements: [],
-        jwToken: null,
+        jwToken: cookiesStorage.getItem('accessToken') || null,
     }),
     actions: {
+        init() {
+          const storedToken = cookiesStorage.getItem('accessToken');
+          if (storedToken) {
+            this.jwToken = storedToken;
+            this.setAuthHeaders(storedToken);
+          }
+        },
         async fetchAnnouncements() {
             try {
                 const response = await axios.get('http://robinho54-server.eddi.cloud:8080/announcements');
@@ -31,8 +38,12 @@ export const authStore = defineStore({
                     password,
                 })
                     this.jwToken = response.data.accessToken;
-                    this.user = response;
-                    return this.user;
+                    cookiesStorage.setItem('accessToken', response.data.accessToken);
+                    console.log(this.jwToken);
+                    this.user = {
+                        email: email
+                    };
+                    return response;
             } catch (error) {
                 console.error('Erreur De tes morts', error);
                 const wrongmail = 'Email ou mot de passe incorrect';
