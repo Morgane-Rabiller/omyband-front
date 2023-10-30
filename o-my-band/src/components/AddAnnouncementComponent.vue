@@ -47,13 +47,15 @@
             "
             class="card mt-4 flex flex-column"
         >
-            <label for="type" class="mb-1">Instrument recherché :*</label>
-            <Dropdown
+            <label for="type" class="mb-1">Instrument(s) recherché(s) :*</label>
+            <MultiSelect
                 id="type"
                 v-model="selectedInstrument"
+                display="chip"
                 :options="instruments"
                 optionLabel="name"
                 placeholder="Sélectionne ce que tu cherches"
+                :maxSelectedLabels="3"
                 class="w-20rem md:w-30rem"
             />
         </div>
@@ -109,33 +111,57 @@ export default {
             instruments: [],
             styles: [],
             store: authStore(),
-            announcement: {
+        };
+    },
+    methods: {
+        async publishAnnouncement() {
+            const announcement = {
                 title: this.titleValue,
                 user_type: this.selectedType,
                 research_type: this.selectedSearch,
                 description: this.descValue,
                 styles: this.selectedStyles,
                 instruments: this.selectedInstrument,
-            },
-        };
-    },
-    methods: {
-        async publishAnnouncement() {
-            await this.store.createAnnouncement(
-                this.announcement.title,
-                this.announcement.user_type,
-                this.announcement.research_type,
-                this.announcement.description,
-                this.announcement.styles,
-                this.announcement.instruments,
-                this.store.jwToken
+            };
+            let researchTypeValue = 1;
+
+            if (
+                announcement.user_type &&
+                announcement.user_type.name === "Groupe"
+            ) {
+                researchTypeValue = 1; // Valeur par défaut pour les groupes
+            } else if (announcement.research_type) {
+                researchTypeValue = announcement.research_type.type_id || 1;
+            }
+            console.log(`Titre : ${announcement.title}`);
+            console.log(
+                `Type de l'utilisateur : ${announcement.user_type.type_id}`
             );
+            console.log(`Type de recherche : ${researchTypeValue}`);
+            console.log(`Description : ${announcement.description}`);
+            console.log(`Styles : ${announcement.styles}`);
+            console.log(`Instrument : ${announcement.instruments}`);
+            try {
+                await this.store.createAnnouncement(
+                    announcement.title,
+                    announcement.user_type.type_id,
+                    researchTypeValue,
+                    announcement.description,
+                    announcement.styles,
+                    announcement.instruments,
+                    this.store.jwToken
+                );
+                // this.$router.push("/validation");
+            } catch (error) {
+                console.error(error, "Les informations ne sont pas correctes");
+            }
         },
     },
     async created() {
         this.types = await this.store.fetchTypes(this.store.jwToken);
-
-        this.instruments = await this.store.fetchInstruments(this.store.jwToken);
+        this.instruments = await this.store.fetchInstruments(
+            this.store.jwToken
+        );
         this.styles = await this.store.fetchStyles(this.store.jwToken);
     },
 };

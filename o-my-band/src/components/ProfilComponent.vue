@@ -19,8 +19,12 @@
                         </div>
                     </div>
                     <p>{{ user.location }}</p>
-                    <p>{{ user.instruments }}</p>
+                    <p class="font-bold">Instrument :</p>
+                    <div v-for="instrument in user.instruments" :key="instrument.id">
+                        <p>- {{ instrument.name }}</p>
+                    </div>
                     <p>{{ user.styles }}</p>
+                    <p class="font-bold"> Description :</p>
                     <p>{{ user.description }}</p>
                 </div>
                 <hr class="my-5 md:hidden" />
