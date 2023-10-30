@@ -20,7 +20,7 @@
                             </div>
                             <div class="flex flex-wrap">
                                 <Tag v-if="!announcement.data.styles[0]" class="tag h-1rem md:h-2rem mt-5"></Tag>
-                                <Tag v-else class="tag h-1rem md:h-2rem mt-5">{{  announcement.data.styles[0].name }}</Tag>
+                                <Tag v-else class="tag h-1rem md:h-2rem mt-5">{{ announcement.data.styles[0].name }}</Tag>
                                 <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.researchType.name }}</Tag>
                             </div>
                         </div>
@@ -47,7 +47,8 @@ let announcements = ref([]);
 const Announcement = async () => {
    try {
     announcements.value = await store.fetchAnnouncements();
-    store.fetchAnnouncements().then((data) => (announcements.value = data.slice(0, 4)));
+    store.fetchAnnouncements().then((data) => (announcements.value = data.data.slice(0, 4)));
+console.log(announcements.value.data);
    } catch(error) {
     console.error(error)
    }
