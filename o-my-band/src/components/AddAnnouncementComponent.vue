@@ -151,7 +151,7 @@ export default {
                     announcement.instruments,
                     this.store.jwToken
                 );
-                // this.$router.push("/validation");
+                this.$router.push("/validation");
             } catch (error) {
                 console.error(error, "Les informations ne sont pas correctes");
             }

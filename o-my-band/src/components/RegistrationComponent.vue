@@ -216,11 +216,11 @@ const selectedCategories = ref(["Marketing"]);
 const selectedDepartment = ref();
 const department = ref([]);
 
-axios.get("https://happyapi.fr/api/getDeps").then((response) => {
-    department.value = response.data.result.result.map((data) => {
+axios.get("https://geo.api.gouv.fr/departements").then((response) => {
+    department.value = response.data.map((data) => {
         return {
-            name: data.dep_name,
-            code: data.num_dep,
+            name: data.nom,
+            code: data.code,
         };
     });
 }).catch((err) => { console.error(err); });
