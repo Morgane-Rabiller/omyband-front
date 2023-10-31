@@ -82,7 +82,8 @@ export const authStore = defineStore({
             password,
             avatar,
             location,
-            description
+            description,
+            instruments
         ) {
             try {
                 const response = await axios.post(
@@ -94,6 +95,7 @@ export const authStore = defineStore({
                         avatar,
                         location,
                         description,
+                        instruments
                     },
                     {
                         headers: {
@@ -109,6 +111,7 @@ export const authStore = defineStore({
                         location: response.data.location,
                         avatar: response.data.avatar,
                         description: response.data.description,
+                        instruments: response.data.instruments
                     });
                 console.log(response);
             } catch (error) {
@@ -186,15 +189,10 @@ export const authStore = defineStore({
                 console.error(error, "types non récupérés");
             }
         },
-        async fetchInstruments(token) {
+        async fetchInstruments() {
             try {
                 const response = await axios.get(
                     "http://mathgiraud-server.eddi.cloud:8080/instruments",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
                 );
                 return response.data;
             } catch (error) {

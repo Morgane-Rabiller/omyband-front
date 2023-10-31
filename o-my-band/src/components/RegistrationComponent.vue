@@ -69,22 +69,17 @@
 
         <div class="card flex justify-content-center mt-4">
             <div class="flex flex-column gap-3">
-                <label for="chbx">Sélectionne ton/tes styles</label>
-                <div
-                    v-for="category of categories"
-                    :key="category.key"
-                    class="flex align-items-center"
-                >
-                    <Checkbox
-                        v-model="selectedCategories"
-                        :inputId="category.key"
-                        name="category"
-                        :value="category.name"
-                    />
-                    <label :for="category.key"
-                        >&nbsp;&nbsp;{{ category.name }}</label
-                    >
-                </div>
+                <label for="chbx">Sélectionne ton/tes instrument(s)</label>
+                <MultiSelect
+                    id="type"
+                    v-model="selectedInstrument"
+                    display="chip"
+                    :options="instruments"
+                    optionLabel="name"
+                    placeholder="Sélectionne ce que tu cherches"
+                    :maxSelectedLabels="6"
+                    class="w-20rem md:w-30rem"
+                />
             </div>
         </div>
         <div class="card flex flex-column mt-4">
@@ -112,14 +107,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { authStore } from "@/stores/auth";
 import router from "@/router";
-import axios from 'axios';
+import axios from "axios";
 
 const auth = authStore();
 const showSnackbar = ref(false);
+const selectedInstrument = ref();
 let Content = ref("");
+const pseudoError = ref("");
+const emailError = ref("");
+const passwordError = ref("");
+const selectedDepartment = ref();
+const department = ref([]);
+const valueP = ref(null);
+const valueP2 = ref(null);
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
 const user = {
     email: "",
     pseudo: "",
@@ -127,12 +132,13 @@ const user = {
     location: "",
     avatar: "",
     description: "",
+    instruments: []
 };
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
-const pseudoError = ref("");
-const emailError = ref("");
-const passwordError = ref("");
+let instruments = [];
+
+onMounted(async () => {
+    instruments = await auth.fetchInstruments();
+})
 
 const pseusoValidate = () => {
     if (user.pseudo.length < 6) {
@@ -182,20 +188,22 @@ const register = async () => {
         user.location = selectedDepartment.value
             ? selectedDepartment.value.name
             : "";
-        console.log(user.location);
+        user.instruments = selectedInstrument.value
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
         if (!emailRegex.test(user.email)) {
             console.error("L'email nest pas au format valide ! Perdu Jeanmi");
             Content.value = "L'email nest pas au format valide ! Perdu Jeanmi";
             showSnackbar.value = true;
         }
+        console.log(selectedInstrument.value.name);
         await auth.registerUser(
             user.pseudo,
             user.email,
             user.password,
             user.avatar,
             user.location,
-            user.description
+            user.description,
+            user.instruments
         );
         router.push("/validation");
         console.log(user);
@@ -203,30 +211,20 @@ const register = async () => {
         console.error("bouhouhou", error);
     }
 };
-// const description = ref("");
-const categories = ref([
-    { name: "Rock", key: "A" },
-    { name: "Métal", key: "M" },
-    { name: "Patate", key: "P" },
-    { name: "ReseBananaarch", key: "R" },
-    { name: "Miaou", key: "Mi" },
-]);
-const selectedCategories = ref(["Marketing"]);
 
-const selectedDepartment = ref();
-const department = ref([]);
-
-axios.get("https://geo.api.gouv.fr/departements").then((response) => {
-    department.value = response.data.map((data) => {
-        return {
-            name: data.nom,
-            code: data.code,
-        };
+axios
+    .get("https://geo.api.gouv.fr/departements")
+    .then((response) => {
+        department.value = response.data.map((data) => {
+            return {
+                name: data.nom,
+                code: data.code,
+            };
+        });
+    })
+    .catch((err) => {
+        console.error(err);
     });
-}).catch((err) => { console.error(err); });
-
-const valueP = ref(null);
-const valueP2 = ref(null);
 </script>
 
 <style scoped>
