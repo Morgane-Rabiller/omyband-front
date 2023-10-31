@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ConnectionView from '../views/ConnectionView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
-import ValidationPage from '../components/ValidationPage'
-import HomeView from '../views/HomeView'
-import AnnouncementView from '../views/AnnouncementView'
-import AddAnnouncementView from '../views/AddAnnouncementView'
-import ProfilView from '../views/ProfilView'
+import ValidationPage from '../components/ValidationPage.vue'
+import HomeView from '../views/HomeView.vue'
+import AnnouncementView from '../views/AnnouncementView.vue'
+import AddAnnouncementView from '../views/AddAnnouncementView.vue'
+import ProfilView from '../views/ProfilView.vue'
 
 const routes = [
   {
