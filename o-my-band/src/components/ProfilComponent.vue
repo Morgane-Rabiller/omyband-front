@@ -19,13 +19,15 @@
                         </div>
                     </div>
                     <p>{{ user.location }}</p>
-                    <p class="font-bold">Instrument :</p>
+                    <p class="font-bold">Instrument(s) :</p>
                     <div v-for="instrument in user.instruments" :key="instrument.id">
                         <p>- {{ instrument.name }}</p>
                     </div>
+                    <p v-if="user.instruments.length === 0">Vous n'avez pas sélectionné d'instruments</p>
                     <p>{{ user.styles }}</p>
                     <p class="font-bold"> Description :</p>
-                    <p>{{ user.description }}</p>
+                    <p v-if="user.description">{{ user.description }}</p>
+                    <p v-else>Vous n'avez pas de description</p>
                 </div>
                 <hr class="my-5 md:hidden" />
                 <div
