@@ -2,7 +2,7 @@
   <router-view/>
 </template>
 
-<style>
+<style >
 * {
   padding: 0;
 }
@@ -19,9 +19,10 @@ hr {
   margin: 0 auto 0 auto !important;
   border: 1px solid #0E8388;
 }
-
+.tag {
+    background-color: #161616 !important;
+}
 @media screen and (min-width: 768px) {
-
   .full-screen {
   width: 100vw;
   height: 100vh;

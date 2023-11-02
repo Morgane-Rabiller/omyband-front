@@ -192,9 +192,7 @@ p, h1, .tag {
     background-color: #CBE4DE;
     color: #161616;
 }
-.tag {
-    background-color: #161616;
-}
+
 .avatar{
     width: 30px;
 }

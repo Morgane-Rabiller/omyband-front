@@ -1,5 +1,5 @@
 <template>
-    <div class="container p-fluid flex justify-content-between w-full flex-col items-center bg-neutral-100 text-center dark:bg-neutral-600 lg:text-left sticky bottom-0 left-0">
+    <div class="container p-fluid flex justify-content-between fixed w-full flex-col items-center bg-neutral-100 text-center dark:bg-neutral-600 lg:text-left bottom-0 left-0">
         <div class="left-part">
             <p>Mentions légales</p>
         </div>
