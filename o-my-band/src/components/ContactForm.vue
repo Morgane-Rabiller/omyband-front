@@ -1,26 +1,45 @@
 <template>
     <div class="container flex flex-column align-items-center">
         <span class="p-float-label mb-3">
-            <InputText id="username" v-model="object" class="w-20rem"/>
+            <InputText id="username" v-model="object" class="w-20rem" />
             <label for="username">Objet</label>
         </span>
         <span class="p-float-label">
-            <Textarea v-model="value" rows="5" cols="30" class="w-20rem"/>
+            <Textarea v-model="text" rows="5" cols="30" class="w-20rem" />
             <label>Message</label>
         </span>
-        <Button>Envoyer mon message</Button>
+        <Button @click="sendMessage">Envoyer mon message</Button>
     </div>
 </template>
 
 <script>
+import { contactStore } from "@/stores/contact";
+
 export default {
     data() {
         return {
             object: "",
-            value: ""
-        }
-    }
-}
+            text: "",
+            store: contactStore(),
+        };
+    },
+    methods: {
+        async sendMessage() {
+            try {
+                console.log(this.store)
+                const response = await this.store.contactAnnouncement(
+                    this.$route.params.id,
+                    this.object,
+                    this.text,
+                );
+
+                console.log(response); 
+            } catch (error) {
+                console.error(error, "Non envoyé");
+            }
+        },
+    },
+};
 </script>
 
 <style>

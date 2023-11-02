@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import cookiesStorage from "@/services/cookie";
 
-export const authStore = defineStore({
+export const authStore = defineStore('authStore', {
     id: "",
     state: () => ({
         user: {
