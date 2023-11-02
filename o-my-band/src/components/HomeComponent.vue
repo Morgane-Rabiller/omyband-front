@@ -89,9 +89,10 @@ const store = authStore();
 let announcements = ref([]);
 const Announcement = async () => {
     try {
-        announcements.value = await store.fetchAnnouncements();
+        const payload = {}
+        announcements.value = await store.fetchAnnouncements(payload);
         store
-            .fetchAnnouncements()
+            .fetchAnnouncements(payload)
             .then((data) => (announcements.value = data.data.slice(0, 4)));
         console.log(announcements.value.data);
     } catch (error) {

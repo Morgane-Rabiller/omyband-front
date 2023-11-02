@@ -29,3 +29,9 @@ npm i primevue
 
 ### Installation de la suite primevue
 npm i primeicons
+
+### Installation Sass
+npm install sass-loader node-sass --save-dev
+
+### Installation de js-cookie
+npm install js-cookie
