@@ -27,7 +27,10 @@ export const authStore = defineStore({
                     "http://mathgiraud-server.eddi.cloud:8080/announcements"
                 );
                 this.announcements = response.data;
-                console.log(this.announcements);
+                localStorage.setItem(
+                    "announcements",
+                    JSON.stringify(response.data)
+                );
                 return this.announcements;
             } catch (error) {
                 console.error(
@@ -95,7 +98,7 @@ export const authStore = defineStore({
                         avatar,
                         location,
                         description,
-                        instruments
+                        instruments,
                     },
                     {
                         headers: {
@@ -111,7 +114,7 @@ export const authStore = defineStore({
                         location: response.data.location,
                         avatar: response.data.avatar,
                         description: response.data.description,
-                        instruments: response.data.instruments
+                        instruments: response.data.instruments,
                     });
                 console.log(response);
             } catch (error) {
@@ -213,6 +216,17 @@ export const authStore = defineStore({
             } catch (error) {
                 console.error(error, "instruments non récupérés");
             }
+        },
+    },
+    getters: {
+        // Getter permettant de récupérer une annonce de la liste à partir de son id
+        getAnnouncementByID: (state) => (id) => {
+            state.announcements = JSON.parse(
+                localStorage.getItem("announcements")
+            );
+            return state.announcements.data.find(
+                (announcement) => announcement.announcement_id === Number(id)
+            );
         },
     },
 });

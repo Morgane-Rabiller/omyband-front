@@ -6,6 +6,7 @@ import HomeView from '../views/HomeView'
 import AnnouncementView from '../views/AnnouncementView'
 import AddAnnouncementView from '../views/AddAnnouncementView'
 import ProfilView from '../views/ProfilView'
+import AnnouncementCardView from '../views/AnnouncementCardView'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path:'/profil',
     name: 'profil',
     component: ProfilView
+  },
+  {
+    path: '/announcement/:id',
+    name: 'announcementCard',
+    component: AnnouncementCardView
   }
   // {
   //   path: '/about',

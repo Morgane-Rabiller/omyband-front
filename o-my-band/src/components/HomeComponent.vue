@@ -59,7 +59,8 @@
                             </div>
                         </div>
                         <div>
-                            <p>{{ announcement.data.description }}</p>
+                            <p v-if="announcement && announcement.data && announcement.data.description">{{ announcement.data.description.substring(0, 120) }}...</p>
+                            <RouterLink v-if="announcement.data && announcement.data.announcement_id" :to="{ name: 'announcementCard', params: { id: announcement.data.announcement_id }}" style="color: #161616;">Voir plus..</RouterLink>
                         </div>
                         <div class="flex justify-content-between">
                             <p class="opacity-60">
