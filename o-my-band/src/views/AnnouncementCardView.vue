@@ -1,6 +1,9 @@
 <template>
     <HeaderComponent />
-    <div v-if="announcement" class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 text-center py-1 px-4">
+    <div
+        v-if="announcement"
+        class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 text-center py-1 px-4"
+    >
         <div class="flex justify-content-between">
             <div class="flex flex-wrap align-items-start">
                 <div class="flex flex-column">
@@ -11,7 +14,9 @@
                             src="../assets/img/user-icon.png"
                             alt="avatar"
                         />
-                        <p v-if="announcement.user" class="ml-3">{{ announcement.user.pseudo }}</p>
+                        <p v-if="announcement.user" class="ml-3">
+                            {{ announcement.user.pseudo }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -41,8 +46,18 @@
                     ) || ""
                 }}
             </p>
-            <p v-if="announcement.user" class="opacity-60"> {{ announcement.user.location }} </p>
-            <Button class="button">Je répond à cette annonce</Button>
+            <p v-if="announcement.user" class="opacity-60">
+                {{ announcement.user.location }}
+            </p>
+            <Button
+                class="button"
+                label="Je répond à cette annonce"
+                @click="visible = true"
+            />
+
+            <Dialog v-model:visible="visible" modal header="Ma réponse à l'annonce" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" >
+                <ContactForm />
+            </Dialog>
         </div>
     </div>
     <FooterComponent />
@@ -51,6 +66,7 @@
 <script>
 import FooterComponent from "@/components/FooterComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
+import ContactForm from "@/components/ContactForm.vue"
 import { authStore } from "@/stores/auth";
 import Button from "primevue/button";
 
@@ -60,6 +76,7 @@ export default {
         return {
             announcement: null,
             store: authStore(),
+            visible: true,
         };
     },
     async created() {
@@ -69,10 +86,11 @@ export default {
         console.log(this.announcement);
     },
     components: {
-    HeaderComponent,
-    FooterComponent,
-    Button
-},
+        HeaderComponent,
+        FooterComponent,
+        ContactForm,
+        Button,
+    },
 };
 </script>
 

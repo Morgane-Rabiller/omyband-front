@@ -15,6 +15,7 @@ import Message from "primevue/message";
 import Carousel from "primevue/carousel";
 import InlineMessage from "primevue/inlinemessage";
 import MultiSelect from "primevue/multiselect";
+import Dialog from "primevue/dialog";
 import { authStore } from "@/stores/auth";
 
 import Tag from "primevue/tag";
@@ -46,4 +47,5 @@ createApp(App)
     .component("InlineMessage", InlineMessage)
     .component("Tag", Tag)
     .component("MultiSelect", MultiSelect)
+    .component("Dialog", Dialog)
     .mount("#app");
