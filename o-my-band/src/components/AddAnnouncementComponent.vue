@@ -166,3 +166,9 @@ export default {
     },
 };
 </script>
+
+<style>
+.p-dropdown:hover {
+    border-color: #0e8388 !important;
+}
+</style>

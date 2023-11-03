@@ -51,7 +51,6 @@
                                 </div>
                             </div>
                             <div class="flex flex-wrap">
-                                <!-- <Tag v-if="!announcement.data.styles[0]" class="tag h-1rem md:h-2rem mt-5"></Tag> -->
                                 <div v-for="style in announcement.data.styles" :key="style.style_id" >
                                     <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{ style.name }}</Tag>
                                 </div>

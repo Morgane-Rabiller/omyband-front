@@ -1,7 +1,6 @@
 <template>
     <Sidebar v-model:visible="visible" style="background-color: #cbe4de">
         <h3 class="mb-4">Menu de navigation</h3>
-        <!-- Si utilisateur connecté -->
         <div v-if="auth.jwToken">
             <div class="flex flex-column">
                 <div>
@@ -42,8 +41,7 @@
                 >
             </div>
         </div>
-        <!-- Si utilisateur non connecté -->
-        <div v-else>
+        <div class="z-1" v-else>
             <div class="flex flex-wrap align-items-center">
                 <i class="profil pi pi-user text-4xl"></i>
                 <div class="flex flex-column ml-3">
