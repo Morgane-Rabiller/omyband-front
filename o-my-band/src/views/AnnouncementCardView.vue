@@ -56,13 +56,13 @@
                 @click="visible = true"
             />
             <div v-else v-tooltip.bottom="'Connecte toi pour accéder à cette fonctionnalité'" >
-                <Button disabled>Ma réponse à une annonce</Button>
+                <Button disabled>Répondre à l'annonce</Button>
             </div>
 
             <Dialog
                 v-model:visible="visible"
                 modal
-                header="Ma réponse à l'annonce"
+                header="Répondre à l'annonce"
                 :style="{ width: '50rem' }"
                 :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
             >
