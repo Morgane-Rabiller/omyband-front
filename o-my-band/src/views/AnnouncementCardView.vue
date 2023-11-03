@@ -50,12 +50,22 @@
                 {{ announcement.user.location }}
             </p>
             <Button
+                v-if="store.jwToken"
                 class="button"
                 label="Je répond à cette annonce"
                 @click="visible = true"
             />
+            <div v-else v-tooltip.bottom="'Connecte toi pour accéder à cette fonctionnalité'" >
+                <Button disabled>Ma réponse à une annonce</Button>
+            </div>
 
-            <Dialog v-model:visible="visible" modal header="Ma réponse à l'annonce" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" >
+            <Dialog
+                v-model:visible="visible"
+                modal
+                header="Ma réponse à l'annonce"
+                :style="{ width: '50rem' }"
+                :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+            >
                 <ContactForm />
             </Dialog>
         </div>
@@ -66,7 +76,7 @@
 <script>
 import FooterComponent from "@/components/FooterComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import ContactForm from "@/components/ContactForm.vue"
+import ContactForm from "@/components/ContactForm.vue";
 import { authStore } from "@/stores/auth";
 import Button from "primevue/button";
 
@@ -83,6 +93,7 @@ export default {
         this.announcement = await this.store.getAnnouncementByID(
             this.$route.params.id
         );
+        console.log(this.store.jwToken);
         console.log(this.announcement);
     },
     components: {

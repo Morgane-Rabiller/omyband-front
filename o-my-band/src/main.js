@@ -18,6 +18,7 @@ import MultiSelect from "primevue/multiselect";
 import Dialog from "primevue/dialog";
 import { authStore } from "@/stores/auth";
 import Paginator from 'primevue/paginator';
+import Tooltip from 'primevue/tooltip';
 
 
 import Tag from "primevue/tag";
@@ -51,4 +52,5 @@ createApp(App)
     .component("Tag", Tag)
     .component("MultiSelect", MultiSelect)
     .component("Dialog", Dialog)
+    .directive("Tooltip", Tooltip)
     .mount("#app");
