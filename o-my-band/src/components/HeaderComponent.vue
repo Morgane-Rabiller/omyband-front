@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container p-fluid card fixed w-full top-0 left-0 flex justify-content-between"
+        class="container p-fluid card fixed w-full top-0 left-0 flex justify-content-between z-1"
     >
         <router-link to="/" class="no-underline">
             <div
@@ -51,7 +51,6 @@
         </div>
         </div>
         <!-- Si l'utilisateur est connecté il aura toutes les options publier, voir et mes annonces sinon il aura les options ci-après en commentaires
-            TODO CONTINUER LES V-ELSE-IF
          -->
         <div
             v-else-if="auth.jwToken"
@@ -92,7 +91,7 @@
     <div v-if="auth.jwToken" :class="elementClass">
         <router-link
             to="/profil"
-            class="profil-link p-3 border-bottom-1 border-round-xl"
+            class="profil-link p-3 border-bottom-1 border-round-xl z-2"
             >Mon profil</router-link
         >
         <p class="profil-link p-3 border-round-xl m-0" @click="logout"
@@ -101,7 +100,7 @@
     <div v-else :class="elementClass">
         <router-link
             to="/connection"
-            class="profil-link p-3 border-bottom-1 border-round-xl"
+            class="profil-link p-3 border-bottom-1 border-round-xl z-2"
             >Se connecter</router-link
         >
         <router-link to="/registration" class="profil-link p-3 border-round-xl"

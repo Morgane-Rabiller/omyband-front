@@ -25,9 +25,11 @@ export const authStore = defineStore('authStore', {
             payload.page = payload.page ? payload.page : 1;
             payload.limit = payload.limit ? payload.limit : 5;
             payload.styles = payload.styles ? payload.styles : "";
+            payload.instruments = payload.instruments ? payload.instruments : "";
+            payload.userLocation = payload.userLocation ? payload.userLocation : "";
             try {
                 const response = await axios.get(
-                    `http://mathgiraud-server.eddi.cloud:8080/announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}`
+                    `http://mathgiraud-server.eddi.cloud:8080/announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}&instruments=${payload.instruments}&userLocation=${payload.userLocation}`
                 );
                 this.announcements = response.data;
                 localStorage.setItem(

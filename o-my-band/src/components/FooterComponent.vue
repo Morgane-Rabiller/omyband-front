@@ -11,17 +11,6 @@
 </template>
 
 <style scoped>
-/* .container {
-    background-color: #0e8388;
-    /* position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0; *
-    width: 100%;
-    font-size: 0.8rem;
-    margin: 4rem 0 0 0 !important;
-} */
-
 .container {
     background-color: #0E8388;
 }

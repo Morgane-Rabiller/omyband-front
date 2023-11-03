@@ -27,10 +27,6 @@ hr {
   width: 100vw;
   height: 100vh;
 }
-  /* hr {
-  width: 50%;
-  border: 1px solid #0E8388;
-} */
 
 }
 @import url('https://fonts.cdnfonts.com/css/montserrat');
