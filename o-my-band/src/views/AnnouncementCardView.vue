@@ -76,7 +76,7 @@ export default {
         return {
             announcement: null,
             store: authStore(),
-            visible: true,
+            visible: false,
         };
     },
     async created() {

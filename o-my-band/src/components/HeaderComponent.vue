@@ -106,9 +106,10 @@
         >
         <router-link to="/registration" class="profil-link p-3 border-round-xl"
             >S'inscrire</router-link
-        >
+        >  
     </div>
     <hr class="mt-20" />
+
 </template>
 
 <script>

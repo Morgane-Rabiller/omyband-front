@@ -27,7 +27,8 @@
                     </div>
                 </div>
                 <div>
-                    <p>{{ announcement.description }}</p>
+                            <p v-if="announcement && announcement && announcement.description">{{ announcement.description.substring(0, 120) }}...</p>
+                            <RouterLink v-if="announcement && announcement.announcement_id" :to="{ name: 'announcementCard', params: { id: announcement.announcement_id }}" style="color: #161616;">Voir plus..</RouterLink>
                 </div>
                 <div class="flex justify-content-between">
                     <p class="opacity-60">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
