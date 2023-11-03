@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container card fixed w-full top-0 left-0 flex justify-content-between"
+        class="container p-fluid card fixed w-full top-0 left-0 flex justify-content-between"
     >
         <router-link to="/" class="no-underline">
             <div
@@ -147,6 +147,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    background-color: #161616;
+}
 .profil-links {
     top: 6rem;
 }

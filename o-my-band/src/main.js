@@ -17,6 +17,8 @@ import InlineMessage from "primevue/inlinemessage";
 import MultiSelect from "primevue/multiselect";
 import Dialog from "primevue/dialog";
 import { authStore } from "@/stores/auth";
+import Paginator from 'primevue/paginator';
+
 
 import Tag from "primevue/tag";
 
@@ -35,6 +37,7 @@ createApp(App)
     .use(router)
     .use(PrimeVue)
     .use(pinia)
+    .component("Paginator", Paginator)
     .component("Button", Button)
     .component("Carousel", Carousel)
     .component("Dropdown", Dropdown)

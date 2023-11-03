@@ -21,10 +21,13 @@ export const authStore = defineStore('authStore', {
                 this.setAuthHeaders(storedToken);
             }
         },
-        async fetchAnnouncements() {
+        async fetchAnnouncements(payload) {
+            payload.page = payload.page ? payload.page : 1;
+            payload.limit = payload.limit ? payload.limit : 5;
+            payload.styles = payload.styles ? payload.styles : "";
             try {
                 const response = await axios.get(
-                    "http://mathgiraud-server.eddi.cloud:8080/announcements"
+                    `http://mathgiraud-server.eddi.cloud:8080/announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}`
                 );
                 this.announcements = response.data;
                 localStorage.setItem(
