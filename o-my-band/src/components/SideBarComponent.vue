@@ -33,7 +33,7 @@
                     >Voir les annonces</router-link
                 >
                 <router-link
-                    to="/"
+                    to="/myannouncements"
                     class="no-underline text-black-alpha-90 mb-3"
                     ><span class="material-symbols-outlined mr-2">
                         article </span
