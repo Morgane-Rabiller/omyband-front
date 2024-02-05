@@ -12,7 +12,7 @@ export const contactStore = defineStore('contactStore', {
             try {
                 const token = this.jwToken;
                 const response = await axios.post(
-                    "http://mathgiraud-server.eddi.cloud:8080/contactAnnouncement",
+                    "http://localhost:8080/contactAnnouncement",
                     {
                         announcement_id,
                         subject,

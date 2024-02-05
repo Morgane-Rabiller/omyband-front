@@ -133,14 +133,6 @@ export default {
             } else if (announcement.research_type) {
                 researchTypeValue = announcement.research_type.type_id || 1;
             }
-            console.log(`Titre : ${announcement.title}`);
-            console.log(
-                `Type de l'utilisateur : ${announcement.user_type.type_id}`
-            );
-            console.log(`Type de recherche : ${researchTypeValue}`);
-            console.log(`Description : ${announcement.description}`);
-            console.log(`Styles : ${announcement.styles}`);
-            console.log(`Instrument : ${announcement.instruments}`);
             try {
                 await this.store.createAnnouncement(
                     announcement.title,

@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-column">
+    <div class="container flex flex-column mb-8">
         <div class="headband px-8 py-3 mt-6">
             <p>
                 La musique est un langage universel qui rassemble des individus

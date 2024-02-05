@@ -12,6 +12,7 @@ export const authStore = defineStore('authStore', {
         departments: [],
         announcements: [],
         jwToken: cookiesStorage.getItem("accessToken") || null,
+        url: "http://localhost:8080/"
     }),
     actions: {
         init() {
@@ -29,7 +30,7 @@ export const authStore = defineStore('authStore', {
             payload.userLocation = payload.userLocation ? payload.userLocation : "";
             try {
                 const response = await axios.get(
-                    `http://mathgiraud-server.eddi.cloud:8080/announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}&instruments=${payload.instruments}&userLocation=${payload.userLocation}`
+                    `${this.url}announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}&instruments=${payload.instruments}&userLocation=${payload.userLocation}`
                 );
                 this.announcements = response.data;
                 localStorage.setItem(
@@ -47,7 +48,7 @@ export const authStore = defineStore('authStore', {
         async loginUser(email, password) {
             try {
                 const response = await axios.post(
-                    "http://mathgiraud-server.eddi.cloud:8080/login",
+                    `${this.url}login`,
                     {
                         email,
                         password,
@@ -95,7 +96,7 @@ export const authStore = defineStore('authStore', {
         ) {
             try {
                 const response = await axios.post(
-                    "http://mathgiraud-server.eddi.cloud:8080/users",
+                    `${this.url}users`,
                     {
                         pseudo,
                         email,
@@ -129,7 +130,7 @@ export const authStore = defineStore('authStore', {
         async fetchProfil(token) {
             try {
                 const response = await axios.get(
-                    "http://mathgiraud-server.eddi.cloud:8080/users/profil",
+                    `${this.url}users/profil`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -152,7 +153,7 @@ export const authStore = defineStore('authStore', {
         ) {
             try {
                 const response = await axios.post(
-                    "http://mathgiraud-server.eddi.cloud:8080/announcements",
+                    `${this.url}announcements`,
                     {
                         title,
                         user_type,
@@ -185,7 +186,7 @@ export const authStore = defineStore('authStore', {
         async fetchTypes(token) {
             try {
                 const response = await axios.get(
-                    "http://mathgiraud-server.eddi.cloud:8080/types",
+                    `${this.url}types`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -200,7 +201,7 @@ export const authStore = defineStore('authStore', {
         async fetchInstruments() {
             try {
                 const response = await axios.get(
-                    "http://mathgiraud-server.eddi.cloud:8080/instruments",
+                    `${this.url}instruments`,
                 );
                 return response.data;
             } catch (error) {
@@ -210,7 +211,7 @@ export const authStore = defineStore('authStore', {
         async fetchStyles(token) {
             try {
                 const response = await axios.get(
-                    "http://mathgiraud-server.eddi.cloud:8080/styles",
+                    `${this.url}styles`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

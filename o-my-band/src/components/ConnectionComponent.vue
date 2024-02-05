@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-column align-items-center">
+    <div class="container flex flex-column align-items-center mb-8">
         <h3>Je me connecte</h3>
         <img
             class="img_login"
