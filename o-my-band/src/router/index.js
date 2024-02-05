@@ -8,6 +8,7 @@ import AddAnnouncementView from '../views/AddAnnouncementView'
 import ProfilView from '../views/ProfilView'
 import AnnouncementCardView from '../views/AnnouncementCardView'
 import MyAnnouncements from '../views/MyAnnouncements'
+import FaqView from "../views/FaqView";
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/myannouncements',
     name: 'announcementCard',
     component: MyAnnouncements
+  },
+  {
+    path: '/faq',
+    name: 'faq',
+    component: FaqView
   }
   // {
   //   path: '/about',

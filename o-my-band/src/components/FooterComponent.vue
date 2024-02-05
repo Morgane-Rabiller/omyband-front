@@ -3,8 +3,8 @@
         <div class="left-part">
             <p>Mentions légales</p>
         </div>
-        <div class="right-part flex flex-wrap justify-content-between">
-            <p class="faq">FAQ &nbsp; &nbsp;</p>
+        <div class="right-part flex flex-wrap justify-content-between align-items-center">
+            <router-link to="/faq" class="faq no-underline">FAQ &nbsp; &nbsp;</router-link>
             <p>Contact</p>
         </div>
     </div>
@@ -13,6 +13,10 @@
 <style scoped>
 .container {
     background-color: #0E8388;
+    color: #CBE4DE !important;
+}
+.faq {
+    color: #CBE4DE;
 }
 .left-part {
     margin-left: 5%;
