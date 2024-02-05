@@ -8,7 +8,8 @@ import AddAnnouncementView from '../views/AddAnnouncementView'
 import ProfilView from '../views/ProfilView'
 import AnnouncementCardView from '../views/AnnouncementCardView'
 import MyAnnouncements from '../views/MyAnnouncements'
-import FaqView from "../views/FaqView";
+import FaqView from "../views/FaqView"
+import LegalInformationView from "../views/LegalInformationView"
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path: '/faq',
     name: 'faq',
     component: FaqView
+  },
+  {
+    path: '/legal-information',
+    name: 'legal-information',
+    component: LegalInformationView
   }
   // {
   //   path: '/about',

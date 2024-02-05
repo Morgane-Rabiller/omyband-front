@@ -1,10 +1,10 @@
 <template>
-    <div class="container p-fluid flex justify-content-between fixed w-full flex-col items-center bg-neutral-100 text-center dark:bg-neutral-600 lg:text-left bottom-0 left-0">
+    <div class="container p-fluid flex justify-content-between align-items-center fixed w-full flex-col items-center bg-neutral-100 text-center dark:bg-neutral-600 lg:text-left bottom-0 left-0">
         <div class="left-part">
-            <p>Mentions légales</p>
+            <router-link to="/legal-information" class="link no-underline">Mentions légales</router-link>
         </div>
         <div class="right-part flex flex-wrap justify-content-between align-items-center">
-            <router-link to="/faq" class="faq no-underline">FAQ &nbsp; &nbsp;</router-link>
+            <router-link to="/faq" class="link no-underline">FAQ &nbsp; &nbsp;</router-link>
             <p>Contact</p>
         </div>
     </div>
@@ -15,7 +15,7 @@
     background-color: #0E8388;
     color: #CBE4DE !important;
 }
-.faq {
+.link {
     color: #CBE4DE;
 }
 .left-part {
