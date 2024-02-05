@@ -68,7 +68,7 @@
                 style="color: #cbe4de"
                 >Voir les annonces</router-link
             >
-            <router-link to="/" class="mr-5 no-underline" style="color: #cbe4de"
+            <router-link to="/myannouncements" class="mr-5 no-underline" style="color: #cbe4de"
                 >Mes annonces</router-link
             >
             <i class="profil pi pi-user text-4xl" @click="toggleMenu"></i>

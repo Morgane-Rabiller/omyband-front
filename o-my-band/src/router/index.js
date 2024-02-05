@@ -7,6 +7,7 @@ import AnnouncementView from '../views/AnnouncementView'
 import AddAnnouncementView from '../views/AddAnnouncementView'
 import ProfilView from '../views/ProfilView'
 import AnnouncementCardView from '../views/AnnouncementCardView'
+import MyAnnouncements from '../views/MyAnnouncements'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/announcement/:id',
     name: 'announcementCard',
     component: AnnouncementCardView
+  },
+  {
+    path: '/myannouncements',
+    name: 'announcementCard',
+    component: MyAnnouncements
   }
   // {
   //   path: '/about',
