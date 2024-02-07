@@ -30,5 +30,20 @@ export const contactStore = defineStore('contactStore', {
                 throw error;
             }
         },
+        async contactAdmin(subject, text) {
+            try {
+                const response = await axios.post(
+                    "http://localhost:8080/contactAdmin",
+                    {
+                        subject,
+                        text,
+                    },
+                );
+                return response;
+            } catch (error) {
+                console.error(error, "Le message n'est pas envoyé");
+                throw error;
+            }
+        },
     },
 });
