@@ -54,7 +54,7 @@ const routes = [
   },
   {
     path: '/myannouncements',
-    name: 'announcementCard',
+    name: 'myAnnouncement',
     component: MyAnnouncements
   },
   {

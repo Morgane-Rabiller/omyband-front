@@ -37,6 +37,7 @@ export const authStore = defineStore('authStore', {
                     "announcements",
                     JSON.stringify(response.data)
                 );
+                console.log(this.announcements);
                 return this.announcements;
             } catch (error) {
                 console.error(
@@ -168,16 +169,17 @@ export const authStore = defineStore('authStore', {
                         },
                     }
                 );
-                if (response.data) {
-                    this.announcements.push({
-                        title: response.data.announcement.title,
-                        user_type: response.data.announcement.user_type,
-                        research_type: response.data.announcement.research_type,
-                        description: response.data.announcement.description,
-                        styles: [response.data.announcement.styles],
-                        instruments: [response.data.announcement.instruments],
-                    });
-                }
+                // console.log(typeof this.announcements);
+                // if (response.data) {
+                //     this.announcements.push({
+                //         title: response.data.announcement.title,
+                //         user_type: response.data.announcement.user_type,
+                //         research_type: response.data.announcement.research_type,
+                //         description: response.data.announcement.description,
+                //         styles: [response.data.announcement.styles],
+                //         instruments: [response.data.announcement.instruments],
+                //     });
+                // }
                 console.log(response.data);
             } catch (error) {
                 console.error(error, "annonce non crée");
