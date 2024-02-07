@@ -10,6 +10,7 @@ import AnnouncementCardView from '../views/AnnouncementCardView'
 import MyAnnouncements from '../views/MyAnnouncements'
 import FaqView from "../views/FaqView"
 import LegalInformationView from "../views/LegalInformationView"
+import ContactAdminView from "../views/ContactAdminView"
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/legal-information',
     name: 'legal-information',
     component: LegalInformationView
+  },
+  {
+    path: '/contact-us',
+    name: 'contact',
+    component: ContactAdminView
   }
   // {
   //   path: '/about',
