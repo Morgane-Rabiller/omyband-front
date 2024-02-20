@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-column align-items-center mb-8">
+    <form class="container flex flex-column align-items-center mb-8">
         <h3>Je me connecte</h3>
         <img
             class="img_login"
@@ -35,7 +35,7 @@
         </div>
         <Button
             class="submit"
-            type="button"
+            type="submit"
             label="Connexion"
             icon="pi pi-sign-in"
             :loading="loading"
@@ -45,7 +45,7 @@
         <div v-if="showSnackbar">
             <Message severity="warn" sticky>{{ message }}</Message>
         </div>
-    </div>
+    </form>
 </template>
 
 <script setup>
