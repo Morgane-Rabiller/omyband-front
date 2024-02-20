@@ -12,6 +12,7 @@ import FaqView from "../views/FaqView"
 import LegalInformationView from "../views/LegalInformationView"
 import ContactAdminView from "../views/ContactAdminView"
 import ErrorView from "../views/ErrorView"
+import { authStore } from '@/stores/auth';
 
 const routes = [
   {
@@ -22,12 +23,15 @@ const routes = [
   {
     path: '/connection',
     name: 'connection',
-    component: ConnectionView
+    component: ConnectionView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/registration',
     name: 'registration',
-    component: RegistrationView
+    component: RegistrationView,
+    meta: { requiresAuth: true }
+    
   },
   {
     path: '/validation',
@@ -92,6 +96,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // Vérifiez si la route nécessite une authentification
+  const auth = authStore()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // Vérifiez si l'utilisateur est connecté
+    if (auth.jwToken) {
+      // Si l'utilisateur est connecté, redirigez-le vers la page d'accueil
+      next({ name: 'home' });
+    } else {
+      // Si l'utilisateur n'est pas connecté, laissez-le continuer vers la route requise
+      next()
+    }
+  } else {
+    // Si la route ne nécessite pas d'authentification, laissez l'utilisateur continuer
+    next()
+  }
 })
 
 export default router

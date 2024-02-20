@@ -53,19 +53,19 @@ export const authStore = defineStore("authStore", {
         },
         async loginUser(email, password) {
             try {
-                const response = await axios.post(`${this.url}login`, {
-                    email,
-                    password,
-                });
-                this.jwToken = response.data.accessToken;
-                cookiesStorage.setItem(
-                    "accessToken",
-                    response.data.accessToken
-                );
-                this.user = {
-                    email: email,
-                };
-                return response;
+                    const response = await axios.post(`${this.url}login`, {
+                        email,
+                        password,
+                    });
+                    this.jwToken = response.data.accessToken;
+                    cookiesStorage.setItem(
+                        "accessToken",
+                        response.data.accessToken
+                    );
+                    this.user = {
+                        email: email,
+                    };
+                    return response;
             } catch (error) {
                 console.error("Erreur De tes morts", error);
                 const wrongmail = "Email ou mot de passe incorrect";
