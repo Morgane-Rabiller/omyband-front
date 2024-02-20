@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-column align-items-center mb-8">
+    <form class="container flex flex-column align-items-center mb-8">
         <h3>Inscription</h3>
         <p class="required-fields">*Champs Obligatoires</p>
         <span class="flex flex-column mt-4">
@@ -94,7 +94,7 @@
             />
         </div>
         <Button
-            type="button"
+            type="submit"
             label="Inscription"
             icon="pi pi-sign-in"
             :loading="loading"
@@ -103,7 +103,7 @@
         <div v-if="showSnackbar">
             <Message severity="warn" sticky>{{ Content }}</Message>
         </div>
-    </div>
+    </form>
 </template>
 
 <script setup>
