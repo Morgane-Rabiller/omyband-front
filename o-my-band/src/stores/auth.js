@@ -3,7 +3,7 @@ import axios from "axios";
 import cookiesStorage from "@/services/cookie";
 import router from "@/router";
 
-export const authStore = defineStore('authStore', {
+export const authStore = defineStore("authStore", {
     id: "",
     state: () => ({
         user: {
@@ -13,7 +13,7 @@ export const authStore = defineStore('authStore', {
         departments: [],
         announcements: [],
         jwToken: cookiesStorage.getItem("accessToken") || null,
-        url: "http://localhost:8080/"
+        url: "http://localhost:8080/",
     }),
     actions: {
         init() {
@@ -27,8 +27,12 @@ export const authStore = defineStore('authStore', {
             payload.page = payload.page ? payload.page : 1;
             payload.limit = payload.limit ? payload.limit : 5;
             payload.styles = payload.styles ? payload.styles : "";
-            payload.instruments = payload.instruments ? payload.instruments : "";
-            payload.userLocation = payload.userLocation ? payload.userLocation : "";
+            payload.instruments = payload.instruments
+                ? payload.instruments
+                : "";
+            payload.userLocation = payload.userLocation
+                ? payload.userLocation
+                : "";
             try {
                 const response = await axios.get(
                     `${this.url}announcements?page=${payload.page}&limit=${payload.limit}&styles=${payload.styles}&instruments=${payload.instruments}&userLocation=${payload.userLocation}`
@@ -49,13 +53,10 @@ export const authStore = defineStore('authStore', {
         },
         async loginUser(email, password) {
             try {
-                const response = await axios.post(
-                    `${this.url}login`,
-                    {
-                        email,
-                        password,
-                    }
-                );
+                const response = await axios.post(`${this.url}login`, {
+                    email,
+                    password,
+                });
                 this.jwToken = response.data.accessToken;
                 cookiesStorage.setItem(
                     "accessToken",
@@ -131,18 +132,15 @@ export const authStore = defineStore('authStore', {
         },
         async fetchProfil(token) {
             try {
-                const response = await axios.get(
-                    `${this.url}users/profil`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const response = await axios.get(`${this.url}users/profil`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 return response.data;
             } catch (error) {
                 console.error(error, "Le profil n'est pas récupéré");
-                router.push({ name: 'home' });
+                router.push({ name: "home" });
             }
         },
         async createAnnouncement(
@@ -189,24 +187,22 @@ export const authStore = defineStore('authStore', {
         },
         async fetchTypes(token) {
             try {
-                const response = await axios.get(
-                    `${this.url}types`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const response = await axios.get(`${this.url}types`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 return response.data;
             } catch (error) {
                 console.error(error, "types non récupérés");
+                if (error.response.status === 401) {
+                    router.push({ name: "home" });
+                }
             }
         },
         async fetchInstruments() {
             try {
-                const response = await axios.get(
-                    `${this.url}instruments`,
-                );
+                const response = await axios.get(`${this.url}instruments`);
                 return response.data;
             } catch (error) {
                 console.error(error, "instruments non récupérés");
@@ -214,14 +210,11 @@ export const authStore = defineStore('authStore', {
         },
         async fetchStyles(token) {
             try {
-                const response = await axios.get(
-                    `${this.url}styles`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const response = await axios.get(`${this.url}styles`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 return response.data;
             } catch (error) {
                 console.error(error, "instruments non récupérés");
