@@ -102,6 +102,13 @@ export default {
           }
         }));
         this.allAnnouncements = myannouncements;
+
+        // Trie des dates pour que les plus récentes soient en premières
+        this.allAnnouncements.sort(function(a, b) {
+          const c = new Date(a.created_at);
+          const d = new Date(b.created_at);
+          return d-c;
+        })
     },
 };
 </script>
