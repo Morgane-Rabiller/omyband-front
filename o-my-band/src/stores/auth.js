@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import cookiesStorage from "@/services/cookie";
+import router from "@/router";
 
 export const authStore = defineStore('authStore', {
     id: "",
@@ -141,6 +142,7 @@ export const authStore = defineStore('authStore', {
                 return response.data;
             } catch (error) {
                 console.error(error, "Le profil n'est pas récupéré");
+                router.push({ name: 'home' });
             }
         },
         async createAnnouncement(

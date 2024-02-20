@@ -11,6 +11,7 @@ import MyAnnouncements from '../views/MyAnnouncements'
 import FaqView from "../views/FaqView"
 import LegalInformationView from "../views/LegalInformationView"
 import ContactAdminView from "../views/ContactAdminView"
+import ErrorView from "../views/ErrorView"
 
 const routes = [
   {
@@ -72,6 +73,11 @@ const routes = [
     path: '/contact-us',
     name: 'contact',
     component: ContactAdminView
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'erreur404',
+    component: ErrorView
   }
   // {
   //   path: '/about',
