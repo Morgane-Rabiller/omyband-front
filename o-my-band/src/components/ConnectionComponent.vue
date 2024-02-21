@@ -1,5 +1,5 @@
 <template>
-    <form class="container flex flex-column align-items-center mb-8">
+    <form class="container flex flex-column align-items-center mb-8"  @submit.prevent="login">
         <h3>Je me connecte</h3>
         <img
             class="img_login"
@@ -71,7 +71,7 @@ const login = async () => {
             showSnackbar.value = true;
         } else {
             showSnackbar.value = false;
-            router.push("/");
+            router.push("/validation");
         }
     } catch (error) {
         console.error("bouhouhou", error);
