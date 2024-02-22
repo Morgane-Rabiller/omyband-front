@@ -27,8 +27,8 @@
                     }}</Tag>
                 </div>
                 <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{
-                    announcement.researchType
-                        ? announcement.researchType.name
+                    announcement.userType
+                        ? announcement.userType.name
                         : ""
                 }}</Tag>
             </div>
@@ -92,8 +92,6 @@ export default {
         this.announcement = await this.store.getAnnouncementByID(
             this.$route.params.id
         );
-        console.log(this.store.jwToken);
-        console.log(this.announcement);
     },
     components: {
         HeaderComponent,

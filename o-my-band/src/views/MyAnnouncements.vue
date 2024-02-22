@@ -28,8 +28,8 @@
                     }}</Tag>
                 </div>
                 <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{
-                    announcement.researchType
-                        ? announcement.researchType
+                    announcement.userType
+                        ? announcement.userType
                         : ""
                 }}</Tag>
             </div>
@@ -96,7 +96,7 @@ export default {
               description: anAnnouncement.data.description,
               instruments: anAnnouncement.data.instruments,
               styles: anAnnouncement.data.styles,
-              researchType: anAnnouncement.data.researchType.name,
+              userType: anAnnouncement.data.userType.name,
               created_at: anAnnouncement.data.created_at
 
           }
