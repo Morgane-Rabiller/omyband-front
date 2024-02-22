@@ -5,12 +5,12 @@ import cookiesStorage from "@/services/cookie";
 export const contactStore = defineStore('contactStore', {
     id: "",
     state: () => ({
-        jwToken: cookiesStorage.getItem("accessToken") || null,
+        // jwToken: cookiesStorage.getItem() || null,
     }),
     actions: {
         async contactAnnouncement(announcement_id, subject, text) {
             try {
-                const token = this.jwToken;
+                const token = cookiesStorage.getItem();
                 const response = await axios.post(
                     "http://localhost:8080/contactAnnouncement",
                     {

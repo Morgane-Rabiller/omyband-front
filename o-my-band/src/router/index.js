@@ -12,7 +12,7 @@ import FaqView from "../views/FaqView"
 import LegalInformationView from "../views/LegalInformationView"
 import ContactAdminView from "../views/ContactAdminView"
 import ErrorView from "../views/ErrorView"
-import { authStore } from '@/stores/auth';
+import cookiesStorage from "@/services/cookie";
 
 const routes = [
   {
@@ -100,10 +100,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // Vérifiez si la route nécessite une authentification
-  const auth = authStore()
+  const token = cookiesStorage.getItem()
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Vérifiez si l'utilisateur est connecté
-    if (auth.jwToken) {
+    if (token) {
       // Si l'utilisateur est connecté, redirigez-le vers la page d'accueil
       next({ name: 'home' });
     } else {

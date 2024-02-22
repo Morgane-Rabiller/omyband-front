@@ -1,7 +1,7 @@
 <template>
     <Sidebar v-model:visible="visible" style="background-color: #cbe4de">
         <h3 class="mb-4">Menu de navigation</h3>
-        <div v-if="auth.jwToken">
+        <div v-if="token">
             <div class="flex flex-column">
                 <div>
                     <i class="profil pi pi-user text-4xl"></i>
@@ -79,12 +79,14 @@
 
 <script>
 import { authStore } from "@/stores/auth";
+import cookiesStorage from "@/services/cookie";
 
 export default {
     data() {
         return {
             visible: false,
             auth: authStore(),
+            token: cookiesStorage.getItem()
         };
     },
     methods: {

@@ -47,7 +47,7 @@
             >
             <Password
                 v-model="valueP2"
-                inputId="password"
+                inputId="password2"
                 @blur="passwordValidate"
                 toggleMask
                 placeholder="Exemple2M5d4p7"

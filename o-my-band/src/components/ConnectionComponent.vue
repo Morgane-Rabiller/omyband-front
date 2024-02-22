@@ -51,6 +51,7 @@
 <script setup>
 import { ref } from "vue";
 import { authStore } from "@/stores/auth";
+import cookiesStorage from "@/services/cookie";
 import router from "@/router";
 
 const auth = authStore();
@@ -66,7 +67,7 @@ const login = async () => {
         user.password = valueP.value;
         const response = await auth.loginUser(user.email, user.password);
         console.log(response);
-        await auth.setAuthHeaders(auth.jwToken);
+        await auth.setAuthHeaders(cookiesStorage.getItem());
         if (typeof response === "string") {
             showSnackbar.value = true;
         } else {

@@ -47,6 +47,7 @@
 
 <script>
 import { authStore } from '@/stores/auth';
+import cookiesStorage from "@/services/cookie";
 
 export default {
     data() {
@@ -59,11 +60,12 @@ export default {
                 styles: '',
                 description: '',
                 announcement: ''
-            }
+            },
+            token: cookiesStorage.getItem()
         }
     },
     async created() {
-        this.user = await this.auth.fetchProfil(this.auth.jwToken);
+        this.user = await this.auth.fetchProfil(this.token);
     },
 }
 </script>

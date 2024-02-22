@@ -53,7 +53,7 @@
         <!-- Si l'utilisateur est connecté il aura toutes les options publier, voir et mes annonces sinon il aura les options ci-après en commentaires
          -->
         <div
-            v-else-if="auth.jwToken"
+            v-else-if="token"
             class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
         >
             <router-link
@@ -88,13 +88,13 @@
         <SideBarComponent />
     </div>
     <!-- Si l'utilsateur est connecté il y aura profil et déconnexion, sinon ce sera l'autre -->
-    <div v-if="auth.jwToken" :class="elementClass">
+    <div v-if="token" :class="elementClass">
         <router-link
             to="/profil"
             class="profil-link p-3 border-bottom-1 border-round-xl z-2"
             >Mon profil</router-link
         >
-        <p class="profil-link p-3 border-round-xl m-0" @click="logout"
+        <p class="profil-link p-3 border-round-xl m-0 cursor-pointer" @click="logout"
             >Déconnexion</p>
     </div>
     <div v-else :class="elementClass">
@@ -114,12 +114,14 @@
 <script>
 import { authStore } from "@/stores/auth";
 import SideBarComponent from "./SideBarComponent.vue";
+import cookiesStorage from "@/services/cookie";
 
 export default {
     data() {
         return {
             open: false,
             auth: authStore(),
+            token: cookiesStorage.getItem()
         };
     },
     components: {
@@ -140,7 +142,7 @@ export default {
         },
         logout() {
             this.auth.logoutUser();
-            this.$router.push('/');
+            this.$router.push('/connection');
         }
     },
 };

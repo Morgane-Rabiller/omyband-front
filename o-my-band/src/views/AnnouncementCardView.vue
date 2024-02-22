@@ -49,7 +49,7 @@
                 {{ announcement.user.location }}
             </p>
             <Button
-                v-if="store.jwToken"
+                v-if="token"
                 class="button"
                 label="Je répond à cette annonce"
                 @click="visible = true"
@@ -78,6 +78,7 @@ import HeaderComponent from "@/components/HeaderComponent.vue";
 import ContactForm from "@/components/ContactForm.vue";
 import { authStore } from "@/stores/auth";
 import Button from "primevue/button";
+import cookiesStorage from "@/services/cookie";
 
 export default {
     name: "AnnouncementView",
@@ -86,9 +87,11 @@ export default {
             announcement: null,
             store: authStore(),
             visible: false,
+            token: cookiesStorage.getItem()
         };
     },
     async created() {
+        console.log(this.token);
         this.announcement = await this.store.getAnnouncementByID(
             this.$route.params.id
         );

@@ -70,6 +70,7 @@ import FooterComponent from "@/components/FooterComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import  { authStore } from "@/stores/auth.js";
 import axios from "axios";
+import cookiesStorage from "@/services/cookie";
 
 export default {
   name: "HomeView",
@@ -81,11 +82,12 @@ export default {
         return {
             announcements: {},
             store: authStore(),
-            allAnnouncements: {}
+            allAnnouncements: {},
+            token: cookiesStorage.getItem()
         };
     },
     async created() {
-        const user = await this.store.fetchProfil(this.store.jwToken);
+        const user = await this.store.fetchProfil(this.token);
         this.announcements = user.announcements;
         const myannouncements = await Promise.all(this.announcements.map(async(ad) => {
           const anAnnouncement = await axios.get(`http://localhost:8080/announcements/${ad.announcement_id}`);

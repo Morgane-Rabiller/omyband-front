@@ -12,14 +12,14 @@ export const authStore = defineStore("authStore", {
         users: [],
         departments: [],
         announcements: [],
-        jwToken: cookiesStorage.getItem("accessToken") || null,
+        // jwToken: cookiesStorage.getItem() || null,
         url: "http://localhost:8080/",
     }),
     actions: {
         init() {
-            const storedToken = cookiesStorage.getItem("accessToken");
+            const storedToken = cookiesStorage.getItem();
             if (storedToken) {
-                this.jwToken = storedToken;
+                // this.jwToken = storedToken;
                 this.setAuthHeaders(storedToken);
             }
         },
@@ -57,7 +57,7 @@ export const authStore = defineStore("authStore", {
                         email,
                         password,
                     });
-                    this.jwToken = response.data.accessToken;
+                    // this.jwToken = response.data.accessToken;
                     cookiesStorage.setItem(
                         "accessToken",
                         response.data.accessToken
@@ -75,8 +75,8 @@ export const authStore = defineStore("authStore", {
         },
         async logoutUser() {
             try {
-                this.jwToken = null;
-                cookiesStorage.removeItem("accessToken");
+                // this.jwToken = null;
+                cookiesStorage.removeItem();
 
                 this.user = {};
 

@@ -97,6 +97,7 @@
 
 <script>
 import { authStore } from "@/stores/auth";
+import cookiesStorage from "@/services/cookie";
 
 export default {
     data() {
@@ -141,7 +142,7 @@ export default {
                     announcement.description,
                     announcement.styles,
                     announcement.instruments,
-                    this.store.jwToken
+                    cookiesStorage.getItem()
                 );
                 this.$router.push("/validation");
             } catch (error) {
@@ -150,11 +151,11 @@ export default {
         },
     },
     async created() {
-        this.types = await this.store.fetchTypes(this.store.jwToken);
+        this.types = await this.store.fetchTypes(cookiesStorage.getItem());
         this.instruments = await this.store.fetchInstruments(
-            this.store.jwToken
+            cookiesStorage.getItem()
         );
-        this.styles = await this.store.fetchStyles(this.store.jwToken);
+        this.styles = await this.store.fetchStyles(cookiesStorage.getItem());
     },
 };
 </script>
