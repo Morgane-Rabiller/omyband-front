@@ -27,9 +27,7 @@
                     }}</Tag>
                 </div>
                 <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{
-                    announcement.userType
-                        ? announcement.userType.name
-                        : ""
+                    announcement.userType ? announcement.userType.name : ""
                 }}</Tag>
             </div>
         </div>
@@ -48,13 +46,19 @@
             <p v-if="announcement.user" class="opacity-60">
                 {{ announcement.user.location }}
             </p>
+            <div v-if="currentUser.user_id !== announcement.user_id">
             <Button
                 v-if="token"
                 class="button"
                 label="Je répond à cette annonce"
                 @click="visible = true"
             />
-            <div v-else v-tooltip.bottom="'Connecte toi pour accéder à cette fonctionnalité'" >
+            <div
+                v-else
+                v-tooltip.bottom="
+                    'Connecte toi pour accéder à cette fonctionnalité'
+                "
+            >
                 <Button disabled>Répondre à l'annonce</Button>
             </div>
 
@@ -67,6 +71,7 @@
             >
                 <ContactForm />
             </Dialog>
+        </div>
         </div>
     </div>
     <FooterComponent />
@@ -87,14 +92,18 @@ export default {
             announcement: null,
             store: authStore(),
             visible: false,
-            token: cookiesStorage.getItem()
+            token: cookiesStorage.getItem(),
+            currentUser: {}
         };
     },
     async created() {
-        console.log(this.token);
+        // console.log(this.token);
         this.announcement = await this.store.getAnnouncementByID(
             this.$route.params.id
         );
+        console.log("announcement", this.announcement);
+        this.currentUser = await this.store.getFetchProfil();
+        console.log("currentUser", this.currentUser);
     },
     components: {
         HeaderComponent,

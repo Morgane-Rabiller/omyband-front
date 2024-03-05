@@ -62,9 +62,7 @@ export const authStore = defineStore("authStore", {
                         "accessToken",
                         response.data.accessToken
                     );
-                    this.user = {
-                        email: email,
-                    };
+                    this.user.email = email;
                     return response;
             } catch (error) {
                 console.error("Erreur De tes morts", error);
@@ -231,5 +229,10 @@ export const authStore = defineStore("authStore", {
                 (announcement) => announcement.announcement_id === Number(id)
             );
         },
+        getFetchProfil: (state) => async () => {
+            const currentUser = await state.fetchProfil(cookiesStorage.getItem());
+            state.user = currentUser;
+            return currentUser;
+        }
     },
 });

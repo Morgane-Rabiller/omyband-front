@@ -91,8 +91,8 @@ const loadAnnouncements = async (payload) => {
     total = response.total;
     limit = response.limit;
     last_page = Math.floor(total / limit) + 1;
-    console.log("Last", last_page);
-    console.log("total : ", response.total);
+    // console.log("Last", last_page);
+    // console.log("total : ", response.total);
 };
 
 const changePages = (page) => {
@@ -112,7 +112,7 @@ onMounted(async () => {
         }
     styles = await store.fetchStyles();
     instruments = await store.fetchInstruments();
-    console.log('styles', instruments);
+    // console.log('styles', instruments);
     loadAnnouncements(payload);
 })
 
@@ -124,7 +124,7 @@ watch(selectedGenre, () => {
         instruments: selectedInstrument.value,
         userLocation: selectedLocation.value,
     }
-    console.log('styles', selectedGenre.value);
+    // console.log('styles', selectedGenre.value);
     loadAnnouncements(payload);
 })
 watch(selectedLocation, () => {
@@ -135,7 +135,7 @@ watch(selectedLocation, () => {
         instruments: selectedInstrument.value,
         userLocation: selectedLocation.value,
     }
-    console.log('styles', selectedGenre.value);
+    // console.log('styles', selectedGenre.value);
     loadAnnouncements(payload);
 })
 
@@ -147,7 +147,7 @@ watch(selectedInstrument, () => {
         instruments: selectedInstrument.value,
         userLocation: selectedLocation.value,
     }
-    console.log('Instrument', selectedInstrument.value);
+    // console.log('Instrument', selectedInstrument.value);
     loadAnnouncements(payload);
 })
 
