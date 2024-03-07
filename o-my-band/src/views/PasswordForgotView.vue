@@ -36,7 +36,6 @@ import { authStore } from "@/stores/auth";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import router from "@/router";
-// import router from "@/router";
 
 export default {
     name: "PasswordForgot",

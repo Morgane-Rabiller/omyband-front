@@ -158,7 +158,7 @@ const emailValidate = () => {
 const passwordValidate = () => {
     if (!passwordRegex.test(valueP.value)) {
         passwordError.value =
-            "Votre mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre";
+            "Ton mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre";
     } else {
         passwordError.value = "";
     }

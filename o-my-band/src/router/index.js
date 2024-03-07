@@ -13,6 +13,7 @@ import LegalInformationView from "../views/LegalInformationView"
 import ContactAdminView from "../views/ContactAdminView"
 import ErrorView from "../views/ErrorView"
 import PasswordForgotView from "../views/PasswordForgotView"
+import NewPasswordView from "../views/NewPasswordView"
 import cookiesStorage from "@/services/cookie";
 
 const routes = [
@@ -88,6 +89,11 @@ const routes = [
     path: '/passwordForgot',
     name: 'passwordForgot',
     component: PasswordForgotView
+  },
+  {
+    path: '/newPassword/:id',
+    name: 'newPassword',
+    component: NewPasswordView
   }
   // {
   //   path: '/about',

@@ -75,6 +75,11 @@ export const authStore = defineStore("authStore", {
             const response = await axios.post(`${this.url}forgotPassword`, { email });
             console.log(response);
         },
+        async newPassword(id, password) {
+            const response = await axios.put(`${this.url}updatePassword/${id}`, { password });
+            console.log(response);
+            console.log(id);
+        },
         async logoutUser() {
             try {
                 // this.jwToken = null;
