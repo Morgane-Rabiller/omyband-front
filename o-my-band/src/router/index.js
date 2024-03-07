@@ -12,6 +12,7 @@ import FaqView from "../views/FaqView"
 import LegalInformationView from "../views/LegalInformationView"
 import ContactAdminView from "../views/ContactAdminView"
 import ErrorView from "../views/ErrorView"
+import PasswordForgotView from "../views/PasswordForgotView"
 import cookiesStorage from "@/services/cookie";
 
 const routes = [
@@ -82,6 +83,11 @@ const routes = [
     path: '/:catchAll(.*)',
     name: 'erreur404',
     component: ErrorView
+  },
+  {
+    path: '/passwordForgot',
+    name: 'passwordForgot',
+    component: PasswordForgotView
   }
   // {
   //   path: '/about',

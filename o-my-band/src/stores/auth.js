@@ -71,6 +71,10 @@ export const authStore = defineStore("authStore", {
                 return wrongmail;
             }
         },
+        async forgotPassword(email) {
+            const response = await axios.post(`${this.url}forgotPassword`, { email });
+            console.log(response);
+        },
         async logoutUser() {
             try {
                 // this.jwToken = null;

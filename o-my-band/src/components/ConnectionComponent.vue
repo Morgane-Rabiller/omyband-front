@@ -33,6 +33,7 @@
         <div v-if="passwordError" class="mt-2">
             <InlineMessage>{{ passwordError }}</InlineMessage>
         </div>
+        <router-link :to="{ name: 'passwordForgot' }" class="forgot m-3 no-underline">Mot de passe oublié ?</router-link>
         <Button
             class="submit"
             type="submit"
@@ -41,7 +42,6 @@
             :loading="loading"
             @click="login"
         />
-
         <div v-if="showSnackbar">
             <Message severity="warn" sticky>{{ message }}</Message>
         </div>
@@ -149,6 +149,10 @@ img {
     margin-top: 1.5rem;
     background-color: #0e8388 !important;
     border-color: #0e8388 !important;
+}
+
+.forgot {
+    color: #0e8388 !important;
 }
 
 @media screen and (min-width: 768px) {
