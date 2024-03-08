@@ -82,7 +82,7 @@ export default {
             } catch (error) {
                 console.log(error);
 
-                this.errorMessage ="Une erreur s'est produite, réessai ultérieurement ou contacte nous";
+                this.errorMessage =error.response.data.message;
                 window.setTimeout(() => {
                     this.errorMessage = "";
                 }, 3000);
