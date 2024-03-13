@@ -70,7 +70,7 @@ export default {
                         this.errorMessage = "";
                     }, 3000);
                 } else {
-                    await this.store.newPassword(this.$route.params.id, this.password2);
+                    await this.store.newPasswordIfForgot(this.$route.params.id, this.password2);
                     this.value = "";
                     this.visible = true;
                     window.setTimeout(() => {

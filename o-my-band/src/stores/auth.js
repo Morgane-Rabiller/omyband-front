@@ -75,7 +75,7 @@ export const authStore = defineStore("authStore", {
             const response = await axios.post(`${this.url}forgotPassword`, { email });
             console.log(response);
         },
-        async newPassword(id, password) {
+        async newPasswordIfForgot(id, password) {
             const response = await axios.put(`${this.url}updatePassword/${id}`, { password });
             console.log(response);
             console.log(id);
@@ -191,6 +191,22 @@ export const authStore = defineStore("authStore", {
             } catch (error) {
                 console.error(error, "annonce non crée");
             }
+        },
+        async setProfil(id, token, data) {
+            const response = axios.put(`${this.url}users/${id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            return response;
+        },
+        async setPassword(id, token, data) {
+            const response = axios.put(`${this.url}users/changePassword/${id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            return response;
         },
         async fetchTypes(token) {
             try {

@@ -15,17 +15,42 @@
                         />
                         <div class="flex flex-column mb-3">
                             <p class="font-semibold m-0">{{ user.pseudo }}</p>
-                            <p class="font-semibold m-0 text-xs">{{ user.email }}</p>
+                            <p class="font-semibold m-0 text-xs">
+                                {{ user.email }}
+                            </p>
                         </div>
                     </div>
+                    <Button
+                        class="m-0 p-0"
+                        label="Modifier mon mot de passe"
+                        link
+                        icon="pi pi-lock"
+                        @click="visibleEditPassword = true"
+                    />
+                    <Dialog
+                        v-model:visible="visibleEditPassword"
+                        modal
+                        header="Modifier mon mot de passe"
+                    >
+                        <EditPasswordComponent
+                            @password-changed-successfully="
+                                handlePasswordChangeSuccess
+                            "
+                        />
+                    </Dialog>
                     <p>{{ user.location }}</p>
                     <p class="font-bold">Instrument(s) :</p>
-                    <div v-for="instrument in user.instruments" :key="instrument.id">
+                    <div
+                        v-for="instrument in user.instruments"
+                        :key="instrument.id"
+                    >
                         <p>- {{ instrument.name }}</p>
                     </div>
-                    <p v-if="user.instruments.length === 0">Vous n'avez pas sélectionné d'instruments</p>
+                    <p v-if="user.instruments.length === 0">
+                        Vous n'avez pas sélectionné d'instruments
+                    </p>
                     <p>{{ user.styles }}</p>
-                    <p class="font-bold"> Description :</p>
+                    <p class="font-bold">Description :</p>
                     <p v-if="user.description">{{ user.description }}</p>
                     <p v-else>Vous n'avez pas de description</p>
                 </div>
@@ -41,37 +66,89 @@
                     <Button class="my-2">Lien vers la dernière annonce</Button>
                 </div>
             </div>
+            <div class="flex justify-content-end">
+                <Button
+                    class=""
+                    label="Modifier mon profil"
+                    link
+                    icon="pi pi-user-edit"
+                    @click="visibleEditProfil = true"
+                />
+                <Dialog
+                    v-model:visible="visibleEditProfil"
+                    modal
+                    header="Modifier mon profil"
+                >
+                    <EditProfilComponent />
+                </Dialog>
+                <Button
+                    class="text-red-700"
+                    label="Supprimer mon profil"
+                    link
+                    icon="pi pi-trash"
+                />
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import { authStore } from '@/stores/auth';
+import { authStore } from "@/stores/auth";
 import cookiesStorage from "@/services/cookie";
+import EditProfilComponent from "./EditProfilComponent.vue";
+import EditPasswordComponent from "./EditPasswordComponent.vue";
 
 export default {
     data() {
         return {
             auth: authStore(),
             user: {
-                pseudo: '',
-                email: '',
-                instruments: '',
-                styles: '',
-                description: '',
-                announcement: ''
+                pseudo: "",
+                email: "",
+                instruments: "",
+                styles: "",
+                description: "",
+                announcement: "",
             },
-            token: cookiesStorage.getItem()
-        }
+            token: cookiesStorage.getItem(),
+            visibleEditProfil: false,
+            visibleEditPassword: false,
+        };
     },
     async created() {
         this.user = await this.auth.fetchProfil(this.token);
     },
-}
+    methods: {
+        handlePasswordChangeSuccess() {
+            this.visibleEditPassword = false;
+        },
+    },
+    components: {
+        EditProfilComponent,
+        EditPasswordComponent,
+    },
+};
 </script>
 
 <style scoped>
 * {
     color: #161616;
+}
+
+.p-button.p-button-link {
+    color: #0e8388;
+    background-color: transparent !important;
+    border: transparent !important;
+    font-family: "Montserrat", sans-serif;
+}
+.p-button.p-button-link:enabled:hover {
+    background: transparent !important;
+    color: #0e8388;
+    border: transparent !important;
+}
+.p-button.p-button-link:enabled:focus {
+    background: transparent;
+    box-shadow: none;
+    border-color: transparent;
 }
 </style>
