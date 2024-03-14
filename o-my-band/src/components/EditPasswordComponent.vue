@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import router from "@/router";
 import cookiesStorage from "@/services/cookie";
 import { authStore } from "@/stores/auth";
 
@@ -78,7 +77,6 @@ export default {
                 window.setTimeout(() => {
                     this.successMessage = "";
                     this.visible = false;
-                    router.push({ name: "profil" });
                     this.$emit('password-changed-successfully');
                 }, 3000);
             } catch (error) {
