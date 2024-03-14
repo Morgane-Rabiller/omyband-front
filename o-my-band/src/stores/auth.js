@@ -200,6 +200,14 @@ export const authStore = defineStore("authStore", {
             });
             return response;
         },
+        async deleteProfil(id, token) {
+            const response = axios.delete(`${this.url}users/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            return response;
+        },
         async setPassword(id, token, data) {
             const response = axios.put(`${this.url}users/changePassword/${id}`, data, {
                 headers: {

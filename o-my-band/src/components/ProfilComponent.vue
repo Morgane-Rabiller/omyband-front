@@ -86,7 +86,15 @@
                     label="Supprimer mon profil"
                     link
                     icon="pi pi-trash"
+                    @click="visibleDeleteProfil = true"
                 />
+                <Dialog
+                    v-model:visible="visibleDeleteProfil"
+                    modal
+                    header="Supprimer mon profil 🗑"
+                >
+                    <DeleteProfilComponent :userId="userId" :token="token" :visible="visibleDeleteProfil" @deletion-cancelled="handleDelationCancelled"/>
+                </Dialog>
             </div>
         </div>
     </div>
@@ -97,6 +105,7 @@ import { authStore } from "@/stores/auth";
 import cookiesStorage from "@/services/cookie";
 import EditProfilComponent from "./EditProfilComponent.vue";
 import EditPasswordComponent from "./EditPasswordComponent.vue";
+import DeleteProfilComponent from "./DeleteProfilComponent.vue";
 
 export default {
     data() {
@@ -112,20 +121,28 @@ export default {
             },
             token: cookiesStorage.getItem(),
             visibleEditProfil: false,
+            visibleDeleteProfil: false,
             visibleEditPassword: false,
+            userId: null,
         };
     },
     async created() {
         this.user = await this.auth.fetchProfil(this.token);
+        this.userId = this.user.user_id;
+        console.log(this.userId);
     },
     methods: {
         handlePasswordChangeSuccess() {
             this.visibleEditPassword = false;
         },
+        handleDelationCancelled() {
+            this.visibleDeleteProfil = false;
+        }
     },
     components: {
         EditProfilComponent,
         EditPasswordComponent,
+        DeleteProfilComponent
     },
 };
 </script>
