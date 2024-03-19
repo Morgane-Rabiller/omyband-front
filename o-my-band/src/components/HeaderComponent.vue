@@ -14,15 +14,15 @@
                 <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
             </div>
         </router-link>
-        <div v-if="this.$route.path === '/connection'" class="right-part hidden md:flex mr-5 align-items-center">
+        <div v-if="this.$route.path === '/connection'" class="right-part hidden lg:flex mr-5 align-items-center">
             <router-link to="/announcement" class="mr-7 no-underline" style="color: #cbe4de">Voir les annonces</router-link>
             <div>
-                <p class="no-account hidden md:flex">
+                <p class="no-account hidden lg:flex">
                     Je n'ai pas encore de compte ?
                 </p>
                 <router-link
                     to="/registration"
-                    class="mt-2 hidden md:flex"
+                    class="mt-2 hidden lg:flex"
                     style="color: #cbe4de"
                 >
                     <i class="pi pi-sign-in" />&nbsp; S'inscrire
@@ -31,7 +31,7 @@
         </div>
         <div
             v-else-if="this.$route.path === '/registration'"
-            class="right-part hidden md:flex mr-5 align-items-center"
+            class="right-part hidden lg:flex mr-5 align-items-center"
         >
             <router-link
                 to="/announcement"
@@ -40,10 +40,10 @@
                 >Voir les annonces</router-link
             >
             <div>
-            <p class="no-account hidden md:flex">J'ai déjà un compte ?</p>
+            <p class="no-account hidden lg:flex">J'ai déjà un compte ?</p>
             <router-link
                 to="/connection"
-                class="mt-2 hidden md:flex"
+                class="mt-2 hidden lg:flex"
                 style="color: #cbe4de"
             >
                 <i class="pi pi-sign-in" />&nbsp; Connection
@@ -54,7 +54,7 @@
          -->
         <div
             v-else-if="token"
-            class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
+            class="right-part hidden lg:flex mr-5 flex-wrap align-items-center"
         >
             <router-link
                 to="/add-announcement"
@@ -75,7 +75,7 @@
         </div>
         <div
             v-else
-            class="right-part hidden md:flex mr-5 flex-wrap align-items-center"
+            class="right-part hidden lg:flex mr-5 flex-wrap align-items-center"
         >
             <router-link
                 to="/announcement"

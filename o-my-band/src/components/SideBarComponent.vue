@@ -70,7 +70,7 @@
         </div>
     </Sidebar>
     <Button
-        class="custom-burger flex md:hidden justify-content-center border-none w-3rem h-3rem mr-3"
+        class="custom-burger flex lg:hidden justify-content-center border-none w-3rem h-3rem mr-3"
         @click="visible = true"
     >
         <i class="pi pi-align-justify text-2xl custom-icon"> </i>
