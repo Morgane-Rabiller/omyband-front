@@ -98,18 +98,19 @@ export const authStore = defineStore("authStore", {
             pseudo,
             email,
             password,
+            passwordRepeat,
             avatar,
             location,
             description,
             instruments
         ) {
-            try {
                 const response = await axios.post(
                     `${this.url}users`,
                     {
                         pseudo,
                         email,
                         password,
+                        passwordRepeat,
                         avatar,
                         location,
                         description,
@@ -121,20 +122,7 @@ export const authStore = defineStore("authStore", {
                         },
                     }
                 );
-                if (response.data)
-                    this.users.push({
-                        pseudo: response.data.pseudo,
-                        password: response.data.password,
-                        email: response.data.email,
-                        location: response.data.location,
-                        avatar: response.data.avatar,
-                        description: response.data.description,
-                        instruments: response.data.instruments,
-                    });
-                console.log(response);
-            } catch (error) {
-                console.error(error);
-            }
+                return response;
         },
         async fetchProfil(token) {
             try {

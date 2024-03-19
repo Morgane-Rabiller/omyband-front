@@ -8,39 +8,24 @@
                 id="pseudo"
                 class="w-20rem md:w-30rem"
                 v-model="user.pseudo"
-                @blur="pseusoValidate"
-                placeholder="Ton pseuso personnalisé"
             />
         </span>
-        <div v-if="pseudoError" class="mt-2">
-            <InlineMessage>6 caractères minimum requis </InlineMessage>
-        </div>
         <span class="flex flex-column mt-4">
             <label class="mb-1" for="username">Adresse Mail*</label>
             <InputText
                 id="username"
                 class="w-20rem md:w-30rem"
                 v-model="user.email"
-                @blur="emailValidate"
-                placeholder="Exemple@gmail.com"
             />
         </span>
-        <div v-if="emailError" class="mt-2">
-            <InlineMessage> {{ emailError }} </InlineMessage>
-        </div>
         <span class="flex flex-column mt-4">
             <label class="mb-1" for="password">Mot de passe*</label>
             <Password
                 v-model="valueP"
                 inputId="password"
-                @blur="passwordValidate"
                 toggleMask
-                placeholder="Exemple2M5d4p7"
             />
         </span>
-        <div v-if="passwordError" class="mt-2">
-            <InlineMessage>{{ passwordError }}</InlineMessage>
-        </div>
         <span class="flex flex-column mt-4">
             <label class="mb-1" for="password"
                 >Confirmation du mot de passe*</label
@@ -48,14 +33,9 @@
             <Password
                 v-model="valueP2"
                 inputId="password2"
-                @blur="passwordValidate"
                 toggleMask
-                placeholder="Exemple2M5d4p7"
             />
         </span>
-        <div v-if="passwordError" class="mt-2">
-            <InlineMessage>{{ passwordError }}</InlineMessage>
-        </div>
         <div class="card mt-4 flex flex-column">
             <label for="type" class="mb-1">Choix du département</label>
             <Dropdown
@@ -93,16 +73,20 @@
                 placeholder="Description libre pour plus de précisions sur toi, tu peux décrire ton groupe ou tes intentions et préciser ton style."
             />
         </div>
+        <p class="text-red-300">{{ message }}</p>
         <Button
             type="submit"
             label="Inscription"
             icon="pi pi-sign-in"
             :loading="loading"
-            @click="register"
         />
-        <div v-if="showSnackbar">
-            <Message severity="warn" sticky>{{ Content }}</Message>
-        </div>
+        <Dialog
+                    v-model:visible="visibleDialog"
+                    modal
+                    header="Inscription réussie ✔"
+                >
+                    <p>Ton compte est bien enregistré, tu vas être redirigé vers l'accueil et pouvoir te connecter.</p>
+                </Dialog>
     </form>
 </template>
 
@@ -113,22 +97,18 @@ import router from "@/router";
 import axios from "axios";
 
 const auth = authStore();
-const showSnackbar = ref(false);
-const selectedInstrument = ref();
-let Content = ref("");
-const pseudoError = ref("");
-const emailError = ref("");
-const passwordError = ref("");
-const selectedDepartment = ref();
+const selectedInstrument = ref([]);
+let message = ref("");
+const selectedDepartment = ref(null);
 const department = ref([]);
 const valueP = ref(null);
 const valueP2 = ref(null);
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+let visibleDialog = ref(false);
 const user = {
     email: "",
     pseudo: "",
     password: "",
+    passwordRepeat: "",
     location: "",
     avatar: "",
     description: "",
@@ -140,75 +120,35 @@ onMounted(async () => {
     instruments = await auth.fetchInstruments();
 })
 
-const pseusoValidate = () => {
-    if (user.pseudo.length < 6) {
-        pseudoError.value = "Pseudo non valide";
-    } else {
-        pseudoError.value = "";
-    }
-};
-const emailValidate = () => {
-    if (!emailRegex.test(user.email)) {
-        emailError.value = "Email non valide e.g exemple@exemple.com";
-    } else {
-        emailError.value = "";
-    }
-};
-
-const passwordValidate = () => {
-    if (!passwordRegex.test(valueP.value)) {
-        passwordError.value =
-            "Ton mot de passe doit comporter minimum 8 caractères dont une minuscule, une majuscule et un chiffre";
-    } else {
-        passwordError.value = "";
-    }
-};
-
 const register = async () => {
+    user.password = valueP.value;
+    user.passwordRepeat = valueP2.value;
+    user.location = selectedDepartment.value
+        ? selectedDepartment.value.name
+        : "";
+        user.instruments = selectedInstrument.value ? selectedInstrument.value : [];
+    console.log(selectedInstrument.value);
     try {
-        if (valueP.value !== valueP2.value) {
-            console.error(
-                "Les mots de passes ne correspondent pas. T'es mauvais Jeanmi!"
-            );
-            Content.value =
-                "Les mots de passes ne correspondent pas. T'es mauvais Jeanmi!";
-            showSnackbar.value = true;
-            return;
-        }
-        if (user.pseudo.length < 6) {
-            console.error(
-                "T'abuses, tu pourrais faire un effort sur la longueur de ton pseudo !"
-            );
-            Content.value =
-                "T'abuses, tu pourrais faire un effort sur la longueur de ton pseudo !";
-            showSnackbar.value = true;
-        }
-        user.password = valueP.value;
-        console.log(user.password);
-        user.location = selectedDepartment.value
-            ? selectedDepartment.value.name
-            : "";
-        user.instruments = selectedInstrument.value
-        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-        if (!emailRegex.test(user.email)) {
-            console.error("L'email nest pas au format valide ! Perdu Jeanmi");
-            Content.value = "L'email nest pas au format valide ! Perdu Jeanmi";
-            showSnackbar.value = true;
-        }
-        console.log(selectedInstrument.value.name);
         await auth.registerUser(
             user.pseudo,
             user.email,
             user.password,
+            user.passwordRepeat,
             user.avatar,
             user.location,
             user.description,
             user.instruments
         );
-        router.push("/validation");
-        console.log(user);
+        console.log(visibleDialog);
+        visibleDialog.value = true;
+        window.setTimeout(() => {
+            visibleDialog.value = false;
+            router.push("/validation");
+        }, 3000);
     } catch (error) {
         console.error("bouhouhou", error);
+        console.error("error", error.response.data.message);
+        message.value = error.response.data.message;
     }
 };
 
