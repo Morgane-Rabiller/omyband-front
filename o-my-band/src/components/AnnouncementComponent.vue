@@ -3,7 +3,7 @@
         <div class="flex flex-column justify-content-center align-items-center">
             <h2>Ma recherche d'annonces</h2>
         </div>
-        <div class="filters mx-auto">
+        <div class="filters mx-auto flex flex-column align-items-center lg:flex-row">
             <MultiSelect
             v-model="selectedGenre"
             display="chip"
@@ -12,20 +12,20 @@
             option-value="style_id"
             placeholder="Sélectionne un Genre"
             :maxSelectedLabels="3"
-            class="w-full md:w-20rem"
+            class="w-20rem mb-4 lg:ml-0 lg:mb-0"
             />
-            <Dropdown v-model="selectedInstrument" :options="instruments" option-label="name" option-value="instrument_id" placeholder="Sélectionne un Instrument" class="z-0 w-20rem ml-8"/>
-            <Dropdown v-model="selectedLocation" :options="department" option-label="name" option-value="name" placeholder="Selectionne un département" class="z-0 w-20rem ml-8"/>
+            <Dropdown v-model="selectedInstrument" :options="instruments" option-label="name" option-value="instrument_id" placeholder="Sélectionne un Instrument" class="z-0 w-20rem mb-4 lg:mb-0 lg:ml-8"/>
+            <Dropdown v-model="selectedLocation" :options="department" option-label="name" option-value="name" placeholder="Selectionne un département" class="z-0 w-20rem lg:ml-8"/>
         </div>
         <div class="card mt-6 mx-8 " v-for="announcement in announcements" :key="announcement.announcement_id">
             <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4" >
-                <div class="flex justify-content-between">
+                <div class="flex flex-column md:flex-row md:justify-content-between">
                     <div class="flex flex-wrap align-items-start">
                         <div class="flex flex-column">
                             <h2 class="">{{ announcement.title }}</h2>
                             <div class="flex flex-wrap align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
-                                <p class="ml-3">{{ announcement.user.pseudo }}</p>
+                                <p class="ml-3 mb-0">{{ announcement.user.pseudo }}</p>
                             </div>
                         </div>
                     </div>

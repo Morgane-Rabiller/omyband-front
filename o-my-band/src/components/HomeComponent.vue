@@ -25,7 +25,7 @@
                     <div
                         class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4"
                     >
-                        <div class="flex justify-content-between">
+                        <div class="flex flex-column md:flex-row md:justify-content-between">
                             <div class="flex flex-wrap align-items-start">
                                 <div class="flex flex-column">
                                     <h2 class="">
