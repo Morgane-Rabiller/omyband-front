@@ -15,8 +15,8 @@
                             src="../assets/img/user-icon.png"
                             alt="avatar"
                         />
-                        <p v-if="announcement.user" class="ml-3">
-                            {{ announcement.user.pseudo }}
+                        <p class="ml-3">
+                            {{ user.pseudo }}
                         </p>
                     </div>
                 </div>
@@ -83,12 +83,14 @@ export default {
             announcements: {},
             store: authStore(),
             allAnnouncements: {},
-            token: cookiesStorage.getItem()
+            token: cookiesStorage.getItem(),
+            user: {}
         };
     },
     async created() {
-        const user = await this.store.fetchProfil(this.token);
-        this.announcements = user.announcements;
+        this.user = await this.store.fetchProfil(this.token);
+        this.announcements = this.user.announcements;
+        console.log("user", this.user.pseudo);
         const myannouncements = await Promise.all(this.announcements.map(async(ad) => {
           const anAnnouncement = await axios.get(`http://localhost:8080/announcements/${ad.announcement_id}`);
           console.log(ad);

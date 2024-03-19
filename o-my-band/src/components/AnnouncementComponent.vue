@@ -82,6 +82,7 @@ let styles = ref([]);
 let instruments = ref([]);
 const department = ref([]);
 
+console.log(announcements.value);
 
 
 const loadAnnouncements = async (payload) => {

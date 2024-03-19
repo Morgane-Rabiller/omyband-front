@@ -46,32 +46,36 @@
             <p v-if="announcement.user" class="opacity-60">
                 {{ announcement.user.location }}
             </p>
-            <div v-if="currentUser.user_id !== announcement.user_id">
-            <Button
-                v-if="token"
-                class="button"
-                label="Je répond à cette annonce"
-                @click="visible = true"
-            />
             <div
-                v-else
-                v-tooltip.bottom="
-                    'Connecte toi pour accéder à cette fonctionnalité'
+                v-if="
+                    currentUser && currentUser.user_id !== announcement.user_id
                 "
             >
-                <Button disabled>Répondre à l'annonce</Button>
-            </div>
+                <Button
+                    v-if="token"
+                    class="button"
+                    label="Je répond à cette annonce"
+                    @click="visible = true"
+                />
+                <div
+                    v-else
+                    v-tooltip.bottom="
+                        'Connecte toi pour accéder à cette fonctionnalité'
+                    "
+                >
+                    <Button disabled>Répondre à l'annonce</Button>
+                </div>
 
-            <Dialog
-                v-model:visible="visible"
-                modal
-                header="Répondre à l'annonce"
-                :style="{ width: '50rem' }"
-                :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
-            >
-                <ContactForm />
-            </Dialog>
-        </div>
+                <Dialog
+                    v-model:visible="visible"
+                    modal
+                    header="Répondre à l'annonce"
+                    :style="{ width: '50rem' }"
+                    :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+                >
+                    <ContactForm />
+                </Dialog>
+            </div>
         </div>
     </div>
     <FooterComponent />
@@ -93,7 +97,7 @@ export default {
             store: authStore(),
             visible: false,
             token: cookiesStorage.getItem(),
-            currentUser: {}
+            currentUser: {},
         };
     },
     async created() {
@@ -102,8 +106,10 @@ export default {
             this.$route.params.id
         );
         console.log("announcement", this.announcement);
-        this.currentUser = await this.store.getFetchProfil();
-        console.log("currentUser", this.currentUser);
+        if (this.token) {
+            this.currentUser = await this.store.getFetchProfil();
+            console.log("currentUser", this.currentUser);
+        }
     },
     components: {
         HeaderComponent,
