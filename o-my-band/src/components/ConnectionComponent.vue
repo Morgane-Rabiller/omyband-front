@@ -1,5 +1,8 @@
 <template>
-    <form class="container flex flex-column align-items-center mb-8"  @submit.prevent="login">
+    <form
+        class="container flex flex-column align-items-center mb-8"
+        @submit.prevent="login"
+    >
         <h3>Je me connecte</h3>
         <img
             class="img_login"
@@ -33,7 +36,11 @@
         <div v-if="passwordError" class="mt-2">
             <InlineMessage>{{ passwordError }}</InlineMessage>
         </div>
-        <router-link :to="{ name: 'passwordForgot' }" class="forgot m-3 no-underline">Mot de passe oublié ?</router-link>
+        <router-link
+            :to="{ name: 'passwordForgot' }"
+            class="forgot m-3 no-underline"
+            >Mot de passe oublié ?</router-link
+        >
         <Button
             class="submit"
             type="submit"
@@ -60,24 +67,18 @@ const user = {
     password: "",
 };
 const valueP = ref("");
-// const userValide = ref(false);
-const message = ref("Email ou mot de passe incorrect");
+const message = ref("");
 const login = async () => {
     try {
         user.password = valueP.value;
-        const response = await auth.loginUser(user.email, user.password);
-        console.log(response);
+        await auth.loginUser(user.email, user.password);
         await auth.setAuthHeaders(cookiesStorage.getItem());
-        if (typeof response === "string") {
-            showSnackbar.value = true;
-        } else {
-            showSnackbar.value = false;
-            router.push("/validation");
-        }
+        showSnackbar.value = false;
+        router.push("/validation");
     } catch (error) {
-        console.error("bouhouhou", error);
-        showSnackbar = true;
-        console.log("Email ou mot de passe incorrect");
+        console.error("bouhouhou", error.response.data.message);
+        showSnackbar.value = true;
+        message.value = error.response.data.message;
     }
 };
 

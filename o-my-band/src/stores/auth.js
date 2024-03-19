@@ -52,31 +52,30 @@ export const authStore = defineStore("authStore", {
             }
         },
         async loginUser(email, password) {
-            try {
-                    const response = await axios.post(`${this.url}login`, {
-                        email,
-                        password,
-                    });
-                    // this.jwToken = response.data.accessToken;
-                    cookiesStorage.setItem(
-                        "accessToken",
-                        response.data.accessToken
-                    );
-                    this.user.email = email;
-                    return response;
-            } catch (error) {
-                console.error("Erreur De tes morts", error);
-                const wrongmail = "Email ou mot de passe incorrect";
-                console.log("Email ou mot de passe incorrect");
-                return wrongmail;
+            const response = await axios.post(`${this.url}login`, {
+                email,
+                password,
+            });
+            if (email) {
+                cookiesStorage.setItem(
+                    "accessToken",
+                    response.data.accessToken
+                );
+                this.user.email = email;
             }
+            return response;
         },
         async forgotPassword(email) {
-            const response = await axios.post(`${this.url}forgotPassword`, { email });
+            const response = await axios.post(`${this.url}forgotPassword`, {
+                email,
+            });
             console.log(response);
         },
         async newPasswordIfForgot(id, password) {
-            const response = await axios.put(`${this.url}updatePassword/${id}`, { password });
+            const response = await axios.put(
+                `${this.url}updatePassword/${id}`,
+                { password }
+            );
             console.log(response);
             console.log(id);
         },
@@ -209,11 +208,15 @@ export const authStore = defineStore("authStore", {
             return response;
         },
         async setPassword(id, token, data) {
-            const response = axios.put(`${this.url}users/changePassword/${id}`, data, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = axios.put(
+                `${this.url}users/changePassword/${id}`,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             return response;
         },
         async fetchTypes(token) {
@@ -263,9 +266,11 @@ export const authStore = defineStore("authStore", {
             );
         },
         getFetchProfil: (state) => async () => {
-            const currentUser = await state.fetchProfil(cookiesStorage.getItem());
+            const currentUser = await state.fetchProfil(
+                cookiesStorage.getItem()
+            );
             state.user = currentUser;
             return currentUser;
-        }
+        },
     },
 });
