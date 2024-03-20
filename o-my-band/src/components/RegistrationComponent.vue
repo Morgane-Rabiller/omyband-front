@@ -95,6 +95,7 @@ import { ref, onMounted } from "vue";
 import { authStore } from "@/stores/auth";
 import router from "@/router";
 import axios from "axios";
+import translate from "translate";
 
 const auth = authStore();
 const selectedInstrument = ref([]);
@@ -128,6 +129,7 @@ const register = async () => {
         : "";
         user.instruments = selectedInstrument.value ? selectedInstrument.value : [];
     console.log(selectedInstrument.value);
+
     try {
         await auth.registerUser(
             user.pseudo,
@@ -148,7 +150,10 @@ const register = async () => {
     } catch (error) {
         console.error("bouhouhou", error);
         console.error("error", error.response.data.message);
-        message.value = error.response.data.message;
+        message.value = error.response.data.message || await translate(error.response.data.errorMessage, "fr");
+        window.setTimeout(() => {
+            message.value = "";
+        }, 3000);
     }
 };
 
