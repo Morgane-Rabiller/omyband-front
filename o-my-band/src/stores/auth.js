@@ -146,7 +146,6 @@ export const authStore = defineStore("authStore", {
             instruments,
             token
         ) {
-            try {
                 const response = await axios.post(
                     `${this.url}announcements`,
                     {
@@ -163,21 +162,7 @@ export const authStore = defineStore("authStore", {
                         },
                     }
                 );
-                // console.log(typeof this.announcements);
-                // if (response.data) {
-                //     this.announcements.push({
-                //         title: response.data.announcement.title,
-                //         user_type: response.data.announcement.user_type,
-                //         research_type: response.data.announcement.research_type,
-                //         description: response.data.announcement.description,
-                //         styles: [response.data.announcement.styles],
-                //         instruments: [response.data.announcement.instruments],
-                //     });
-                // }
-                console.log(response.data);
-            } catch (error) {
-                console.error(error, "annonce non crée");
-            }
+                return response;
         },
         async setProfil(id, token, data) {
             const response = axios.put(`${this.url}users/${id}`, data, {

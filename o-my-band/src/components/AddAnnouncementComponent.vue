@@ -61,7 +61,7 @@
         </div>
 
         <div class="card mt-4 flex flex-column">
-            <label for="style">Mon/Mes style(s)</label>
+            <label for="style" class="mb-1">Mon/Mes style(s)</label>
             <MultiSelect
                 id="style"
                 v-model="selectedStyles"
@@ -76,6 +76,7 @@
 
         <div class="card mt-4 flex flex-column">
             <label for="description" class="mb-1">Description</label>
+            <p class="text-xs w-20rem mt-0 mb-2 lg:w-30rem">Si tu n'as pas trouvé le(s) instrument(s) et/ou le(s) style(s) que tu recherches dans les listes, merci de les préciser dans ta description.</p>
             <Textarea
                 id="description"
                 v-model="descValue"
@@ -86,32 +87,42 @@
                 placeholder="Décris ta recherche en détail, ton style si il n'est pas présent dans la liste ci-dessus, des exemples de références de morceaux, etc.."
             />
         </div>
-
+        <p class="text-red-300 mb-0">{{ errorMessage }}</p>
         <Button
             label="Poster l'annonce"
             icon="pi pi-send"
             @click="publishAnnouncement"
         />
+        <Dialog
+                    v-model:visible="visibleDialog"
+                    modal
+                    header="Annonce publiée ✔"
+                >
+                    <p>Ton annonce a bien été enregistré, tu vas être redirigé vers la page d'accueil.</p>
+                </Dialog>
     </div>
 </template>
 
 <script>
 import { authStore } from "@/stores/auth";
 import cookiesStorage from "@/services/cookie";
+import translate from "translate";
 
 export default {
     data() {
         return {
-            titleValue: null,
+            titleValue: "",
             descValue: "",
             selectedType: null,
             selectedSearch: null,
-            selectedStyles: null,
-            selectedInstrument: null,
+            selectedStyles: [],
+            selectedInstrument: [],
             types: [],
             instruments: [],
             styles: [],
             store: authStore(),
+            errorMessage: "",
+            visibleDialog: false,
         };
     },
     methods: {
@@ -124,7 +135,7 @@ export default {
                 styles: this.selectedStyles,
                 instruments: this.selectedInstrument,
             };
-            let researchTypeValue = 1;
+            let researchTypeValue = 0;
 
             if (
                 announcement.user_type &&
@@ -132,7 +143,7 @@ export default {
             ) {
                 researchTypeValue = 1; // Valeur par défaut pour les groupes
             } else if (announcement.research_type) {
-                researchTypeValue = announcement.research_type.type_id || 1;
+                researchTypeValue = announcement.research_type.type_id || 0;
             }
             try {
                 await this.store.createAnnouncement(
@@ -144,9 +155,17 @@ export default {
                     announcement.instruments,
                     cookiesStorage.getItem()
                 );
-                this.$router.push("/validation");
+                this.visibleDialog = true;
+                window.setTimeout(() => {
+                    this.visibleDialog = false;
+                    this.$router.push("/validation");
+                }, 3000);
             } catch (error) {
                 console.error(error, "Les informations ne sont pas correctes");
+                this.errorMessage = error.response.data.message || await translate(error.response.data.errorMessage, "fr");
+                window.setTimeout(() => {
+                    this.errorMessage = "";
+                }, 3000);
             }
         },
     },
