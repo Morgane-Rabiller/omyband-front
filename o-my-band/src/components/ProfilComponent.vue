@@ -62,8 +62,8 @@
                 <div
                     class="flex flex-column align-items-center md:ml-8 text-base"
                 >
-                    <p class="font-semibold">Ma dernière annonce</p>
-                    <Button class="my-2">Lien vers la dernière annonce</Button>
+                    <p class="font-semibold">Mes annonces</p>
+                    <Button class="my-2" @click="myannouncements">Lien vers mes annonces</Button>
                 </div>
             </div>
             <div class="flex justify-content-end">
@@ -106,6 +106,7 @@ import cookiesStorage from "@/services/cookie";
 import EditProfilComponent from "./EditProfilComponent.vue";
 import EditPasswordComponent from "./EditPasswordComponent.vue";
 import DeleteProfilComponent from "./DeleteProfilComponent.vue";
+import router from "@/router";
 
 export default {
     data() {
@@ -137,6 +138,9 @@ export default {
         },
         handleDelationCancelled() {
             this.visibleDeleteProfil = false;
+        },
+        myannouncements() {
+            router.push({ name: "myAnnouncement" });
         }
     },
     components: {
