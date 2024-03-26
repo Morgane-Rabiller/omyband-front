@@ -20,6 +20,18 @@
                                 {{ user.pseudo }} - {{ announcement.userType.name }}
                             </p>
                         </div>
+                        <div class="flex" v-if="announcement.instruments.length > 0">
+                        <p class="text-left">
+                            Instrument(s) recherché(s) : &nbsp;
+                        </p>
+                        <p class="text-left">
+                            {{
+                                announcement.instruments
+                                    .map((instrument) => instrument.name)
+                                    .join(", ")
+                            }}.
+                        </p>
+                    </div>
                     </div>
                 </div>
                 <div class="flex flex-wrap">

@@ -15,7 +15,21 @@
                             alt="avatar"
                         />
                         <p v-if="announcement.user" class="ml-3">
-                            {{ announcement.user.pseudo }} - {{ announcement.userType.name }}
+                            {{ announcement.user.pseudo }} -
+                            {{ announcement.userType.name }}
+                        </p>
+                    </div>
+
+                    <div class="flex">
+                        <p class="text-left">
+                            Instrument(s) recherché(s) : &nbsp;
+                        </p>
+                        <p class="text-left">
+                            {{
+                                announcement.instruments
+                                    .map((instrument) => instrument.name)
+                                    .join(", ")
+                            }}.
                         </p>
                     </div>
                 </div>
@@ -34,6 +48,7 @@
         <div>
             <p>{{ announcement.description }}</p>
         </div>
+
         <div class="flex justify-content-between align-items-baseline">
             <p class="opacity-60">
                 Publiée le
