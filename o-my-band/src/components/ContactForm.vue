@@ -9,6 +9,13 @@
             <label>Message</label>
         </span>
         <Button @click="sendMessage">Envoyer mon message</Button>
+        <Dialog 
+            v-model:visible="visibleDialog"
+            modal
+            header="Réussi ✔"
+        >
+        <p>Ton message a bien été envoyé.</p>
+        </Dialog>
     </div>
 </template>
 
@@ -21,6 +28,7 @@ export default {
             object: "",
             text: "",
             store: contactStore(),
+            visibleDialog: false
         };
     },
     methods: {
@@ -32,7 +40,11 @@ export default {
                     this.object,
                     this.text,
                 );
-
+                this.visibleDialog = true;
+                window.setTimeout(() => {
+                    this.visibleDialog = false;
+                    this.$emit("close-dialog");
+                }, 3000);
                 console.log(response); 
             } catch (error) {
                 console.error(error, "Non envoyé");

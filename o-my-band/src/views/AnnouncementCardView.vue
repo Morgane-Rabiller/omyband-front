@@ -88,7 +88,7 @@
                     :style="{ width: '50rem' }"
                     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
                 >
-                    <ContactForm />
+                    <ContactForm @close-dialog="handleCloseDialog"/>
                 </Dialog>
             </div>
         </div>
@@ -124,6 +124,11 @@ export default {
         if (this.token) {
             this.currentUser = await this.store.getFetchProfil();
             console.log("currentUser", this.currentUser);
+        }
+    },
+    methods: {
+        handleCloseDialog() {
+            this.visible = false;
         }
     },
     components: {
