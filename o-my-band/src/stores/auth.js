@@ -104,25 +104,25 @@ export const authStore = defineStore("authStore", {
             description,
             instruments
         ) {
-                const response = await axios.post(
-                    `${this.url}users`,
-                    {
-                        pseudo,
-                        email,
-                        password,
-                        passwordRepeat,
-                        avatar,
-                        location,
-                        description,
-                        instruments,
+            const response = await axios.post(
+                `${this.url}users`,
+                {
+                    pseudo,
+                    email,
+                    password,
+                    passwordRepeat,
+                    avatar,
+                    location,
+                    description,
+                    instruments,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                return response;
+                }
+            );
+            return response;
         },
         async fetchProfil(token) {
             try {
@@ -146,23 +146,31 @@ export const authStore = defineStore("authStore", {
             instruments,
             token
         ) {
-                const response = await axios.post(
-                    `${this.url}announcements`,
-                    {
-                        title,
-                        user_type,
-                        research_type,
-                        description,
-                        styles,
-                        instruments,
+            const response = await axios.post(
+                `${this.url}announcements`,
+                {
+                    title,
+                    user_type,
+                    research_type,
+                    description,
+                    styles,
+                    instruments,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
                     },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                return response;
+                }
+            );
+            return response;
+        },
+        async setAnnouncement(id, data) {
+            const response = axios.put(`${this.url}announcements/${id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${cookiesStorage.getItem()}`,
+                },
+            });
+            return response;
         },
         async setProfil(id, token, data) {
             const response = axios.put(`${this.url}users/${id}`, data, {
