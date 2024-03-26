@@ -45,7 +45,7 @@
                                                     ? announcement.data.user
                                                           .pseudo
                                                     : "Utilisateur inconnu"
-                                            }}
+                                            }} - {{ announcement.data.userType ? announcement.data.userType.name : "" }}
                                         </p>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 <div v-for="style in announcement.data.styles" :key="style.style_id" >
                                     <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{ style.name }}</Tag>
                                 </div>
-                                <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.userType ? announcement.data.userType.name : "" }}</Tag>
+                                <!-- <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.data.userType ? announcement.data.userType.name : "" }}</Tag> -->
                             </div>
                         </div>
                         <div>

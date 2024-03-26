@@ -84,7 +84,7 @@
                 rows="5"
                 cols="45"
                 class="w-20rem md:w-30rem"
-                placeholder="Décris ta recherche en détail, ton style si il n'est pas présent dans la liste ci-dessus, des exemples de références de morceaux, etc.."
+                placeholder="Décris ta recherche en détail, des exemples de références de morceaux, etc.."
             />
         </div>
         <p class="text-red-300 mb-0">{{ errorMessage }}</p>

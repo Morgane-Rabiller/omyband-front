@@ -17,7 +17,7 @@
                                 alt="avatar"
                             />
                             <p class="ml-3">
-                                {{ user.pseudo }}
+                                {{ user.pseudo }} - {{ announcement.userType.name }}
                             </p>
                         </div>
                     </div>
@@ -31,9 +31,9 @@
                             style.name
                         }}</Tag>
                     </div>
-                    <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{
+                    <!-- <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{
                         announcement.userType ? announcement.userType.name : ""
-                    }}</Tag>
+                    }}</Tag> -->
                 </div>
             </div>
             <div>

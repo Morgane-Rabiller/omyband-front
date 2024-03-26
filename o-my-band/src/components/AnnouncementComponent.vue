@@ -25,7 +25,7 @@
                             <h2 class="">{{ announcement.title }}</h2>
                             <div class="flex flex-wrap align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
-                                <p class="ml-3 mb-0">{{ announcement.user.pseudo }}</p>
+                                <p class="ml-3 mb-0">{{ announcement.user.pseudo }} - {{ announcement.userType.name  }}</p>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div v-for="style in announcement.styles" :key="style.style_id" >
                                     <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{ style.name }}</Tag>
                                 </div>
-                        <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.userType.name }}</Tag>
+                        <!-- <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.userType.name }}</Tag> -->
                     </div>
                 </div>
                 <div>
