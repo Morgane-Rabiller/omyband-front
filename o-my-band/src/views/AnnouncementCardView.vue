@@ -20,7 +20,7 @@
                         </p>
                     </div>
 
-                    <div class="flex">
+                    <div  class="flex" v-if="announcement.instruments.length > 0">
                         <p class="text-left">
                             Instrument(s) recherché(s) : &nbsp;
                         </p>
