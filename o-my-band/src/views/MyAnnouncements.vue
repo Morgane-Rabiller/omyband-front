@@ -67,12 +67,11 @@
                         label="Supprimer l'annonce"
                         link
                         icon="pi pi-trash"
-                        @click="visibleDeleteAd = true"
+                        @click="openDeleteDialog(announcement.id)"
                     />
                 </div>
             </div>
         </div>
-
         <Dialog
             v-model:visible="visibleEditAd"
             modal
@@ -80,8 +79,15 @@
         >
             <EditAnnouncementComponent
                 :currentAnnouncement="currentAnnouncement"
-                @edit-announcement-successfully="handleEditSuccessfull"
+                @edit-announcement-successfully="handleEditOrDeleteSuccessfull"
             />
+        </Dialog>
+        <Dialog
+            v-model:visible="visibleDeleteAd"
+            modal
+            header="Supprimer l'annonce"
+        >
+            <DeleteAnnouncementComponent :announcementId="announcementId" :visible="visibleDeleteAd" @deletion-cancelled="handleDelationCancelled" @delete-announcement-successfull="handleEditOrDeleteSuccessfull"/>
         </Dialog>
     </div>
     <FooterComponent />
@@ -91,6 +97,7 @@
 import FooterComponent from "@/components/FooterComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import EditAnnouncementComponent from "@/components/EditAnnouncementComponent.vue";
+import DeleteAnnouncementComponent from "@/components/DeleteAnnouncementComponent.vue";
 import { authStore } from "@/stores/auth.js";
 import axios from "axios";
 import cookiesStorage from "@/services/cookie";
@@ -101,6 +108,7 @@ export default {
         HeaderComponent,
         FooterComponent,
         EditAnnouncementComponent,
+        DeleteAnnouncementComponent
     },
     data() {
         return {
@@ -112,6 +120,7 @@ export default {
             visibleEditAd: false,
             visibleDeleteAd: false,
             currentAnnouncement: null,
+            announcementId: null,
         };
     },
     async created() {
@@ -175,10 +184,18 @@ export default {
             this.visibleEditAd = true;
             this.currentAnnouncement = ad;
         },
-        async handleEditSuccessfull() {
+        openDeleteDialog(announcementId) {
+            this.visibleDeleteAd = true;
+            this.announcementId = announcementId;
+        },
+        async handleEditOrDeleteSuccessfull() {
             this.visibleEditAd = false;
+            this.visibleDeleteAd = false;
             await this.refreshAnnouncements();
         },
+        handleDelationCancelled() {
+            this.visibleDeleteAd = false;
+        }
     },
 };
 </script>

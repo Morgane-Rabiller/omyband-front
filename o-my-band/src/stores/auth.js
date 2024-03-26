@@ -172,6 +172,14 @@ export const authStore = defineStore("authStore", {
             });
             return response;
         },
+        async deleteAnnouncement(id) {
+            const response = axios.delete(`${this.url}announcements/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${cookiesStorage.getItem()}`,
+                },
+            });
+            return response;
+        },
         async setProfil(id, token, data) {
             const response = axios.put(`${this.url}users/${id}`, data, {
                 headers: {
