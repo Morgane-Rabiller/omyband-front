@@ -1,18 +1,18 @@
 <template>
-  <HeaderComponent />
-  <ConnectionComponent />
-  <FooterComponent />
-</template>
-
+    <HeaderComponent />
+    <RegistrationComponent />
+    <FooterComponent />
+  </template>
+  
 <script>
-import ConnectionComponent from '@/components/ConnectionComponent.vue';
+import RegistrationComponent from '@/components/RegistrationComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 
 export default {
-name: 'ConnectionView',
+name: 'RegistrationView',
 components: {
-    ConnectionComponent,
+    RegistrationComponent,
     HeaderComponent,
     FooterComponent
 }

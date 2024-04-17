@@ -29,3 +29,16 @@ npm install primeflex
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Installation de primevue et sa suite 
+npm i primevue
+
+### Installation de la suite primevue
+npm i primeicons
+
+### Installation Sass
+npm install sass-loader node-sass --save-dev
+
+### Installation de js-cookie
+npm install js-cookie
