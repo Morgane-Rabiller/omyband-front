@@ -1,15 +1,44 @@
-# projet-06-o-my-band-front
+# o-my-band
 
-## Installation
-
-1. Installer les dépendances
-
+## Project setup
 ```
 npm install
 ```
 
-2. Lancer le serveur
-
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Primevue and Primeflex for the css
+```
+npm install primevue 
+
+npm install primeflex
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Installation de primevue et sa suite 
+npm i primevue
+
+### Installation de la suite primevue
+npm i primeicons
+
+### Installation Sass
+npm install sass-loader node-sass --save-dev
+
+### Installation de js-cookie
+npm install js-cookie

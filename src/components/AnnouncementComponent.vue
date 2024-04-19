@@ -22,7 +22,7 @@
                 <div class="flex flex-column md:flex-row md:justify-content-between">
                     <div class="flex flex-wrap align-items-start">
                         <div class="flex flex-column">
-                            <h2 class="">{{ announcement.title }}</h2>
+                            <h2 class="w-min md:w-max">{{ announcement.title }}</h2>
                             <div class="flex flex-wrap align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
                                 <p class="ml-3 mb-0">{{ announcement.user.pseudo }} - {{ announcement.userType.name  }}</p>
