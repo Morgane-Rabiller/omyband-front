@@ -2,19 +2,19 @@
     <HeaderComponent />
     <div
         v-if="announcement"
-        class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 text-center py-1 px-4"
+        class="card-backgroundColor border-1 surface-border border-round mt-8 mb-8 mx-8 text-center py-1 px-4"
     >
-        <div class="flex justify-content-between">
+        <div class="flex flex-column md:flex-row md:justify-content-between">
             <div class="flex flex-wrap align-items-start">
                 <div class="flex flex-column">
-                    <h2 class="">{{ announcement.title }}</h2>
-                    <div class="flex flex-wrap align-items-baseline">
+                    <h2 class="w-auto sm:w-max">{{ announcement.title }}</h2>
+                    <div class="flex flex-column md:flex-row align-items-baseline">
                         <img
                             class="avatar"
                             src="../assets/img/user-icon.png"
                             alt="avatar"
                         />
-                        <p v-if="announcement.user" class="ml-3">
+                        <p v-if="announcement.user" class="md:ml-3">
                             {{ announcement.user.pseudo }} -
                             {{ announcement.userType.name }}
                         </p>
@@ -49,7 +49,7 @@
             <p>{{ announcement.description }}</p>
         </div>
 
-        <div class="flex justify-content-between align-items-baseline">
+        <div class="flex flex-column md:flex-row md:justify-content-between align-items-baseline">
             <p class="opacity-60">
                 Publiée le
                 {{

@@ -1,6 +1,6 @@
 <template>
     <HeaderComponent />
-    <div class="container flex flex-column align-items-center m-5">
+    <div class="container flex flex-column align-items-center m-5 mb-8">
         <h1>Nous contacter</h1>
         <img
             src="../assets/img/cat-contact.jpg"
