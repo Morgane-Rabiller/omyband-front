@@ -141,7 +141,7 @@ export default {
         const myannouncements = await Promise.all(
             this.announcements.map(async (ad) => {
                 const anAnnouncement = await axios.get(
-                    `http://localhost:8080/announcements/${ad.announcement_id}`
+                    `https://omyband-back.mogo-r.fr/announcements/${ad.announcement_id}`
                 );
                 return {
                     id: ad.announcement_id,
@@ -171,7 +171,7 @@ export default {
             const myannouncements = await Promise.all(
                 announcements.map(async (ad) => {
                     const anAnnouncement = await axios.get(
-                        `http://localhost:8080/announcements/${ad.announcement_id}`
+                        `https://omyband-back.mogo-r.fr/announcements/${ad.announcement_id}`
                     );
                     return {
                         id: ad.announcement_id,

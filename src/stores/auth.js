@@ -12,8 +12,8 @@ export const authStore = defineStore("authStore", {
         users: [],
         departments: [],
         announcements: [],
-        // jwToken: cookiesStorage.getItem() || null,
-        url: "http://localhost:8080/",
+        // url: "http://localhost:8080/",
+        url: "https://omyband-back.mogo-r.fr/",
     }),
     actions: {
         init() {

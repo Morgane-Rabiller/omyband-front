@@ -12,7 +12,7 @@ export const contactStore = defineStore('contactStore', {
             try {
                 const token = cookiesStorage.getItem();
                 const response = await axios.post(
-                    "http://localhost:8080/contactAnnouncement",
+                    "https://omyband-back.mogo-r.fr/contactAnnouncement",
                     {
                         announcement_id,
                         subject,
@@ -33,7 +33,7 @@ export const contactStore = defineStore('contactStore', {
         async contactAdmin(subject, text) {
             try {
                 const response = await axios.post(
-                    "http://localhost:8080/contactAdmin",
+                    "https://omyband-back.mogo-r.fr/contactAdmin",
                     {
                         subject,
                         text,
