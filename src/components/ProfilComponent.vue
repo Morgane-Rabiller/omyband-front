@@ -79,7 +79,7 @@
                     modal
                     header="Modifier mon profil"
                 >
-                    <EditProfilComponent />
+                    <EditProfilComponent @edit-profil-successfully="handleEditProfilSuccessfull" />
                 </Dialog>
                 <Button
                     class="text-red-700"
@@ -133,6 +133,9 @@ export default {
         console.log(this.userId);
     },
     methods: {
+        handleEditProfilSuccessfull() {
+            this.visibleEditProfil = false;
+        },
         handlePasswordChangeSuccess() {
             this.visibleEditPassword = false;
         },

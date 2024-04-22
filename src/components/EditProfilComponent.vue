@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="editProfil">
         <span class="flex flex-column">
             <label for="pseudo" class="mb-1">Pseudo</label>
             <InputText
@@ -47,8 +47,15 @@
             type="submit"
             label="Enregistrer"
             icon="pi pi-check"
-            @click="editProfil"
+            @click="visibleDialog = true"
         ></Button>
+        <Dialog 
+            v-model:visible="visibleDialog"
+            modal
+            header="Réussi ✔"
+        >
+        <p>Ton profil est bien modifié, tu vas être redirigé sur ton profil.</p>
+        </Dialog>
     </form>
 </template>
 
@@ -67,7 +74,8 @@ export default {
             instruments: [],
             store: authStore(),
             description: "",
-            userId: null
+            userId: null,
+            visibleDialog: false,
         };
     },
     async created() {
@@ -101,6 +109,10 @@ export default {
                         description: this.description,
                     }
                 );
+                window.setTimeout(() =>{
+                    this.visibleDialog = true;
+                    this.$emit('edit-profil-successfully');
+                }, 3000);
                 console.log(response);
             } catch (error) {
                 console.log(error);

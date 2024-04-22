@@ -60,7 +60,7 @@
             <hr class="border-gray-600 w-9 mt-5" />
             <div class="mt-5 flex flex-column">
                 <router-link
-                    to="/"
+                    to="/announcement"
                     class="no-underline text-black-alpha-90 mb-3"
                     ><span class="material-symbols-outlined mr-2">
                         quick_reference_all </span
