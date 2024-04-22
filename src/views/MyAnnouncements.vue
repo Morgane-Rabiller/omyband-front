@@ -1,6 +1,6 @@
 <template>
     <HeaderComponent />
-    <div v-if="announcements">
+    <div v-if="announcements.length > 0">
         <div
             v-for="announcement in allAnnouncements"
             :key="announcement.announcement_id"
@@ -102,6 +102,9 @@
             <DeleteAnnouncementComponent :announcementId="announcementId" :visible="visibleDeleteAd" @deletion-cancelled="handleDelationCancelled" @delete-announcement-successfull="handleEditOrDeleteSuccessfull"/>
         </Dialog>
     </div>
+    <div v-else>
+        <h2 class="text-center mt-8" style="color: #cbe4de"> Tu n'as pas publié d'annonce(s).</h2>
+    </div>
     <FooterComponent />
 </template>
 
@@ -155,6 +158,7 @@ export default {
                 };
             })
         );
+        console.log(this.announcements.length);
         this.allAnnouncements = myannouncements;
 
         // Trie des dates pour que les plus récentes soient en premières
