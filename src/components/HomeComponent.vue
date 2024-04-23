@@ -32,14 +32,14 @@
                                         {{ announcement.data.title }}
                                     </h2>
                                     <div
-                                        class="flex flex-wrap align-items-baseline"
+                                        class="flex flex-column sm:flex-row align-items-baseline"
                                     >
                                         <img
                                             class="avatar"
                                             src="../assets/img/user-icon.png"
                                             alt="avatar"
                                         />
-                                        <p class="ml-3">
+                                        <p class="text-xs sm:text-base sm:ml-3">
                                             {{
                                                 announcement.data.user
                                                     ? announcement.data.user

@@ -2,29 +2,29 @@
     <HeaderComponent />
     <div
         v-if="announcement"
-        class="card-backgroundColor border-1 surface-border border-round mt-8 mb-8 mx-8 text-center py-1 px-4"
+        class="card-backgroundColor border-1 surface-border border-round mt-8 mb-8 mx-8 text-center pb-4 px-4"
     >
         <div class="flex flex-column md:flex-row md:justify-content-between">
             <div class="flex flex-wrap align-items-start">
-                <div class="flex flex-column">
+                <div class="flex flex-column align-items-center sm:align-items-start">
                     <h2 class="w-auto sm:w-max">{{ announcement.title }}</h2>
-                    <div class="flex flex-column md:flex-row align-items-baseline">
+                    <div class="flex flex-column sm:flex-row align-items-start">
                         <img
                             class="avatar"
                             src="../assets/img/user-icon.png"
                             alt="avatar"
                         />
-                        <p v-if="announcement.user" class="md:ml-3">
+                        <p v-if="announcement.user" class="text-xs sm:text-base sm:ml-3">
                             {{ announcement.user.pseudo }} -
                             {{ announcement.userType.name }}
                         </p>
                     </div>
 
-                    <div  class="flex" v-if="announcement.instruments.length > 0">
-                        <p class="text-left">
+                    <div  class="flex text-left text-sm sm:text-base" v-if="announcement.instruments.length > 0">
+                        <p class="">
                             Instrument(s) recherché(s) : &nbsp;
                         </p>
-                        <p class="text-left">
+                        <p class="">
                             {{
                                 announcement.instruments
                                     .map((instrument) => instrument.name)

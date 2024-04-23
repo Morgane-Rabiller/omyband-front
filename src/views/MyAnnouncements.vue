@@ -4,27 +4,27 @@
         <div
             v-for="announcement in allAnnouncements"
             :key="announcement.announcement_id"
-            class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 mb-8 text-center py-1 px-4"
+            class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 mb-8 text-center pb-3 px-4"
         >
-            <div class="flex justify-content-between">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
                 <div class="flex flex-wrap align-items-start">
-                    <div class="flex flex-column">
-                        <h2 class="">{{ announcement.title }}</h2>
-                        <div class="flex flex-wrap align-items-baseline">
+                    <div class="flex flex-column align-items-center sm:align-items-start">
+                        <h2 class="w-auto sm:w-max">{{ announcement.title }}</h2>
+                        <div class="flex flex-column sm:flex-row align-items-baseline">
                             <img
                                 class="avatar"
                                 src="../assets/img/user-icon.png"
                                 alt="avatar"
                             />
-                            <p class="ml-3">
+                            <p class="mb-0 text-xs sm:text-base sm:ml-3">
                                 {{ user.pseudo }} - {{ announcement.userType.name }}
                             </p>
                         </div>
-                        <div class="flex" v-if="announcement.instruments.length > 0">
-                        <p class="text-left">
+                        <div class="flex text-left text-sm sm:text-base" v-if="announcement.instruments.length > 0">
+                        <p class="text-left  mb-0">
                             Instrument(s) recherché(s) : &nbsp;
                         </p>
-                        <p class="text-left">
+                        <p class="text-left mb-0">
                             {{
                                 announcement.instruments
                                     .map((instrument) => instrument.name)
@@ -39,7 +39,7 @@
                         v-for="style in announcement.styles"
                         :key="style.style_id"
                     >
-                        <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{
+                        <Tag class="tag h-1rem md:h-2rem mt-3 ml-1">{{
                             style.name
                         }}</Tag>
                     </div>
@@ -51,9 +51,9 @@
             <div>
                 <p>{{ announcement.description }}</p>
             </div>
-            <div class="flex justify-content-between align-items-baseline">
-                <div class="flex">
-                    <p class="opacity-60 mr-2">
+            <div class="flex flex-column md:flex-row md:justify-content-between align-items-baseline">
+                <div class="flex  flex-column md:flex-row">
+                    <p class="opacity-60 m-0 md:mr-2">
                         Publiée le
                         {{
                             new Date(
@@ -61,21 +61,21 @@
                             ).toLocaleDateString("fr-FR") || ""
                         }}
                     </p>
-                    <p class="mr-2">-</p>
-                    <p class="opacity-60">
+                    <p class="m-0 md:mr-2">-</p>
+                    <p class="opacity-60 mt-0 mb-3 ">
                         {{ user.location }}
                     </p>
                 </div>
                 <div>
                     <Button
-                        class="mt-0 p-0 mr-5"
+                        class="mt-0 p-0 mr-0 sm:mr-5"
                         label="Modifier l'annonce"
                         link
                         icon="pi pi-file-edit"
                         @click="openEditDialog(announcement)"
                     />
                     <Button
-                        class="text-red-700 mt-0 p-0"
+                        class="text-red-700 mt-3 sm:mt-0 p-0"
                         label="Supprimer l'annonce"
                         link
                         icon="pi pi-trash"

@@ -20,12 +20,12 @@
         <div class="card mt-6 mx-8 " v-for="announcement in announcements" :key="announcement.announcement_id">
             <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4" >
                 <div class="flex flex-column md:flex-row md:justify-content-between">
-                    <div class="flex flex-wrap align-items-start">
-                        <div class="flex flex-column">
-                            <h2 class="w-auto md:w-max">{{ announcement.title }}</h2>
-                            <div class="flex flex-wrap align-items-baseline">
+                    <div class="flex flex-wrap align-items-center">
+                        <div class="flex flex-column align-items-center sm:align-items-start">
+                            <h2 class="w-auto sm:w-max">{{ announcement.title }}</h2>
+                            <div class="flex flex-column sm:flex-row align-items-baseline">
                                 <img class="avatar" src="../assets/img/user-icon.png" alt="">
-                                <p class="ml-3 mb-0">{{ announcement.user.pseudo }} - {{ announcement.userType.name  }}</p>
+                                <p class="mb-0 text-xs sm:text-base sm:ml-3">{{ announcement.user.pseudo }} - {{ announcement.userType.name  }}</p>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                             <p v-if="announcement && announcement && announcement.description">{{ announcement.description.substring(0, 120) }}...</p>
                             <RouterLink v-if="announcement && announcement.announcement_id" :to="{ name: 'announcementCard', params: { id: announcement.announcement_id }}" style="color: #161616;">Voir plus..</RouterLink>
                 </div>
-                <div class="flex justify-content-between">
-                    <p class="opacity-60">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
-                    <p class="opacity-60">{{ announcement.user.location }}</p>
+                <div class="flex flex-column sm:flex-row sm:justify-content-between">
+                    <p class="opacity-60 text-sm">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
+                    <p class="opacity-60 text-sm">{{ announcement.user.location }}</p>
                 </div>
             </div>
         </div>
