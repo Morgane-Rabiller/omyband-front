@@ -17,7 +17,7 @@
             <Dropdown v-model="selectedInstrument" :options="instruments" option-label="name" option-value="instrument_id" placeholder="Sélectionne un Instrument" class="z-0 w-20rem mb-4 lg:mb-0 lg:ml-8"/>
             <Dropdown v-model="selectedLocation" :options="department" option-label="name" option-value="name" placeholder="Selectionne un département" class="z-0 w-20rem lg:ml-8"/>
         </div>
-        <div class="card mt-6 mx-8 " v-for="announcement in announcements" :key="announcement.announcement_id">
+        <div class="card mt-6 mx-3 sm:mx-8" v-for="announcement in announcements" :key="announcement.announcement_id">
             <div class="card-backgroundColor border-1 surface-border border-round m-2 text-center py-1 px-4" >
                 <div class="flex flex-column md:flex-row md:justify-content-between">
                     <div class="flex flex-wrap align-items-center">
@@ -31,9 +31,8 @@
                     </div>
                     <div class="flex flex-wrap">
                         <div v-for="style in announcement.styles" :key="style.style_id" >
-                                    <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{ style.name }}</Tag>
+                                    <Tag class="tag h-1rem md:h-2rem mt-3 md:mt-4 ml-1">{{ style.name }}</Tag>
                                 </div>
-                        <!-- <Tag class="tag ml-2 h-1rem md:h-2rem mt-5">{{ announcement.userType.name }}</Tag> -->
                     </div>
                 </div>
                 <div>
@@ -42,7 +41,7 @@
                 </div>
                 <div class="flex flex-column sm:flex-row sm:justify-content-between">
                     <p class="opacity-60 text-sm">Publiée le {{ new Date(announcement.created_at).toLocaleDateString('fr-FR') }}</p>
-                    <p class="opacity-60 text-sm">{{ announcement.user.location }}</p>
+                    <p class="opacity-60 text-sm mt-0 sm:mt-auto">{{ announcement.user.location }}</p>
                 </div>
             </div>
         </div>

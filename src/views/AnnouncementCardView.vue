@@ -2,7 +2,7 @@
     <HeaderComponent />
     <div
         v-if="announcement"
-        class="card-backgroundColor border-1 surface-border border-round mt-8 mb-8 mx-8 text-center pb-4 px-4"
+        class="card-backgroundColor border-1 surface-border border-round mt-8 mb-8  mx-3 sm:mx-8 text-center pb-4 px-4"
     >
         <div class="flex flex-column md:flex-row md:justify-content-between">
             <div class="flex flex-wrap align-items-start">
@@ -36,7 +36,7 @@
             </div>
             <div class="flex flex-wrap">
                 <div v-for="style in announcement.styles" :key="style.style_id">
-                    <Tag class="tag h-1rem md:h-2rem mt-5 ml-1">{{
+                    <Tag class="tag h-1rem md:h-2rem mt-0 md:mt-4 ml-1">{{
                         style.name
                     }}</Tag>
                 </div>
@@ -49,8 +49,8 @@
             <p>{{ announcement.description }}</p>
         </div>
 
-        <div class="flex flex-column md:flex-row md:justify-content-between align-items-baseline">
-            <p class="opacity-60">
+        <div class="flex flex-column md:flex-row md:justify-content-between align-items-center md:align-items-baseline">
+            <p class="opacity-60 text-sm md:text-base">
                 Publiée le
                 {{
                     new Date(announcement.created_at).toLocaleDateString(
@@ -58,7 +58,7 @@
                     ) || ""
                 }}
             </p>
-            <p v-if="announcement.user" class="opacity-60">
+            <p v-if="announcement.user" class="opacity-60 text-sm md:text-base m-0">
                 {{ announcement.user.location }}
             </p>
             <div

@@ -4,7 +4,7 @@
         <div
             v-for="announcement in allAnnouncements"
             :key="announcement.announcement_id"
-            class="card-backgroundColor border-1 surface-border border-round mt-8 mx-8 mb-8 text-center pb-3 px-4"
+            class="card-backgroundColor border-1 surface-border border-round mt-8 mx-3 sm:mx-8 mb-8 text-center pb-3 px-4"
         >
             <div class="flex flex-column md:flex-row md:justify-content-between">
                 <div class="flex flex-wrap align-items-start">
@@ -51,9 +51,9 @@
             <div>
                 <p>{{ announcement.description }}</p>
             </div>
-            <div class="flex flex-column md:flex-row md:justify-content-between align-items-baseline">
+            <div class="flex flex-column md:flex-row md:justify-content-between align-items-center md:align-items-baseline">
                 <div class="flex  flex-column md:flex-row">
-                    <p class="opacity-60 m-0 md:mr-2">
+                    <p class="opacity-60 m-0 md:mr-2 text-sm md:text-base">
                         Publiée le
                         {{
                             new Date(
@@ -62,7 +62,7 @@
                         }}
                     </p>
                     <p class="m-0 md:mr-2">-</p>
-                    <p class="opacity-60 mt-0 mb-3 ">
+                    <p class="opacity-60 mt-0 mb-3 text-sm md:text-base">
                         {{ user.location }}
                     </p>
                 </div>
