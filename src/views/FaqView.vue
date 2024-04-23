@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent />
-  <div class="container flex flex-column m-5">
+  <div class="container flex flex-column m-5 mb-8">
     <h1 class="text-center">FAQ</h1>
     <h3>
       J'ai remarqué un problème sur le site, comment puis-je en avertir les administrateur
