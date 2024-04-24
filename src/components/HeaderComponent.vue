@@ -8,7 +8,7 @@
             >
                 <img
                     src="../assets/img/Omy_band-Logo.png"
-                    class="min-w-min md:min-w-max custom-logo"
+                    class="custom-logo"
                     alt="Logo O'my band"
                 />
                 <h1 class="min-w-min md:min-w-max custom-title">O'MY BAND</h1>
